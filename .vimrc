@@ -158,12 +158,6 @@ inoremap <C-A> <ESC>0i
 cnoremap <C-A> <Home>
 
 " -------------------------------------------------------------------
-" マクロ関連
-" 
-" %コマンドに[begin-end]を追加
-let b:match_words="begin:end"
-
-" -------------------------------------------------------------------
 " ToHTML関連
 "
 " 行番号をつける
@@ -181,6 +175,10 @@ augroup grepopen
     autocmd!
     autocmd QuickFixCmdPost vimgrep cw
 augroup END
+" -------------------------------------------------------------------
+" 標準プラグイン関連
+"
+source $VIMRUNTIME/macros/matchit.vim
 
 " -------------------------------------------------------------------
 " プラグイン管理(NeoBundle)
@@ -370,4 +368,9 @@ nmap <silent> <leader>r :QuickRun -outputter my_outputter<CR>
 " 
 " Vimfilerをデフォルトのファイラーにする。
 let g:vimfiler_as_default_explorer = 1
+
+" -------------------------------------------------------------------
+" matchit.vim関連
+" 
+let b:match_words = "begin:end,if:end if,case:endcase,function:endfunction"
 
