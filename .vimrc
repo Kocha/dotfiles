@@ -74,7 +74,7 @@ if has('syntax')
   call ZenkakuSpace()
 endif
 
-" 行数の横の文字列を変更
+" 行数の横の文字列を変更(オリジナル)
 set numberchar=\|
 
 " -------------------------------------------------------------------
@@ -198,6 +198,7 @@ NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/neocomplcache' 
 NeoBundle 'Shougo/neocomplcache-snippets-complete' 
 NeoBundle 'Shougo/vimfiler' 
+NeoBundle 'Shougo/vinarise' 
 NeoBundle 'ZenCoding.vim'
 NeoBundle 'DrawIt'
 NeoBundle 'thinca/vim-fontzoom'
@@ -217,7 +218,7 @@ NeoBundle 'gregsexton/VimCalc'
 NeoBundle 'vim-scripts/SingleCompile'
 NeoBundle 'vim-scripts/errormarker.vim'
 NeoBundle 'vim-jp/vimdoc-ja'
-"" Vundleの処理が終わってから再度ON
+"" NeoBundleの処理が終わってから再度ON
 filetype plugin indent on
 
 " -------------------------------------------------------------------
@@ -372,5 +373,5 @@ let g:vimfiler_as_default_explorer = 1
 " -------------------------------------------------------------------
 " matchit.vim関連
 " 
-let b:match_words = "begin:end,if:end if,case:endcase,function:endfunction"
+let b:match_words = "begin:end,if:end if,if:end,case:endcase,function:endfunction"
 
