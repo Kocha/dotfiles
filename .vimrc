@@ -151,6 +151,8 @@ nnoremap <ESC><ESC> :nohlsearch<CR>
 " 挿入モード時に、行頭/行末へ移動
 inoremap <C-E> <ESC>A
 inoremap <C-A> <ESC>0i
+" <C-V> Clipboad copy
+inoremap <C-V> <ESC>"*pa
 "================================================
 " コマンドライン関係
 "================================================
