@@ -117,8 +117,10 @@ alias vim=gvim
 
 # -----------------------------------------------
 # ModelSim Setup
-PATH="$PATH":/home/kocha/tools/modelsim/11.1sp1/modelsim_ase/bin
+MODELSIM_HOME=/home/kocha/tools/modelsim/11.1sp1/modelsim_ase
+PATH="$PATH":$MODELSIM_HOME/bin
 
+export MODELSIM_HOME
 # -----------------------------------------------
 # SystemC Setup
 SYSTEMC_HOME=/home/kocha/library/systemc/systemc-2.3.0_pub_rev_20111121
