@@ -143,6 +143,12 @@ inoremap <C-E> <ESC>A
 inoremap <C-A> <ESC>0i
 " <C-V> Clipboad copy
 inoremap <C-V> <ESC>"*pa
+" 挿入モード時に、カーソル移動
+inoremap <C-H> <Left>
+inoremap <C-J> <Down>
+inoremap <C-K> <Up>
+inoremap <C-L> <Right>
+
 "================================================
 " コマンドライン関係
 "================================================
@@ -256,8 +262,8 @@ let g:neocomplcache_enable_prefetch = 1
 
 " ===============================================
 " Plugin key-mappings.
-imap <C-k>     <Plug>(neocomplcache_snippets_expand)
-smap <C-k>     <Plug>(neocomplcache_snippets_expand)
+" imap <C-k>     <Plug>(neocomplcache_snippets_expand)
+" smap <C-k>     <Plug>(neocomplcache_snippets_expand)
 " SuperTab like snippets behavior.
 imap <expr><TAB> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : pumvisible() ? "\<C-n>" : "\<TAB>"
 
@@ -266,7 +272,7 @@ inoremap <expr><CR>  neocomplcache#close_popup() . "\<CR>"
 " <TAB>: completion.
 " inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 " <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
+" inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
 inoremap <expr><C-y>  neocomplcache#close_popup()
 " inoremap <expr><C-e>  neocomplcache#cancel_popup()
@@ -274,8 +280,8 @@ inoremap <expr><C-y>  neocomplcache#close_popup()
 " For cursor moving in insert mode(Not recommended)
 inoremap <expr><Left>  neocomplcache#close_popup() . "\<Left>"
 inoremap <expr><Right> neocomplcache#close_popup() . "\<Right>"
-" inoremap <expr><Up>    neocomplcache#close_popup() . "\<Up>"
-" inoremap <expr><Down>  neocomplcache#close_popup() . "\<Down>"
+inoremap <expr><Up>    neocomplcache#close_popup() . "\<Up>"
+inoremap <expr><Down>  neocomplcache#close_popup() . "\<Down>"
 
 " -------------------------------------------------------------------
 " ZenCoding関連
