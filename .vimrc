@@ -104,16 +104,6 @@ set hlsearch
 "set noautoindent
 "TABキーを押した際にタブ文字の代わりにスペースをいれる
 " set expandtab
-"バイナリ編集(xxd)モード（vim -b での起動、もしくは *.bin で発動します）
-augroup BinaryXXD
-  autocmd!
-  autocmd BufReadPre  *.bin let &binary =1
-  autocmd BufReadPost * if &binary | silent %!xxd -g 1
-  autocmd BufReadPost * set ft=xxd | endif
-  autocmd BufWritePre * if &binary | %!xxd -r | endif
-  autocmd BufWritePost * if &binary | silent %!xxd -g 1
-  autocmd BufWritePost * set nomod | endif
-augroup END
 "バックアップを取らない
 set nobackup
 " 最後に編集した部分にカーソルを移動
@@ -214,7 +204,7 @@ NeoBundle 'ujihisa/unite-colorscheme'
 NeoBundle 'Lokaltog/vim-powerline'
 " NeoBundle 'jceb/vim-hier'
 NeoBundle 'dannyob/quickfixstatus'
-NeoBundle 'mattn/calendar-vim'
+" NeoBundle 'mattn/calendar-vim'
 NeoBundle 'gregsexton/VimCalc'
 "NeoBundle 'houtsnip/vim-emacscommandline'
 NeoBundle 'vim-scripts/SingleCompile'
@@ -261,6 +251,8 @@ if !exists('g:neocomplcache_keyword_patterns')
   let g:neocomplcache_keyword_patterns = {}
 endif
 let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
+" CTRL-Xモードになる問題回避
+let g:neocomplcache_enable_prefetch = 1
 
 " ===============================================
 " Plugin key-mappings.
