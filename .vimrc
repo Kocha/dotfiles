@@ -27,7 +27,8 @@ set laststatus=2
 set number
 " ステータスバーに表示
 set ruler
-"set textwidth=70 "折り返し文字数指定
+" 折り返し文字数指定
+"set textwidth=70
 set linespace=0
 " 閉じ括弧が入力されたとき、対応する括弧を表示する
 set showmatch
@@ -41,8 +42,6 @@ set smartindent
 set smarttab
 " ファイル内の <Tab> が対応する空白の数
 set tabstop=4
-" <TAB>入力を半角<Space>に変換
-set expandtab
 " ステータスラインに文字コードと改行文字を表示する
 set statusline=%<%f\%m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%l,%c%V%8P
 " ステータスラインに補完候補を表示
@@ -50,6 +49,9 @@ set wildmenu
 " タブ文字を可視化
 set list
 set listchars=tab:>\ 
+" :split時の挙動を変更
+set splitbelow
+set splitright
 " ディレクトリ閲覧時のツリー表示
 let g:netrw_liststyle=3
 " 改行コードの自動認識
@@ -100,9 +102,9 @@ set hlsearch
 " -------------------------------------------------------------------
 " Edit関連
 " 
-"オートインデントしない(default:ON)
+" オートインデントしない(default:ON)
 "set noautoindent
-"TABキーを押した際にタブ文字の代わりにスペースをいれる
+" TABキーを押した際にタブ文字の代わりにスペースをいれる
 " set expandtab
 "バックアップを取らない
 set nobackup
@@ -148,7 +150,6 @@ inoremap <C-H> <Left>
 inoremap <C-J> <Down>
 inoremap <C-K> <Up>
 inoremap <C-L> <Right>
-
 "================================================
 " コマンドライン関係
 "================================================
@@ -257,8 +258,8 @@ if !exists('g:neocomplcache_keyword_patterns')
   let g:neocomplcache_keyword_patterns = {}
 endif
 let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
-" CTRL-Xモードになる問題回避
-let g:neocomplcache_enable_prefetch = 1
+" IMEがおかしくなる問題回避
+" let g:neocomplcache_enable_prefetch = 1
 
 " ===============================================
 " Plugin key-mappings.
