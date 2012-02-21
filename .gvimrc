@@ -10,25 +10,30 @@ set guioptions+=a
 " 
 " テーマ色
 colorscheme koehler 
-
 " タブを常に表示
 set showtabline=2 "タブを常に表示
-" MacVim限定にしとかないと端末Windowが変化する "
+" Windowサイズ指定
 if has('gui_macvim')
   set columns=100
   set lines=150
 endif
-
 " GUIフォント設定
 if has("gui_running")
   if has("gui_gtk2")
-    :set guifont=DejaVu\ Sans\ Mono\ 11
+    set guifont=DejaVu\ Sans\ Mono\ 11
   elseif has("x11")
   " Also for GTK 1
-    :set guifont=*-lucidatypewriter-medium-r-normal-*-*-180-*-*-m-*-*
+    set guifont=*-lucidatypewriter-medium-r-normal-*-*-180-*-*-m-*-*
   elseif has("gui_win32")
-    :set guifont=Luxi_Mono:h12:cANSI
+    set guifont=Luxi_Mono:h12:cANSI
   endif
+endif
+" 半透明設定
+if has("gui_win32")
+  " kaoriya版限定
+  set transparency=220
+elseif has("gui_macvim")
+  set transparency=35
 endif
 
 " -------------------------------------------------------------------
