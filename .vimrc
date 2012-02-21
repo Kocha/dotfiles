@@ -43,7 +43,7 @@ set smarttab
 " ファイル内の <Tab> が対応する空白の数
 set tabstop=4
 " ステータスラインに文字コードと改行文字を表示する
-set statusline=%<%f\%m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%l,%c%V%8P
+set statusline=%<%f\%m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%y%=%l,%c%V%8P
 " ステータスラインに補完候補を表示
 set wildmenu
 " タブ文字を可視化
@@ -213,8 +213,8 @@ NeoBundle 'Lokaltog/vim-powerline'
 NeoBundle 'dannyob/quickfixstatus'
 " NeoBundle 'mattn/calendar-vim'
 NeoBundle 'gregsexton/VimCalc'
-"NeoBundle 'houtsnip/vim-emacscommandline'
-NeoBundle 'vim-scripts/SingleCompile'
+" NeoBundle 'houtsnip/vim-emacscommandline'
+" NeoBundle 'vim-scripts/SingleCompile'
 NeoBundle 'vim-scripts/errormarker.vim'
 NeoBundle 'vim-jp/vimdoc-ja'
 "" NeoBundleの処理が終わってから再度ON
