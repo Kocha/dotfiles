@@ -21,8 +21,10 @@ set backspace=start,eol,indent
 " テーマ色
 "colorscheme evening "colorscheme
 colorscheme ron "colorscheme
-" ステータスバーを2行表示
+" ステータスバーを常に表示
 set laststatus=2
+" コマンドラインの幅を1行に
+set cmdheight=1
 " 行数の表示
 set number
 " ステータスバーに表示
