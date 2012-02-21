@@ -213,6 +213,7 @@ NeoBundle 'ujihisa/unite-colorscheme'
 NeoBundle 'Lokaltog/vim-powerline'
 " NeoBundle 'jceb/vim-hier'
 NeoBundle 'dannyob/quickfixstatus'
+NeoBundle 'mattn/webapi-vim'
 " NeoBundle 'mattn/calendar-vim'
 NeoBundle 'gregsexton/VimCalc'
 " NeoBundle 'houtsnip/vim-emacscommandline'
@@ -232,6 +233,7 @@ call rtputil#append('~/.vim/plugins/systemverilog_syntax')
 " call rtputil#append('~/.vim/plugins/systemverilog_snippets')
 call rtputil#append('~/.vim/plugins/tcomment')
 call rtputil#append('~/.vim/plugins/DirDiff')
+" call rtputil#append('~/.vim/plugins/vim-divination')
 
 " -------------------------------------------------------------------
 " 以下プラグイン設定
