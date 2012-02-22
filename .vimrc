@@ -23,8 +23,6 @@ set backspace=start,eol,indent
 colorscheme ron "colorscheme
 " ステータスバーを常に表示
 set laststatus=2
-" コマンドラインの幅を1行に
-set cmdheight=1
 " 行数の表示
 set number
 " ステータスバーに表示
@@ -152,6 +150,13 @@ inoremap <C-H> <Left>
 inoremap <C-J> <Down>
 inoremap <C-K> <Up>
 inoremap <C-L> <Right>
+" ()などの入力時の補助
+inoremap () ()<Left>
+inoremap [] []<Left>
+inoremap {} {}<Left>
+inoremap "" ""<Left>
+inoremap '' ''<Left>
+inoremap <> <><Left>
 "================================================
 " コマンドライン関係
 "================================================
