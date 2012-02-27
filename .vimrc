@@ -225,6 +225,8 @@ NeoBundle 'gregsexton/VimCalc'
 " NeoBundle 'vim-scripts/SingleCompile'
 NeoBundle 'vim-scripts/errormarker.vim'
 NeoBundle 'vim-jp/vimdoc-ja'
+
+" NeoBundle 'Kocha/vim-systemc'
 "" NeoBundleの処理が終わってから再度ON
 filetype plugin indent on
 
@@ -233,11 +235,12 @@ filetype plugin indent on
 " 
 "call rtputil#bundle()
 call rtputil#helptags()
-call rtputil#append('~/.vim/plugins/systemc_syntax')
+" call rtputil#append('~/.vim/plugins/systemc_syntax')
 call rtputil#append('~/.vim/plugins/systemverilog_syntax')
 " call rtputil#append('~/.vim/plugins/systemverilog_snippets')
 call rtputil#append('~/.vim/plugins/tcomment')
 call rtputil#append('~/.vim/plugins/DirDiff')
+call rtputil#append('~/.vim/plugins/vim-systemc')
 " call rtputil#append('~/.vim/plugins/vim-divination')
 
 " -------------------------------------------------------------------
@@ -288,10 +291,10 @@ inoremap <expr><C-y>  neocomplcache#close_popup()
 " inoremap <expr><C-e>  neocomplcache#cancel_popup()
 
 " For cursor moving in insert mode(Not recommended)
-inoremap <expr><Left>  neocomplcache#close_popup() . "\<Left>"
-inoremap <expr><Right> neocomplcache#close_popup() . "\<Right>"
-inoremap <expr><Up>    neocomplcache#close_popup() . "\<Up>"
-inoremap <expr><Down>  neocomplcache#close_popup() . "\<Down>"
+" inoremap <expr><Left>  neocomplcache#close_popup() . "\<Left>"
+" inoremap <expr><Right> neocomplcache#close_popup() . "\<Right>"
+" inoremap <expr><Up>    neocomplcache#close_popup() . "\<Up>"
+" inoremap <expr><Down>  neocomplcache#close_popup() . "\<Down>"
 
 " -------------------------------------------------------------------
 " ZenCoding関連
