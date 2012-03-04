@@ -275,8 +275,8 @@ let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
 
 " ===============================================
 " Plugin key-mappings.
-" imap <C-k>     <Plug>(neocomplcache_snippets_expand)
-" smap <C-k>     <Plug>(neocomplcache_snippets_expand)
+imap <C-P>     <Plug>(neocomplcache_snippets_expand)
+smap <C-P>     <Plug>(neocomplcache_snippets_expand)
 " SuperTab like snippets behavior.
 imap <expr><TAB> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : pumvisible() ? "\<C-n>" : "\<TAB>"
 
