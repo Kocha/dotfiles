@@ -129,4 +129,9 @@ TARGET_ARCH=linux
 
 export SYSTEMC_HOME
 export TARGET_ARCH
+# -----------------------------------------------
+# UVM Setup
+UVM_HOME=/home/kocha/shared/uvm/uvm-1.1a
+
+export UVM_HOME
 
