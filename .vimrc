@@ -146,7 +146,7 @@ inoremap <C-A> <ESC>0i
 " <C-V> Clipboad copy
 inoremap <C-V> <ESC>"*pa
 " 挿入モード時に、カーソル移動
-inoremap <C-H> <Left>
+" inoremap <C-H> <Left>
 inoremap <C-J> <Down>
 inoremap <C-K> <Up>
 inoremap <C-L> <Right>
