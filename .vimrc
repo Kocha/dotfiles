@@ -127,8 +127,8 @@ noremap <F2> <ESC>:bp<CR>
 noremap <F3> <ESC>:bn<CR>
 noremap <F4> <ESC>:bw<CR>
 " 行頭/行末へ移動
-noremap <C-A> 0
-noremap <C-E> $
+noremap <C-a> 0
+noremap <C-e> $
 "================================================
 " Normalモード関係
 "================================================
@@ -141,15 +141,15 @@ nnoremap <ESC><ESC> :nohlsearch<CR>
 " Insertモード関係
 "================================================
 " 挿入モード時に、行頭/行末へ移動
-inoremap <C-E> <ESC>A
-inoremap <C-A> <ESC>0i
+inoremap <C-e> <ESC>A
+inoremap <C-a> <ESC>0i
 " <C-V> Clipboad copy
-inoremap <C-V> <ESC>"*pa
+inoremap <C-v> <ESC>"*pa
 " 挿入モード時に、カーソル移動
 " inoremap <C-H> <Left>
-inoremap <C-J> <Down>
-inoremap <C-K> <Up>
-inoremap <C-L> <Right>
+inoremap <C-j> <Down>
+inoremap <C-k> <Up>
+inoremap <C-l> <Right>
 " ()などの入力時の補助
 inoremap () ()<Left>
 inoremap [] []<Left>
@@ -161,7 +161,7 @@ inoremap <> <><Left>
 " コマンドライン関係
 "================================================
 " <C-A>で先頭へ
-cnoremap <C-A> <Home>
+cnoremap <C-a> <Home>
 
 " -------------------------------------------------------------------
 " ToHTML関連
@@ -275,8 +275,8 @@ let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
 
 " ===============================================
 " Plugin key-mappings.
-imap <C-P>     <Plug>(neocomplcache_snippets_expand)
-smap <C-P>     <Plug>(neocomplcache_snippets_expand)
+imap <C-p>     <Plug>(neocomplcache_snippets_expand)
+smap <C-p>     <Plug>(neocomplcache_snippets_expand)
 " SuperTab like snippets behavior.
 imap <expr><TAB> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : pumvisible() ? "\<C-n>" : "\<TAB>"
 
