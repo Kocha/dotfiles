@@ -135,3 +135,8 @@ UVM_HOME=/home/kocha/shared/uvm/uvm-1.1a
 
 export UVM_HOME
 
+# -----------------------------------------------
+# CodeSourcery Setup
+export CROSS_COMPILE=arm-xilinx-linux-gnueabi-
+export PATH=~/CodeSourcery/Sourcery_CodeBench_Lite_for_Xilinx_GNU_Linux/bin:$PATH
+
