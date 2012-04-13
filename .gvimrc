@@ -40,7 +40,7 @@ endif
 " キーマップ関連
 " 
 " Tab作成
-nnoremap <C-T> <ESC>:tabnew<CR>
+" nnoremap <C-t> <ESC>:tabnew<CR>
 " Tab移動
 nnoremap <C-TAB> <ESC>:tabNext<CR>
 
