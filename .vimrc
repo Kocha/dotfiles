@@ -44,6 +44,11 @@ set smarttab
 set tabstop=4
 " ステータスラインに文字コードと改行文字を表示する
 set statusline=%<%f\%m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%y%=%l,%c%V%8P
+" ステータスラインに日時を追加表示する
+function! g:Date()
+	return strftime("%x %H:%M")
+endfunction
+set statusline+=\ \%{g:Date()}
 " ステータスラインに補完候補を表示
 set wildmenu
 " タブ文字を可視化
@@ -241,6 +246,7 @@ call rtputil#append('~/.vim/plugins/systemverilog_syntax')
 call rtputil#append('~/.vim/plugins/tcomment')
 call rtputil#append('~/.vim/plugins/DirDiff')
 call rtputil#append('~/.vim/plugins/vim-systemc')
+call rtputil#append('~/.vim/plugins/gtags')
 " call rtputil#append('~/.vim/plugins/vim-divination')
 
 " -------------------------------------------------------------------
