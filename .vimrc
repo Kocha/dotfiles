@@ -217,7 +217,7 @@ NeoBundle 'thinca/vim-ref'
 NeoBundle 'thinca/vim-rtputil'
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'thinca/vim-visualstar'
-NeoBundle 'taku-o/vim-toggle'
+" NeoBundle 'taku-o/vim-toggle'
 NeoBundle 'tyru/eskk.vim'
 NeoBundle 'ujihisa/unite-colorscheme'
 NeoBundle 'Lokaltog/vim-powerline'
@@ -226,7 +226,8 @@ NeoBundle 'dannyob/quickfixstatus'
 NeoBundle 'mattn/webapi-vim'
 " NeoBundle 'mattn/calendar-vim'
 NeoBundle 'gregsexton/VimCalc'
-" NeoBundle 'houtsnip/vim-emacscommandline'
+NeoBundle 'scrooloose/syntastic'
+NeoBundle 'godlygeek/tabular'
 " NeoBundle 'vim-scripts/SingleCompile'
 NeoBundle 'vim-scripts/errormarker.vim'
 NeoBundle 'vim-jp/vimdoc-ja'
@@ -249,6 +250,7 @@ call rtputil#append('~/.vim/plugins/vim-systemc')
 call rtputil#append('~/.vim/plugins/gtags')
 " call rtputil#append('~/.vim/plugins/vim-divination')
 
+call rtputil#append('~/.vim/plugins/vim-rtl')
 " -------------------------------------------------------------------
 " 以下プラグイン設定
 " -------------------------------------------------------------------
