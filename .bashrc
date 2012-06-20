@@ -81,6 +81,7 @@ fi
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+alias l.='ls -d .*'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -104,6 +105,7 @@ fi
 
 # ===============================================
 # User define
+# http://www.cyberciti.biz/tips/bash-aliases-mac-centos-linux-unix.html
 
 # ----------------------------------------------
 # System
@@ -111,24 +113,35 @@ PS1='[\u@\! \w]\$> '
 # PS1='[\u@\!]\$> '
 
 # -----------------------------------------------
+# diff = colordiff
+alias diff='colordiff'
+
+# -----------------------------------------------
 # Alias
 alias sl=ls
 alias h=history
-# alias vim=gvim
 
 # -----------------------------------------------
 # ModelSim Setup
-MODELSIM_HOME=/home/kocha/tools/modelsim/11.1sp1/modelsim_ase
+# MODELSIM_HOME=/home/kocha/tools/modelsim/11.1sp1/modelsim_ase
+MODELSIM_HOME=/home/kocha/tools/modelsim/12.0/modelsim_ase
 PATH="$PATH":$MODELSIM_HOME/bin
 
 export MODELSIM_HOME
 # -----------------------------------------------
 # SystemC Setup
-SYSTEMC_HOME=/home/kocha/library/systemc/systemc-2.3.0_pub_rev_20111121
+# SYSTEMC_HOME=/home/kocha/library/systemc/systemc-2.3.0_pub_rev_20111121
+SYSTEMC_HOME=/usr/local/lib/systemc-2.2.0
+SYSTEMC_AMS_HOME=/home/kocha/library/systemc-ams/systemc-ams-1.0Beta2
 TARGET_ARCH=linux
-
 export SYSTEMC_HOME
+export SYSTEMC_AMS_HOME
 export TARGET_ARCH
+# -----------------------------------------------
+# TLM Setup
+TLM_HOME=/home/kocha/library/TLM/TLM-2009-07-15
+export TLM_HOME
+
 # -----------------------------------------------
 # UVM Setup
 UVM_HOME=/home/kocha/shared/uvm/uvm-1.1a
