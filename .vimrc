@@ -62,9 +62,9 @@ let g:netrw_liststyle=3
 " 改行コードの自動認識
 set fileformats=unix,dos,mac
 " □とか○の文字があってもカーソル位置がずれないようにする
-if exists('&ambiwidth')
-  set ambiwidth=double
-endif
+set ambiwidth=double
+" 連結時のコメント削除&日本語の行の連結時には空白を入力しない
+set formatoptions+=jM
 " 全角スペースの表示
 function! ZenkakuSpace()
   highlight ZenkakuSpace cterm=underline ctermfg=red gui=underline guifg=red
@@ -121,6 +121,11 @@ set virtualedit=block
 " -------------------------------------------------------------------
 " キーマップ関連
 " 
+" AllMaps
+command!
+\   -nargs=* -complete=mapping
+\   AllMaps
+\   map <args> | map! <args> | lmap <args>
 "================================================
 " Normal+Virtualモード関係
 "================================================
@@ -134,12 +139,16 @@ noremap <F4> <ESC>:bw<CR>
 " 行頭/行末へ移動
 noremap <C-a> 0
 noremap <C-e> $
+" クリップボードにコピー(Unix)
+vnoremap y "+y
 "================================================
 " Normalモード関係
 "================================================
 " 表示行単位で行移動する
 nnoremap j gj
 nnoremap k gk
+nnoremap <Down> gj
+nnoremap <Up>   gk
 " ESC2回押しで検索ハイライトを消去
 nnoremap <ESC><ESC> :nohlsearch<CR>
 "================================================
