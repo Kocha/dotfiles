@@ -399,6 +399,8 @@ nmap <silent> <leader>r :QuickRun -outputter my_outputter<CR>
 " 
 " Vimfilerをデフォルトのファイラーにする。
 let g:vimfiler_as_default_explorer = 1
+" safe_modeを解除する。
+let g:vimfiler_safe_mode_by_default = 0
 
 " -------------------------------------------------------------------
 " matchit.vim関連
