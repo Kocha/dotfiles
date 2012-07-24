@@ -7,8 +7,8 @@ set nocompatible
 "左右のカーソル移動で行間移動可能にする。
 "set whichwrap=b,s,<,>,[,],h,l
 set whichwrap=b,s,<,>,[,]
-" 選択した文字をクリップボードに入れる
-set clipboard=unnamed
+" 選択した文字をクリップボードに入れる(自動)
+set clipboard=unnamed,autoselect
 " コメント行にてEnterキー入力後コメントになる動作を解除
 " ft=vimでは効果なし() "set fo-=ro
 autocmd FileType * setlocal formatoptions-=ro
@@ -139,8 +139,9 @@ noremap <F4> <ESC>:bw<CR>
 " 行頭/行末へ移動
 noremap <C-a> 0
 noremap <C-e> $
-" クリップボードにコピー(Unix)
-vnoremap y "+y
+if has("unix")
+  vnoremap y "+y
+endif
 "================================================
 " Normalモード関係
 "================================================
