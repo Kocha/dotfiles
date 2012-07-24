@@ -127,7 +127,9 @@ alias h=history
 MODELSIM_HOME=/home/kocha/tools/modelsim/12.0/modelsim_ase
 PATH="$PATH":$MODELSIM_HOME/bin
 
+MTI_HOME=/home/kocha/tools/modelsim/12.0/modelsim_ase
 export MODELSIM_HOME
+export MTI_HOME
 # -----------------------------------------------
 # SystemC Setup
 # SYSTEMC_HOME=/home/kocha/library/systemc/systemc-2.3.0_pub_rev_20111121
@@ -144,9 +146,12 @@ export TLM_HOME
 
 # -----------------------------------------------
 # UVM Setup
-UVM_HOME=/home/kocha/shared/uvm/uvm-1.1a
+# UVM_HOME=/home/kocha/shared/uvm/uvm-1.1a
+UVM_HOME=/home/kocha/shared/uvm/uvm-1.1b
+UVMC_HOME=/home/kocha/shared/uvm/uvmc-2.1.4
 
 export UVM_HOME
+export UVMC_HOME
 
 # -----------------------------------------------
 # CodeSourcery Setup
