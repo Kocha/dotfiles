@@ -146,6 +146,7 @@ export TLM_HOME
 
 # -----------------------------------------------
 # UVM Setup
+# UVM_HOME=/home/kocha/shared/uvm/uvm-1.0p1
 # UVM_HOME=/home/kocha/shared/uvm/uvm-1.1a
 UVM_HOME=/home/kocha/shared/uvm/uvm-1.1b
 UVMC_HOME=/home/kocha/shared/uvm/uvmc-2.1.4
