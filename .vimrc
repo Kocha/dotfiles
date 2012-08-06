@@ -140,7 +140,7 @@ noremap <F4> <ESC>:bw<CR>
 noremap <C-a> 0
 noremap <C-e> $
 if has("unix")
-  vnoremap y "+y
+  " vnoremap y "+y
 endif
 "================================================
 " Normalモード関係
@@ -152,6 +152,11 @@ nnoremap <Down> gj
 nnoremap <Up>   gk
 " ESC2回押しで検索ハイライトを消去
 nnoremap <ESC><ESC> :nohlsearch<CR>
+" 検索後画面の中心に。
+nnoremap n nzz
+nnoremap N Nzz
+" カーソル部分から行末までコピー
+nnoremap Y y$
 "================================================
 " Insertモード関係
 "================================================
@@ -177,6 +182,8 @@ inoremap <> <><Left>
 "================================================
 " <C-A>で先頭へ
 cnoremap <C-a> <Home>
+" %% を入力すると現在編集中のファイルのフォルダのパスを展開
+cnoremap %% <C-R>=expand('%:p:h').'/'<cr>
 
 " -------------------------------------------------------------------
 " ToHTML関連
