@@ -258,7 +258,6 @@ NeoBundle 'thinca/vim-visualstar'
 NeoBundle 'tyru/eskk.vim'
 NeoBundle 'ujihisa/unite-colorscheme'
 NeoBundle 'osyo-manga/unite-quickfix'
-NeoBundle 'Lokaltog/vim-powerline'
 " NeoBundle 'jceb/vim-hier'
 NeoBundle 'dannyob/quickfixstatus'
 NeoBundle 'mattn/webapi-vim'
@@ -269,6 +268,8 @@ NeoBundle 'godlygeek/tabular'
 " NeoBundle 'vim-scripts/SingleCompile'
 NeoBundle 'vim-scripts/errormarker.vim'
 NeoBundle 'vim-jp/vimdoc-ja'
+
+NeoBundleLazy 'Lokaltog/vim-powerline'
 
 " NeoBundle 'Kocha/vim-systemc'
 "" NeoBundleの処理が終わってから再度ON

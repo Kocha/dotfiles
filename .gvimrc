@@ -68,3 +68,7 @@ set nomousefocus
 " 入力時にマウスポインタを隠す (nomousehide:隠さない)
 set mousehide
 
+" -------------------------------------------------------------------
+" プラグイン管理(NeoBundle)
+" 
+NeoBundleSource vim-powerline
