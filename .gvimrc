@@ -45,7 +45,8 @@ endif
 " Tab作成
 " nnoremap <C-t> <ESC>:tabnew<CR>
 " Tab移動
-nnoremap <C-TAB> <ESC>:tabNext<CR>
+nnoremap <C-TAB> <ESC>:tabnext<CR>
+nnoremap <S-C-TAB> <ESC>:tabNext<CR>
 "================================================
 " コマンドライン関係
 "================================================
