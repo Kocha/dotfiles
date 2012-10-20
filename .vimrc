@@ -37,7 +37,7 @@ set shiftwidth=4
 " 閉じ括弧が入力されたとき、対応する括弧を表示する
 set showmatch
 " 新しい行を作ったときに高度な自動インデントを行う
-set smartindent
+" set smartindent
 " 行頭の余白内で Tab を打ち込むと、'shiftwidth' の数だけインデントする。
 set smarttab
 " ファイル内の <Tab> が対応する空白の数
@@ -244,7 +244,8 @@ NeoBundle 'Shougo/vimproc'
 NeoBundle 'Shougo/vimshell'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/neocomplcache' 
-NeoBundle 'Shougo/neocomplcache-snippets-complete' 
+" NeoBundle 'Shougo/neocomplcache-snippets-complete' 
+NeoBundle 'Shougo/neosnippet' 
 NeoBundle 'Shougo/vimfiler' 
 NeoBundle 'Shougo/vinarise' 
 NeoBundle 'ZenCoding.vim'
@@ -259,6 +260,8 @@ NeoBundle 'tyru/eskk.vim'
 NeoBundle 'ujihisa/unite-colorscheme'
 NeoBundle 'osyo-manga/unite-quickfix'
 NeoBundle 'osyo-manga/unite-quickrun_config'
+NeoBundle "osyo-manga/shabadou.vim"
+NeoBundle "osyo-manga/vim-watchdogs"
 " NeoBundle 'jceb/vim-hier'
 NeoBundle 'dannyob/quickfixstatus'
 NeoBundle 'mattn/webapi-vim'
@@ -274,7 +277,8 @@ NeoBundleLazy 'Lokaltog/vim-powerline'
 
 " NeoBundle 'Kocha/vim-systemc'
 "" NeoBundleの処理が終わってから再度ON
-filetype plugin indent on
+" filetype plugin indent on
+filetype plugin on
 
 " -------------------------------------------------------------------
 " プラグイン管理(rtputil)
@@ -320,14 +324,8 @@ endif
 let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
 " IMEがおかしくなる問題回避
 " let g:neocomplcache_enable_prefetch = 1
-
 " ===============================================
 " Plugin key-mappings.
-imap <C-p>     <Plug>(neocomplcache_snippets_expand)
-smap <C-p>     <Plug>(neocomplcache_snippets_expand)
-" SuperTab like snippets behavior.
-imap <expr><TAB> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : pumvisible() ? "\<C-n>" : "\<TAB>"
-
 " <CR>: close popup and save indent.
 inoremap <expr><CR>  neocomplcache#close_popup() . "\<CR>"
 " <TAB>: completion.
@@ -343,6 +341,15 @@ inoremap <expr><C-y>  neocomplcache#close_popup()
 " inoremap <expr><Right> neocomplcache#close_popup() . "\<Right>"
 " inoremap <expr><Up>    neocomplcache#close_popup() . "\<Up>"
 " inoremap <expr><Down>  neocomplcache#close_popup() . "\<Down>"
+
+" -------------------------------------------------------------------
+" Neosnippet関連
+" 
+imap <C-p>     <Plug>(neosnippet_expand_or_jump)
+smap <C-p>     <Plug>(neosnippet_expand_or_jump)
+" SuperTab like snippets behavior.
+imap <expr><TAB> neosnippet#expandable() ? "\<Plug>(neosnippet_expand_or_jump)": pumvisible() ? "\<C-n>" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable() ? "\<Plug>(neosnippet_expand_or_jump)": "\<TAB>"
 
 " -------------------------------------------------------------------
 " ZenCoding関連
@@ -384,35 +391,59 @@ au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>q
 let g:quickrun_config = {}
 " 横分割をするようにする
 let g:quickrun_config['*'] = {'split': ''}
-" :QuickRun -outputter my_outputter
-" プロセスの実行中は、buffer に出力し、
-" プロセスが終了したら、quickfix へ出力を行う
-" http://d.hatena.ne.jp/osyo-manga/20110729/1311934261
-" http://d.hatena.ne.jp/osyo-manga/20110921/1316605254
-" 既存の outputter をコピーして拡張
-let my_outputter = quickrun#outputter#multi#new()
-let my_outputter.config.targets = ["buffer", "quickfix"]
-
-function! my_outputter.init(session)
-    " quickfix を閉じる
-    :cclose
-    " 元の処理を呼び出す
-    call call(quickrun#outputter#multi#new().init, [a:session], self)
-endfunction
-
-function! my_outputter.finish(session)
-    call call(quickrun#outputter#multi#new().finish, [a:session], self)
-    " 出力バッファの削除
-    bwipeout [quickrun
-    " vim-hier を使用している場合は、ハイライトを更新
-    :HierUpdate
-    " quickfix への出力後に quickfixstatus を有効に
-    :QuickfixStatusEnable
-endfunction
-" quickrun に outputter を登録
-call quickrun#register_outputter("my_outputter", my_outputter)
-" <leader>r を再定義
-nmap <silent> <leader>r :QuickRun -outputter my_outputter<CR>
+" コンフィグ設定
+" http://d.hatena.ne.jp/osyo-manga/20120919/1348054752
+let g:quickrun_config = {
+\   "_" : {
+\       "hook/close_unite_quickfix/enable_hook_loaded" : 1,
+\       "hook/unite_quickfix/enable_failure" : 1,
+\       "hook/close_quickfix/enable_exit" : 1,
+\       "hook/close_buffer/enable_failure" : 1,
+\       "hook/close_buffer/enable_empty_data" : 1,
+\       "outputter" : "multi:buffer:quickfix",
+\       "hook/shabadoubi_touch_henshin/enable" : 1,
+\       "hook/shabadoubi_touch_henshin/wait" : 20,
+\       "outputter/buffer/split" : ":botright 8sp",
+\       "runner" : "vimproc",
+\       "runner/vimproc/updatetime" : 40,
+\   }
+\}
+" " :QuickRun -outputter my_outputter
+" " プロセスの実行中は、buffer に出力し、
+" " プロセスが終了したら、quickfix へ出力を行う
+" " http://d.hatena.ne.jp/osyo-manga/20110729/1311934261
+" " http://d.hatena.ne.jp/osyo-manga/20110921/1316605254
+" " 既存の outputter をコピーして拡張
+" let my_outputter = quickrun#outputter#multi#new()
+" let my_outputter.config.targets = ["buffer", "quickfix"]
+" 
+" function! my_outputter.init(session)
+"     " quickfix を閉じる
+"     :cclose
+"     " 元の処理を呼び出す
+"     call call(quickrun#outputter#multi#new().init, [a:session], self)
+" endfunction
+" 
+" function! my_outputter.finish(session)
+"     call call(quickrun#outputter#multi#new().finish, [a:session], self)
+"     " 出力バッファの削除
+"     bwipeout [quickrun
+"     " vim-hier を使用している場合は、ハイライトを更新
+"     :HierUpdate
+"     " quickfix への出力後に quickfixstatus を有効に
+"     :QuickfixStatusEnable
+" endfunction
+" " quickrun に outputter を登録
+" call quickrun#register_outputter("my_outputter", my_outputter)
+" " <leader>r を再定義
+" nmap <silent> <leader>r :QuickRun -outputter my_outputter<CR>
+" -------------------------------------------------------------------
+" vim-watchdogs関連
+" 
+" Setting
+call watchdogs#setup(g:quickrun_config)
+" 書き込み後にシンタックスチェックを行う
+" let g:watchdogs_check_BufWritePost_enable = 1
 
 " -------------------------------------------------------------------
 " vim-hier関連
