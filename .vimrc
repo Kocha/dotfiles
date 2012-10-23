@@ -404,6 +404,7 @@ let g:quickrun_config = {
 \       "hook/shabadoubi_touch_henshin/enable" : 1,
 \       "hook/shabadoubi_touch_henshin/wait" : 20,
 \       "outputter/buffer/split" : ":botright 8sp",
+\       "outputter/buffer/into" : 1,
 \       "runner" : "vimproc",
 \       "runner/vimproc/updatetime" : 40,
 \   }
