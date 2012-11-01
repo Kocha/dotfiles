@@ -241,22 +241,21 @@ endif
 " Plugins 
 NeoBundle 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/vimproc'
+NeoBundle 'Shougo/vimfiler' 
 NeoBundle 'Shougo/vimshell'
+NeoBundle 'Shougo/vinarise' 
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/neocomplcache' 
-" NeoBundle 'Shougo/neocomplcache-snippets-complete' 
 NeoBundle 'Shougo/neosnippet' 
-NeoBundle 'Shougo/vimfiler' 
-NeoBundle 'Shougo/vinarise' 
 NeoBundle 'ZenCoding.vim'
-NeoBundle 'DrawIt'
 NeoBundle 'thinca/vim-fontzoom'
 NeoBundle 'thinca/vim-ref'
 NeoBundle 'thinca/vim-rtputil'
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'thinca/vim-visualstar'
-" NeoBundle 'taku-o/vim-toggle'
 NeoBundle 'tyru/eskk.vim'
+NeoBundle 'tyru/open-browser.vim'
+NeoBundle 'kana/vim-smartinput'
 NeoBundle 'ujihisa/unite-colorscheme'
 NeoBundle 'osyo-manga/unite-quickfix'
 NeoBundle 'osyo-manga/unite-quickrun_config'
@@ -265,12 +264,14 @@ NeoBundle "osyo-manga/vim-watchdogs"
 " NeoBundle 'jceb/vim-hier'
 NeoBundle 'dannyob/quickfixstatus'
 NeoBundle 'mattn/webapi-vim'
-" NeoBundle 'mattn/calendar-vim'
+NeoBundle 'mattn/zencoding-vim'
 NeoBundle 'gregsexton/VimCalc'
 NeoBundle 'scrooloose/syntastic'
+NeoBundle 'timcharper/textile.vim'
 NeoBundle 'godlygeek/tabular'
-" NeoBundle 'vim-scripts/SingleCompile'
 NeoBundle 'vim-scripts/errormarker.vim'
+NeoBundle 'vim-scripts/DrawIt'
+" NeoBundle 'vim-scripts/SingleCompile'
 NeoBundle 'vim-jp/vimdoc-ja'
 
 NeoBundleLazy 'Lokaltog/vim-powerline'
@@ -322,8 +323,6 @@ if !exists('g:neocomplcache_keyword_patterns')
   let g:neocomplcache_keyword_patterns = {}
 endif
 let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
-" IMEがおかしくなる問題回避
-" let g:neocomplcache_enable_prefetch = 1
 " ===============================================
 " Plugin key-mappings.
 " <CR>: close popup and save indent.
@@ -405,39 +404,17 @@ let g:quickrun_config = {
 \       "hook/shabadoubi_touch_henshin/wait" : 20,
 \       "outputter/buffer/split" : ":botright 8sp",
 \       "outputter/buffer/into" : 1,
+\       "outputter/buffer/running_mark" : "",
 \       "runner" : "vimproc",
 \       "runner/vimproc/updatetime" : 40,
 \   }
 \}
-" " :QuickRun -outputter my_outputter
-" " プロセスの実行中は、buffer に出力し、
-" " プロセスが終了したら、quickfix へ出力を行う
-" " http://d.hatena.ne.jp/osyo-manga/20110729/1311934261
-" " http://d.hatena.ne.jp/osyo-manga/20110921/1316605254
-" " 既存の outputter をコピーして拡張
-" let my_outputter = quickrun#outputter#multi#new()
-" let my_outputter.config.targets = ["buffer", "quickfix"]
-" 
-" function! my_outputter.init(session)
-"     " quickfix を閉じる
-"     :cclose
-"     " 元の処理を呼び出す
-"     call call(quickrun#outputter#multi#new().init, [a:session], self)
-" endfunction
-" 
-" function! my_outputter.finish(session)
-"     call call(quickrun#outputter#multi#new().finish, [a:session], self)
-"     " 出力バッファの削除
-"     bwipeout [quickrun
-"     " vim-hier を使用している場合は、ハイライトを更新
-"     :HierUpdate
-"     " quickfix への出力後に quickfixstatus を有効に
-"     :QuickfixStatusEnable
-" endfunction
-" " quickrun に outputter を登録
-" call quickrun#register_outputter("my_outputter", my_outputter)
-" " <leader>r を再定義
-" nmap <silent> <leader>r :QuickRun -outputter my_outputter<CR>
+" Textile記法設定(outputter - ブラウザ表示)
+let g:quickrun_config['textile'] = {
+      \ 'command'  : 'redcloth',
+      \ 'exec'     : '%c  %s',
+      \ 'outputter': 'browser'
+      \ }
 " -------------------------------------------------------------------
 " vim-watchdogs関連
 " 
