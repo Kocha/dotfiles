@@ -249,9 +249,10 @@ NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/neosnippet' 
 NeoBundle 'thinca/vim-fontzoom'
 NeoBundle 'thinca/vim-ref'
-NeoBundle 'thinca/vim-rtputil'
+" NeoBundle 'thinca/vim-rtputil'
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'thinca/vim-visualstar'
+NeoBundle 'tyru/caw.vim'
 NeoBundle 'tyru/eskk.vim'
 NeoBundle 'tyru/open-browser.vim'
 NeoBundle 'kana/vim-smartinput'
@@ -274,8 +275,10 @@ NeoBundle 'vim-scripts/DrawIt'
 NeoBundle 'vim-jp/vimdoc-ja'
 
 NeoBundleLazy 'Lokaltog/vim-powerline'
+" 個別プラグイン
+" systemverilog_syntax,DirDiff,vim-systemc,gtags,vim-rtl
+NeoBundleLocal ~/.vim/plugins
 
-" NeoBundle 'Kocha/vim-systemc'
 "" NeoBundleの処理が終わってから再度ON
 " filetype plugin indent on
 filetype plugin on
@@ -283,18 +286,17 @@ filetype plugin on
 " -------------------------------------------------------------------
 " プラグイン管理(rtputil)
 " 
-"call rtputil#bundle()
-call rtputil#helptags()
-" call rtputil#append('~/.vim/plugins/systemc_syntax')
-call rtputil#append('~/.vim/plugins/systemverilog_syntax')
-" call rtputil#append('~/.vim/plugins/systemverilog_snippets')
-call rtputil#append('~/.vim/plugins/tcomment')
-call rtputil#append('~/.vim/plugins/DirDiff')
-call rtputil#append('~/.vim/plugins/vim-systemc')
-call rtputil#append('~/.vim/plugins/gtags')
-" call rtputil#append('~/.vim/plugins/vim-divination')
-
-call rtputil#append('~/.vim/plugins/vim-rtl')
+" "call rtputil#bundle()
+" call rtputil#helptags()
+" " call rtputil#append('~/.vim/plugins/systemc_syntax')
+" call rtputil#append('~/.vim/plugins/systemverilog_syntax')
+" " call rtputil#append('~/.vim/plugins/systemverilog_snippets')
+" " call rtputil#append('~/.vim/plugins/tcomment')
+" call rtputil#append('~/.vim/plugins/DirDiff')
+" call rtputil#append('~/.vim/plugins/vim-systemc')
+" call rtputil#append('~/.vim/plugins/gtags')
+" " call rtputil#append('~/.vim/plugins/vim-divination')
+" call rtputil#append('~/.vim/plugins/vim-rtl')
 " -------------------------------------------------------------------
 " 以下プラグイン設定
 " -------------------------------------------------------------------
