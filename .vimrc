@@ -220,13 +220,22 @@ let html_use_css = 0
 "
 " :vimgrep検索後に QuickFixウィンドウを開く
 augroup grepopen
-    autocmd!
-    autocmd QuickFixCmdPost vimgrep cw
+  autocmd!
+  autocmd QuickFixCmdPost vimgrep cw
+augroup END
+" -------------------------------------------------------------------
+" QuickFix関連
+"
+" Quickfixウィンドウだけの場合に自動で閉じる
+augroup qfautoclose
+  autocmd!
+  " Auto-close quickfix window
+  autocmd WinEnter * if (winnr('$') == 1) && (getbufvar(winbufnr(0), '&buftype')) == 'quickfix' | quit | endif
 augroup END
 " -------------------------------------------------------------------
 " 標準プラグイン関連
 "
-source $VIMRUNTIME/macros/matchit.vim
+" source $VIMRUNTIME/macros/matchit.vim
 
 " -------------------------------------------------------------------
 " プラグイン管理(NeoBundle)
@@ -236,12 +245,13 @@ filetype plugin indent off " required!
 
 if has('vim_starting')
   set runtimepath+=~/.vim/bundle/neobundle.vim/
-  call neobundle#rc(expand('~/.vim/bundle/'))
 endif
-" Plugins 
+call neobundle#rc(expand('~/.vim/bundle/'))
+
+" Plugins List
 NeoBundle 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/vimproc'
-NeoBundle 'Shougo/vimfiler' 
+" NeoBundle 'Shougo/vimfiler' 
 NeoBundle 'Shougo/vimshell'
 NeoBundle 'Shougo/vinarise' 
 NeoBundle 'Shougo/unite.vim'
@@ -264,6 +274,7 @@ NeoBundle "osyo-manga/vim-watchdogs"
 " NeoBundle 'jceb/vim-hier'
 NeoBundle 'dannyob/quickfixstatus'
 NeoBundle 'mattn/webapi-vim'
+NeoBundle 'mattn/multi-vim'
 NeoBundle 'mattn/zencoding-vim'
 NeoBundle 'gregsexton/VimCalc'
 NeoBundle 'scrooloose/syntastic'
@@ -275,6 +286,8 @@ NeoBundle 'vim-scripts/DrawIt'
 NeoBundle 'vim-jp/vimdoc-ja'
 
 NeoBundleLazy 'Lokaltog/vim-powerline'
+NeoBundleLazy 'Shougo/vimfiler', {'augroup' : 'myfiler'}
+
 " 個別プラグイン
 " systemverilog_syntax,DirDiff,vim-systemc,gtags,vim-rtl
 NeoBundleLocal ~/.vim/plugins
@@ -343,7 +356,7 @@ inoremap <expr><C-y>  neocomplcache#close_popup()
 " inoremap <expr><Down>  neocomplcache#close_popup() . "\<Down>"
 
 " -------------------------------------------------------------------
-" Neosnippet関連
+" neosnippet関連
 " 
 imap <C-p>     <Plug>(neosnippet_expand_or_jump)
 smap <C-p>     <Plug>(neosnippet_expand_or_jump)
@@ -444,9 +457,65 @@ let g:vimfiler_as_default_explorer = 1
 let g:vimfiler_safe_mode_by_default = 0
 " タブで開くようにする。
 let g:vimfiler_edit_action = 'tabopen'
+" 引数なしの場合は VimFilerを起動
+if has('vim_starting') &&  expand("%") == ""
+  " Source
+  NeoBundleSource vimfiler
+  augroup myfiler
+    autocmd!
+    autocmd VimEnter * VimFiler
+  augroup END
+endif
 
 " -------------------------------------------------------------------
 " matchit.vim関連
 " 
-let b:match_words = "begin:end,if:end if,if:end,case:endcase,function:endfunction"
+" let b:match_words = "begin:end,if:end if,if:end,case:endcase,function:endfunction"
+
+" -------------------------------------------------------------------
+" vim-smartinput関連
+"
+" 括弧内でのスペース入力補助
+call smartinput#map_to_trigger('i', '<Space>', '<Space>', '<Space>')
+""" ( )
+call smartinput#define_rule({
+     \ 'at'    : '(\%#)', 'char' : '<Space>',
+     \ 'input' : '<Space><Space><Left>',
+     \ })
+call smartinput#define_rule({
+     \ 'at'    : '( \%# )', 'char' : '<BS>',
+     \ 'input' : '<Del><BS>',
+     \ })
+""" [ ]
+call smartinput#define_rule({
+     \ 'at'    : '[\%#]', 'char' : '<Space>',
+     \ 'input' : '<Space><Space><Left>',
+     \ })
+call smartinput#define_rule({
+     \ 'at'    : '[ \%# ]', 'char' : '<BS>',
+     \ 'input' : '<Del><BS>',
+     \ })
+""" { }
+call smartinput#define_rule({
+     \ 'at'    : '{\%#}', 'char' : '<Space>',
+     \ 'input' : '<Space><Space><Left>',
+     \ })
+call smartinput#define_rule({
+     \ 'at'    : '{ \%# }', 'char' : '<BS>',
+     \ 'input' : '<Del><BS>',
+     \ })
+""" < >
+call smartinput#define_rule({
+     \ 'at'    : '<\%#>', 'char' : '<Space>',
+     \ 'input' : '<Space><Space><Left>',
+     \ })
+call smartinput#define_rule({
+     \ 'at'    : '< \%# >', 'char' : '<BS>',
+     \ 'input' : '<Del><BS>',
+     \ })
+" 改行時に行末スペースの除去
+call smartinput#define_rule({
+     \ 'at'    : '\s\+\%#', 'char': '<CR>',
+     \ 'input' : "<C-o>:call setline('.', substitute(getline('.'), '\\s\\+$', '', ''))<CR><CR>",
+     \ })
 
