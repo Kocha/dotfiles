@@ -117,6 +117,9 @@ set nobackup
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 " 文字がない部分でも矩形選択可能にする
 set virtualedit=block
+" Undo拡張
+set undofile
+set undodir=~/.undo
 " ウィンドウを閉じずにバッファを閉じる
 command! Ebd call EBufdelete()
 function! EBufdelete()
@@ -265,7 +268,7 @@ NeoBundle 'thinca/vim-visualstar'
 NeoBundle 'tyru/caw.vim'
 NeoBundle 'tyru/eskk.vim'
 NeoBundle 'tyru/open-browser.vim'
-NeoBundle 'kana/vim-smartinput'
+" NeoBundle 'kana/vim-smartinput'
 NeoBundle 'ujihisa/unite-colorscheme'
 NeoBundle 'osyo-manga/unite-quickfix'
 NeoBundle 'osyo-manga/unite-quickrun_config'
@@ -286,7 +289,7 @@ NeoBundle 'vim-scripts/DrawIt'
 NeoBundle 'vim-jp/vimdoc-ja'
 
 NeoBundleLazy 'Lokaltog/vim-powerline'
-NeoBundleLazy 'Shougo/vimfiler', {'augroup' : 'myfiler'}
+NeoBundleLazy 'Shougo/vimfiler'
 
 " 個別プラグイン
 " systemverilog_syntax,DirDiff,vim-systemc,gtags,vim-rtl
@@ -295,6 +298,12 @@ NeoBundleLocal ~/.vim/plugins
 "" NeoBundleの処理が終わってから再度ON
 " filetype plugin indent on
 filetype plugin on
+" Installation check.
+if neobundle#exists_not_installed_bundles()
+  echomsg 'Not installed bundles : ' .
+    \ string(neobundle#get_not_installed_bundle_names())
+  echomsg 'Please execute ":NeoBundleInstall" command.'
+endif
 
 " -------------------------------------------------------------------
 " プラグイン管理(rtputil)
@@ -374,7 +383,7 @@ let g:user_zen_settings = { 'indentation':'    ' }
 " unite.vim関連
 " 
 " 入力モードで開始する
-" let g:unite_enable_start_insert=1
+let g:unite_enable_start_insert=1
 " バッファ一覧
 nnoremap <silent> ,ub :<C-u>Unite buffer<CR>
 " ファイル一覧
@@ -458,15 +467,17 @@ let g:vimfiler_safe_mode_by_default = 0
 " タブで開くようにする。
 let g:vimfiler_edit_action = 'tabopen'
 " 引数なしの場合は VimFilerを起動
-if has('vim_starting') &&  expand("%") == ""
-  " Source
-  NeoBundleSource vimfiler
-  augroup myfiler
-    autocmd!
+if has('vim_starting')
+  if expand("%") == ""
+    NeoBundleSource vimfiler
     autocmd VimEnter * VimFiler
-  augroup END
+  elseif isdirectory(expand("%:p"))
+    NeoBundleSource vimfiler
+  endif
 endif
-
+" '/'検索時に unite.vimを使用する。
+autocmd FileType vimfiler nnoremap <buffer><silent>/ 
+        \ :<C-u>Unite file -default-action=vimfiler<CR>
 " -------------------------------------------------------------------
 " matchit.vim関連
 " 
@@ -475,47 +486,47 @@ endif
 " -------------------------------------------------------------------
 " vim-smartinput関連
 "
-" 括弧内でのスペース入力補助
-call smartinput#map_to_trigger('i', '<Space>', '<Space>', '<Space>')
-""" ( )
-call smartinput#define_rule({
-     \ 'at'    : '(\%#)', 'char' : '<Space>',
-     \ 'input' : '<Space><Space><Left>',
-     \ })
-call smartinput#define_rule({
-     \ 'at'    : '( \%# )', 'char' : '<BS>',
-     \ 'input' : '<Del><BS>',
-     \ })
-""" [ ]
-call smartinput#define_rule({
-     \ 'at'    : '[\%#]', 'char' : '<Space>',
-     \ 'input' : '<Space><Space><Left>',
-     \ })
-call smartinput#define_rule({
-     \ 'at'    : '[ \%# ]', 'char' : '<BS>',
-     \ 'input' : '<Del><BS>',
-     \ })
-""" { }
-call smartinput#define_rule({
-     \ 'at'    : '{\%#}', 'char' : '<Space>',
-     \ 'input' : '<Space><Space><Left>',
-     \ })
-call smartinput#define_rule({
-     \ 'at'    : '{ \%# }', 'char' : '<BS>',
-     \ 'input' : '<Del><BS>',
-     \ })
-""" < >
-call smartinput#define_rule({
-     \ 'at'    : '<\%#>', 'char' : '<Space>',
-     \ 'input' : '<Space><Space><Left>',
-     \ })
-call smartinput#define_rule({
-     \ 'at'    : '< \%# >', 'char' : '<BS>',
-     \ 'input' : '<Del><BS>',
-     \ })
-" 改行時に行末スペースの除去
-call smartinput#define_rule({
-     \ 'at'    : '\s\+\%#', 'char': '<CR>',
-     \ 'input' : "<C-o>:call setline('.', substitute(getline('.'), '\\s\\+$', '', ''))<CR><CR>",
-     \ })
+" " 括弧内でのスペース入力補助
+" call smartinput#map_to_trigger('i', '<Space>', '<Space>', '<Space>')
+" """ ( )
+" call smartinput#define_rule({
+"      \ 'at'    : '(\%#)', 'char' : '<Space>',
+"      \ 'input' : '<Space><Space><Left>',
+"      \ })
+" call smartinput#define_rule({
+"      \ 'at'    : '( \%# )', 'char' : '<BS>',
+"      \ 'input' : '<Del><BS>',
+"      \ })
+" """ [ ]
+" call smartinput#define_rule({
+"      \ 'at'    : '[\%#]', 'char' : '<Space>',
+"      \ 'input' : '<Space><Space><Left>',
+"      \ })
+" call smartinput#define_rule({
+"      \ 'at'    : '[ \%# ]', 'char' : '<BS>',
+"      \ 'input' : '<Del><BS>',
+"      \ })
+" """ { }
+" call smartinput#define_rule({
+"      \ 'at'    : '{\%#}', 'char' : '<Space>',
+"      \ 'input' : '<Space><Space><Left>',
+"      \ })
+" call smartinput#define_rule({
+"      \ 'at'    : '{ \%# }', 'char' : '<BS>',
+"      \ 'input' : '<Del><BS>',
+"      \ })
+" """ < >
+" call smartinput#define_rule({
+"      \ 'at'    : '<\%#>', 'char' : '<Space>',
+"      \ 'input' : '<Space><Space><Left>',
+"      \ })
+" call smartinput#define_rule({
+"      \ 'at'    : '< \%# >', 'char' : '<BS>',
+"      \ 'input' : '<Del><BS>',
+"      \ })
+" " 改行時に行末スペースの除去
+" call smartinput#define_rule({
+"      \ 'at'    : '\s\+\%#', 'char': '<CR>',
+"      \ 'input' : "<C-o>:call setline('.', substitute(getline('.'), '\\s\\+$', '', ''))<CR><CR>",
+"      \ })
 
