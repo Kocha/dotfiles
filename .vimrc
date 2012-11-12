@@ -179,6 +179,8 @@ nnoremap n nzz
 nnoremap N Nzz
 " カーソル部分から行末までコピー
 nnoremap Y y$
+" Blog用
+" nnoremap ,re :%s/<\(p\\|\/p\\|br\s\/\)>//g<CR>:%s/\n<hr/<hr/g<CR>:%s/<hr\s\/>\n/<hr \/>/g<CR>
 "================================================
 " Insertモード関係
 "================================================
@@ -205,7 +207,11 @@ inoremap <> <><Left>
 " <C-A>で先頭へ
 cnoremap <C-a> <Home>
 " %% を入力すると現在編集中のファイルのフォルダのパスを展開
-cnoremap %% <C-R>=expand('%:p:h').'/'<cr>
+if has('win32')
+  cnoremap %% <C-r>=expand('%:p:h').'\'<cr>
+else
+  cnoremap %% <C-r>=expand('%:p:h').'/'<cr>
+endif
 " クリップボードから貼り付け
 cnoremap <C-v> <C-r>+
 " -------------------------------------------------------------------
@@ -282,6 +288,7 @@ NeoBundle 'mattn/zencoding-vim'
 NeoBundle 'gregsexton/VimCalc'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'timcharper/textile.vim'
+NeoBundle 'hallison/vim-markdown'
 NeoBundle 'godlygeek/tabular'
 NeoBundle 'vim-scripts/errormarker.vim'
 NeoBundle 'vim-scripts/DrawIt'
@@ -358,12 +365,6 @@ inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
 inoremap <expr><C-y>  neocomplcache#close_popup()
 " inoremap <expr><C-e>  neocomplcache#cancel_popup()
 
-" For cursor moving in insert mode(Not recommended)
-" inoremap <expr><Left>  neocomplcache#close_popup() . "\<Left>"
-" inoremap <expr><Right> neocomplcache#close_popup() . "\<Right>"
-" inoremap <expr><Up>    neocomplcache#close_popup() . "\<Up>"
-" inoremap <expr><Down>  neocomplcache#close_popup() . "\<Down>"
-
 " -------------------------------------------------------------------
 " neosnippet関連
 " 
@@ -416,28 +417,32 @@ let g:quickrun_config['*'] = {'split': ''}
 " コンフィグ設定
 " http://d.hatena.ne.jp/osyo-manga/20120919/1348054752
 let g:quickrun_config = {
-\   "_" : {
-\       "hook/close_unite_quickfix/enable_hook_loaded" : 1,
-\       "hook/unite_quickfix/enable_failure" : 1,
-\       "hook/close_quickfix/enable_exit" : 1,
-\       "hook/close_buffer/enable_failure" : 1,
-\       "hook/close_buffer/enable_empty_data" : 1,
-\       "outputter" : "multi:buffer:quickfix",
-\       "hook/shabadoubi_touch_henshin/enable" : 1,
-\       "hook/shabadoubi_touch_henshin/wait" : 20,
-\       "outputter/buffer/split" : ":botright 8sp",
-\       "outputter/buffer/into" : 1,
-\       "outputter/buffer/running_mark" : "",
-\       "runner" : "vimproc",
-\       "runner/vimproc/updatetime" : 40,
-\   }
-\}
+    \ "_" : {
+    \   "hook/close_unite_quickfix/enable_hook_loaded" : 1,
+    \   "hook/unite_quickfix/enable_failure" : 1,
+    \   "hook/close_quickfix/enable_exit" : 1,
+    \   "hook/close_buffer/enable_failure" : 1,
+    \   "hook/close_buffer/enable_empty_data" : 1,
+    \   "outputter" : "multi:buffer:quickfix",
+    \   "hook/shabadoubi_touch_henshin/enable" : 1,
+    \   "hook/shabadoubi_touch_henshin/wait" : 20,
+    \   "outputter/buffer/split" : ":botright 8sp",
+    \   "outputter/buffer/into" : 1,
+    \   "outputter/buffer/running_mark" : "",
+    \   "runner" : "vimproc",
+    \   "runner/vimproc/updatetime" : 40,
+    \ }
+    \}
 " Textile記法設定(outputter - ブラウザ表示)
 let g:quickrun_config['textile'] = {
-      \ 'command'  : 'redcloth',
-      \ 'exec'     : '%c  %s',
-      \ 'outputter': 'browser'
-      \ }
+    \ 'command'  : 'redcloth',
+    \ 'exec'     : '%c  %s',
+    \ 'outputter': 'browser'
+    \ }
+" Markdown記法設定(outputter - ブラウザ表示)
+let g:quickrun_config['markdown'] = {
+    \ 'outputter': 'browser'
+    \ }
 " -------------------------------------------------------------------
 " vim-watchdogs関連
 " 
