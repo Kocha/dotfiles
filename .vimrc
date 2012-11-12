@@ -433,15 +433,16 @@ let g:quickrun_config = {
     \   "runner/vimproc/updatetime" : 40,
     \ }
     \}
-" Textile記法設定(outputter - ブラウザ表示)
+" Textile記法設定
 let g:quickrun_config['textile'] = {
     \ 'command'  : 'redcloth',
     \ 'exec'     : '%c  %s',
-    \ 'outputter': 'browser'
     \ }
-" Markdown記法設定(outputter - ブラウザ表示)
+    " \ 'outputter': 'browser'
+" Markdown記法設定
 let g:quickrun_config['markdown'] = {
-    \ 'outputter': 'browser'
+    \ 'command'  : 'bluecloth',
+    \ 'exec'     : '%c -f %s',
     \ }
 " -------------------------------------------------------------------
 " vim-watchdogs関連
