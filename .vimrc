@@ -180,7 +180,7 @@ nnoremap N Nzz
 " カーソル部分から行末までコピー
 nnoremap Y y$
 " Blog用
-" nnoremap ,re :%s/<\(p\\|\/p\\|br\s\/\)>//g<CR>:%s/\n<hr/<hr/g<CR>:%s/<hr\s\/>\n/<hr \/>/g<CR>
+nnoremap ,re :%s/<\(p\\|\/p\\|br\s*\/*\)>//g<CR>:%s/\n<hr/<hr/g<CR>:%s/<hr\s\/>\n/<hr \/>/g<CR>
 "================================================
 " Insertモード関係
 "================================================
@@ -481,6 +481,9 @@ if has('vim_starting')
     NeoBundleSource vimfiler
   endif
 endif
+" q で VimFilerを閉じる
+" autocmd FileType vimfiler nnoremap q <buffer> <Plug>(vimfiler_close)
+autocmd FileType vimfiler nmap <buffer> q <Plug>(vimfiler_close)
 " '/'検索時に unite.vimを使用する。
 autocmd FileType vimfiler nnoremap <buffer><silent>/ 
         \ :<C-u>Unite file -default-action=vimfiler<CR>
