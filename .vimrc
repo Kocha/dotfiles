@@ -285,11 +285,12 @@ NeoBundle 'dannyob/quickfixstatus'
 NeoBundle 'mattn/webapi-vim'
 NeoBundle 'mattn/multi-vim'
 NeoBundle 'mattn/zencoding-vim'
-NeoBundle 'gregsexton/VimCalc'
+" NeoBundle 'gregsexton/VimCalc'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'timcharper/textile.vim'
 NeoBundle 'hallison/vim-markdown'
 NeoBundle 'godlygeek/tabular'
+NeoBundle 'h1mesuke/unite-outline'
 NeoBundle 'vim-scripts/errormarker.vim'
 NeoBundle 'vim-scripts/DrawIt'
 " NeoBundle 'vim-scripts/SingleCompile'
@@ -538,4 +539,16 @@ autocmd FileType vimfiler nnoremap <buffer><silent>/
 "      \ 'at'    : '\s\+\%#', 'char': '<CR>',
 "      \ 'input' : "<C-o>:call setline('.', substitute(getline('.'), '\\s\\+$', '', ''))<CR><CR>",
 "      \ })
+
+" -------------------------------------------------------------------
+" ファイル別指定
+" 
+"================================================
+" Markdown 
+"================================================
+" 新規にMarkdownファイルを作成する際には、UTF-8で作成する。
+autocmd BufNewFile *.md set fileencoding=UTF-8
+autocmd BufNewFile *.mkd set fileencoding=UTF-8
+" Shift+Enterにて<br>タグ挿入
+au FileType markdown inoremap <S-Enter> <br><CR>
 
