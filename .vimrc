@@ -161,9 +161,6 @@ noremap <F4> <ESC>:bw<CR>
 " 行頭/行末へ移動
 noremap <C-a> 0
 noremap <C-e> $
-if has("unix")
-  " vnoremap y "+y
-endif
 "================================================
 " Normalモード関係
 "================================================
@@ -179,6 +176,10 @@ nnoremap n nzz
 nnoremap N Nzz
 " カーソル部分から行末までコピー
 nnoremap Y y$
+" 行の二重化
+nnoremap <C-Enter> yypk
+" 行削除
+nnoremap <S-Enter> dd
 " Blog用
 nnoremap ,re :%s/<\(p\\|\/p\\|br\s*\/*\)>//g<CR>:%s/\n<hr/<hr/g<CR>:%s/<hr\s\/>\n/<hr \/>/g<CR>
 "================================================
@@ -260,7 +261,7 @@ call neobundle#rc(expand('~/.vim/bundle/'))
 " Plugins List
 NeoBundle 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/vimproc'
-" NeoBundle 'Shougo/vimfiler' 
+NeoBundle 'Shougo/vimfiler' 
 NeoBundle 'Shougo/vimshell'
 NeoBundle 'Shougo/vinarise' 
 NeoBundle 'Shougo/unite.vim'
@@ -297,7 +298,7 @@ NeoBundle 'vim-scripts/DrawIt'
 NeoBundle 'vim-jp/vimdoc-ja'
 
 NeoBundleLazy 'Lokaltog/vim-powerline'
-NeoBundleLazy 'Shougo/vimfiler'
+" NeoBundleLazy 'Shougo/vimfiler'
 
 " 個別プラグイン
 " systemverilog_syntax,DirDiff,vim-systemc,gtags,vim-rtl
@@ -474,20 +475,20 @@ let g:vimfiler_safe_mode_by_default = 0
 " タブで開くようにする。
 let g:vimfiler_edit_action = 'tabopen'
 " 引数なしの場合は VimFilerを起動
-if has('vim_starting')
-  if expand("%") == ""
-    NeoBundleSource vimfiler
-    autocmd VimEnter * VimFiler
-  elseif isdirectory(expand("%:p"))
-    NeoBundleSource vimfiler
-  endif
-endif
+" if has('vim_starting')
+"   if expand("%") == ""
+"     NeoBundleSource vimfiler
+"     autocmd VimEnter * VimFiler
+"   elseif isdirectory(expand("%:p"))
+"     NeoBundleSource vimfiler
+"   endif
+" endif
 " q で VimFilerを閉じる
 " autocmd FileType vimfiler nnoremap q <buffer> <Plug>(vimfiler_close)
 autocmd FileType vimfiler nmap <buffer> q <Plug>(vimfiler_close)
-" '/'検索時に unite.vimを使用する。
-autocmd FileType vimfiler nnoremap <buffer><silent>/ 
-        \ :<C-u>Unite file -default-action=vimfiler<CR>
+" '/'カレントディレクトリ検索時に unite.vimを使用する。
+" autocmd FileType vimfiler nnoremap <buffer><silent>/ 
+"         \ :<C-u>Unite file -default-action=vimfiler<CR>
 " -------------------------------------------------------------------
 " matchit.vim関連
 " 
