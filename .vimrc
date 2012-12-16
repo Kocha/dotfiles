@@ -295,6 +295,7 @@ NeoBundle 'h1mesuke/unite-outline'
 NeoBundle 'vim-scripts/errormarker.vim'
 NeoBundle 'vim-scripts/DrawIt'
 " NeoBundle 'vim-scripts/SingleCompile'
+NeoBundle 'vim-scripts/Colour-Sampler-Pack'
 NeoBundle 'vim-jp/vimdoc-ja'
 
 NeoBundleLazy 'Lokaltog/vim-powerline'
