@@ -444,9 +444,13 @@ let g:quickrun_config['textile'] = {
     \ }
     " \ 'outputter': 'browser'
 " Markdown記法設定
+" let g:quickrun_config['markdown'] = {
+"     \ 'command'  : 'bluecloth',
+"     \ 'exec'     : '%c -f %s',
+"     \ }
 let g:quickrun_config['markdown'] = {
-    \ 'command'  : 'bluecloth',
-    \ 'exec'     : '%c -f %s',
+    \ 'command'  : 'bluefeather',
+    \ 'exec'     : 'cat %s | %c -',
     \ }
 " -------------------------------------------------------------------
 " vim-watchdogs関連
