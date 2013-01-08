@@ -261,8 +261,8 @@ call neobundle#rc(expand('~/.vim/bundle/'))
 " Plugins List
 NeoBundle 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/vimproc'
-NeoBundle 'Shougo/vimfiler' 
-NeoBundle 'Shougo/vimshell'
+" NeoBundle 'Shougo/vimfiler' 
+" NeoBundle 'Shougo/vimshell'
 NeoBundle 'Shougo/vinarise' 
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/neocomplcache' 
@@ -295,6 +295,12 @@ NeoBundle 'vim-scripts/DrawIt'
 NeoBundle 'vim-scripts/Colour-Sampler-Pack'
 NeoBundle 'vim-jp/vimdoc-ja'
 
+NeoBundleLazy 'Shougo/vimfiler', {
+\   'autoload' : { 'commands' : [ "VimFilerTab", "VimFiler", "VimFilerExplorer" ] }
+\}
+NeoBundleLazy 'Shougo/vimshell', {
+\   'autoload' : { 'commands' : [ 'VimShell' ] }
+\}
 NeoBundleLazy 'thinca/vim-fontzoom'
 NeoBundleLazy 'Lokaltog/vim-powerline'
 NeoBundleLazy 'vim-scripts/errormarker.vim'
@@ -482,16 +488,18 @@ let g:vimfiler_safe_mode_by_default = 0
 " タブで開くようにする。
 let g:vimfiler_edit_action = 'tabopen'
 " 引数なしの場合は VimFilerを起動
-" if has('vim_starting')
-"   if expand("%") == ""
-"     NeoBundleSource vimfiler
-"     autocmd VimEnter * VimFiler
-"   elseif isdirectory(expand("%:p"))
-"     NeoBundleSource vimfiler
-"   endif
-" endif
+if has("gui_macvim")
+  if has('vim_starting')
+    if expand("%") == ""
+      autocmd VimEnter * VimFiler
+    endif
+  endif
+endif
+" ディレクトリで開いた場合に VimFilerを起動
+if isdirectory(expand("%:p"))
+  autocmd VimEnter * VimFiler
+endif
 " q で VimFilerを閉じる
-" autocmd FileType vimfiler nnoremap q <buffer> <Plug>(vimfiler_close)
 autocmd FileType vimfiler nmap <buffer> q <Plug>(vimfiler_close)
 " '/'カレントディレクトリ検索時に unite.vimを使用する。
 " autocmd FileType vimfiler nnoremap <buffer><silent>/ 
