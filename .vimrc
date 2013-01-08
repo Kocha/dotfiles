@@ -290,8 +290,8 @@ NeoBundle 'timcharper/textile.vim'
 NeoBundle 'hallison/vim-markdown'
 NeoBundle 'godlygeek/tabular'
 NeoBundle 'h1mesuke/unite-outline'
+NeoBundle 'tsukkee/unite-help'
 NeoBundle 'vim-scripts/DrawIt'
-" NeoBundle 'vim-scripts/SingleCompile'
 NeoBundle 'vim-scripts/Colour-Sampler-Pack'
 NeoBundle 'vim-jp/vimdoc-ja'
 
@@ -400,6 +400,8 @@ nnoremap <silent> ,um :<C-u>Unite file_mru<CR>
 nnoremap <silent> ,uu :<C-u>Unite buffer file_mru<CR>
 " 全部乗せ
 nnoremap <silent> ,ua :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
+" ヘルプ
+nnoremap <silent> ,uh :<C-u>Unite -start-insert help<CR>
 " ウィンドウを分割して開く
 au FileType unite nnoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
 au FileType unite inoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
