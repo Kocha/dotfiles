@@ -380,8 +380,10 @@ inoremap <expr><C-y>  neocomplcache#close_popup()
 imap <C-p>     <Plug>(neosnippet_expand_or_jump)
 smap <C-p>     <Plug>(neosnippet_expand_or_jump)
 " SuperTab like snippets behavior.
-imap <expr><TAB> neosnippet#expandable() ? "\<Plug>(neosnippet_expand_or_jump)": pumvisible() ? "\<C-n>" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable() ? "\<Plug>(neosnippet_expand_or_jump)": "\<TAB>"
+imap <expr><TAB> neosnippet#expandable() <Bar><Bar> neosnippet#jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<C-n>" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable() <Bar><Bar> neosnippet#jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
 " -------------------------------------------------------------------
 " ZenCoding関連
@@ -451,10 +453,6 @@ let g:quickrun_config['textile'] = {
     \ }
     " \ 'outputter': 'browser'
 " Markdown記法設定
-" let g:quickrun_config['markdown'] = {
-"     \ 'command'  : 'bluecloth',
-"     \ 'exec'     : '%c -f %s',
-"     \ }
 let g:quickrun_config['markdown'] = {
     \ 'command'  : 'bluefeather',
     \ 'exec'     : 'cat %s | %c -',
