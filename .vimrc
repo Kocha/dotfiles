@@ -495,12 +495,41 @@ if has("gui_macvim")
     endif
   endif
 endif
-" ディレクトリで開いた場合に VimFilerを起動
-if isdirectory(expand("%:p"))
-  autocmd VimEnter * VimFiler
-endif
 " q で VimFilerを閉じる
 autocmd FileType vimfiler nmap <buffer> q <Plug>(vimfiler_close)
+" VimFiler の読み込みを遅延しつつデフォルトのファイラに設定 {{{
+augroup LoadVimFiler
+    autocmd!
+    autocmd BufEnter,BufCreate,BufWinEnter * call <SID>load_vimfiler(expand('<amatch>'))
+augroup END
+" :edit {dir} や unite.vim などでディレクトリを開こうとした場合
+function! s:load_vimfiler(path)
+    if exists('g:loaded_vimfiler')
+        autocmd! LoadVimFiler
+        return
+    endif
+
+    let path = a:path
+    " for ':edit ~'
+    if fnamemodify(path, ':t') ==# '~'
+        let path = expand('~')
+    endif
+
+    if isdirectory(path)
+        NeoBundleSource vimfiler
+    endif
+
+    autocmd! LoadVimFiler
+endfunction
+" 起動時にディレクトリを指定した場合
+for arg in argv()
+    if isdirectory(getcwd().'/'.arg)
+        NeoBundleSource vimfiler
+        autocmd! LoadVimFiler
+        break
+    endif
+endfor
+"}}}
 " '/'カレントディレクトリ検索時に unite.vimを使用する。
 " autocmd FileType vimfiler nnoremap <buffer><silent>/ 
 "         \ :<C-u>Unite file -default-action=vimfiler<CR>
