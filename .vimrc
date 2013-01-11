@@ -1,4 +1,4 @@
-" vim: set ts=4 sw=4 sts=0:
+" vim: set ts=4 sw=4 sts=0 foldmethod=marker:
 " -------------------------------------------------------------------
 " System関連
 
@@ -248,7 +248,7 @@ augroup END
 " source $VIMRUNTIME/macros/matchit.vim
 
 " -------------------------------------------------------------------
-" プラグイン管理(NeoBundle)
+" プラグイン管理(NeoBundle) {{{
 " 
 set nocompatible           " be iMproved
 filetype plugin indent off " required!
@@ -261,8 +261,6 @@ call neobundle#rc(expand('~/.vim/bundle/'))
 " Plugins List
 NeoBundle 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/vimproc'
-" NeoBundle 'Shougo/vimfiler' 
-" NeoBundle 'Shougo/vimshell'
 NeoBundle 'Shougo/vinarise' 
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/neocomplcache' 
@@ -286,8 +284,6 @@ NeoBundle 'mattn/zencoding-vim'
 NeoBundle 'mattn/excitetranslate-vim'
 " NeoBundle 'gregsexton/VimCalc'
 NeoBundle 'scrooloose/syntastic'
-NeoBundle 'timcharper/textile.vim'
-NeoBundle 'hallison/vim-markdown'
 NeoBundle 'godlygeek/tabular'
 NeoBundle 'h1mesuke/unite-outline'
 NeoBundle 'tsukkee/unite-help'
@@ -295,17 +291,32 @@ NeoBundle 'vim-scripts/DrawIt'
 NeoBundle 'vim-scripts/Colour-Sampler-Pack'
 NeoBundle 'vim-jp/vimdoc-ja'
 
+"================================================
+" NeoBundleLazy List {{{
+"================================================
 NeoBundleLazy 'Shougo/vimfiler', {
 \   'autoload' : { 'commands' : [ "VimFilerTab", "VimFiler", "VimFilerExplorer" ] }
 \}
 NeoBundleLazy 'Shougo/vimshell', {
 \   'autoload' : { 'commands' : [ 'VimShell' ] }
 \}
+" Markdown, Textile
+NeoBundleLazy "hallison/vim-markdown",  {"autoload" : { "filetypes" : ["markdown"] }}
+NeoBundleLazy "timcharper/textile.vim", {"autoload" : { "filetypes" : ["textile"] }}
+" haskell
+NeoBundleLazy "dag/vim2hs",                  {"autoload" : { "filetypes" : ["haskell"] }}
+NeoBundleLazy "eagletmt/ghcmod-vim",         {"autoload" : { "filetypes" : ["haskell"] }}
+NeoBundleLazy "eagletmt/unite-haddock",      {"autoload" : { "filetypes" : ["haskell"] }}
+NeoBundleLazy "ujihisa/neco-ghc",            {"autoload" : { "filetypes" : ["haskell"] }}
+NeoBundleLazy "ujihisa/unite-haskellimport", {"autoload" : { "filetypes" : ["haskell"] }}
+
+" gvim用 {{{
 NeoBundleLazy 'thinca/vim-fontzoom'
 NeoBundleLazy 'Lokaltog/vim-powerline'
 NeoBundleLazy 'vim-scripts/errormarker.vim'
 NeoBundleLazy 'ujihisa/unite-colorscheme'
-" NeoBundleLazy 'Shougo/vimfiler'
+"}}}
+"}}}
 
 " 個別プラグイン
 " systemverilog_syntax,DirDiff,vim-systemc,gtags,vim-rtl
@@ -320,25 +331,12 @@ if neobundle#exists_not_installed_bundles()
     \ string(neobundle#get_not_installed_bundle_names())
   echomsg 'Please execute ":NeoBundleInstall" command.'
 endif
+"}}}
 
-" -------------------------------------------------------------------
-" プラグイン管理(rtputil)
-" 
-" "call rtputil#bundle()
-" call rtputil#helptags()
-" " call rtputil#append('~/.vim/plugins/systemc_syntax')
-" call rtputil#append('~/.vim/plugins/systemverilog_syntax')
-" " call rtputil#append('~/.vim/plugins/systemverilog_snippets')
-" " call rtputil#append('~/.vim/plugins/tcomment')
-" call rtputil#append('~/.vim/plugins/DirDiff')
-" call rtputil#append('~/.vim/plugins/vim-systemc')
-" call rtputil#append('~/.vim/plugins/gtags')
-" " call rtputil#append('~/.vim/plugins/vim-divination')
-" call rtputil#append('~/.vim/plugins/vim-rtl')
 " -------------------------------------------------------------------
 " 以下プラグイン設定
 " -------------------------------------------------------------------
-" neocomplcache関連
+" neocomplcache関連 {{{
 " 
 " Use neocomplcache.
 let g:neocomplcache_enable_at_startup = 1
@@ -373,6 +371,7 @@ inoremap <expr><CR>  neocomplcache#close_popup() . "\<CR>"
 inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
 inoremap <expr><C-y>  neocomplcache#close_popup()
 " inoremap <expr><C-e>  neocomplcache#cancel_popup()
+"}}}
 
 " -------------------------------------------------------------------
 " neosnippet関連
@@ -392,7 +391,7 @@ smap <expr><TAB> neosnippet#expandable() <Bar><Bar> neosnippet#jumpable() ?
 let g:user_zen_settings = { 'indentation':'    ' }
 
 " -------------------------------------------------------------------
-" unite.vim関連
+" unite.vim関連 {{{
 " 
 " 入力モードで開始する
 let g:unite_enable_start_insert=1
@@ -419,9 +418,10 @@ au FileType unite inoremap <silent> <buffer> <expr> <C-l> unite#do_action('vspli
 " ESCキーを2回押すと終了する
 au FileType unite nnoremap <silent> <buffer> <ESC><ESC> q
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>q
+"}}}
 
 " -------------------------------------------------------------------
-" vim-quickrun関連
+" vim-quickrun関連 {{{
 "
 " コンフィグを全クリア
 let g:quickrun_config = {}
@@ -457,6 +457,8 @@ let g:quickrun_config['markdown'] = {
     \ 'command'  : 'bluefeather',
     \ 'exec'     : 'cat %s | %c -',
     \ }
+"}}}
+
 " -------------------------------------------------------------------
 " vim-watchdogs関連
 " 
@@ -466,7 +468,7 @@ call watchdogs#setup(g:quickrun_config)
 " let g:watchdogs_check_BufWritePost_enable = 1
 
 " -------------------------------------------------------------------
-" vim-hier関連
+" vim-hier関連 {{{
 " 
 " 波線で表示する場合は、以下の設定を行う
 " エラーを赤字の波線で
@@ -475,9 +477,10 @@ call watchdogs#setup(g:quickrun_config)
 " 警告を青字の波線で
 " execute "highlight qf_warning_ucurl cterm=undercurl ctermfg=Blue gui=undercurl guisp=Blue"
 " let g:hier_highlight_group_qfw = "qf_warning_ucurl"
+"}}}
 
 " -------------------------------------------------------------------
-" Vimfiler関連
+" Vimfiler関連 {{{
 " 
 " Vimfilerをデフォルトのファイラーにする。
 let g:vimfiler_as_default_explorer = 1
@@ -531,13 +534,10 @@ endfor
 " '/'カレントディレクトリ検索時に unite.vimを使用する。
 " autocmd FileType vimfiler nnoremap <buffer><silent>/ 
 "         \ :<C-u>Unite file -default-action=vimfiler<CR>
-" -------------------------------------------------------------------
-" matchit.vim関連
-" 
-" let b:match_words = "begin:end,if:end if,if:end,case:endcase,function:endfunction"
+"}}}
 
 " -------------------------------------------------------------------
-" vim-smartinput関連
+" vim-smartinput関連 {{{
 "
 " " 括弧内でのスペース入力補助
 " call smartinput#map_to_trigger('i', '<Space>', '<Space>', '<Space>')
@@ -582,6 +582,7 @@ endfor
 "      \ 'at'    : '\s\+\%#', 'char': '<CR>',
 "      \ 'input' : "<C-o>:call setline('.', substitute(getline('.'), '\\s\\+$', '', ''))<CR><CR>",
 "      \ })
+"}}}
 
 " -------------------------------------------------------------------
 " ファイル別指定
