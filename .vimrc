@@ -229,9 +229,17 @@ let html_use_css = 0
 " VimGrep関連
 "
 " :vimgrep検索後に QuickFixウィンドウを開く
-augroup grepopen
+augroup vimgrepopen
   autocmd!
   autocmd QuickFixCmdPost vimgrep cw
+augroup END
+" -------------------------------------------------------------------
+" HelpGrep関連
+"
+" :helpgrep検索後に QuickFixウィンドウを開く
+augroup helpgrepopen
+  autocmd!
+  autocmd QuickFixCmdPost helpgrep Unite quickfix
 augroup END
 " -------------------------------------------------------------------
 " QuickFix関連
