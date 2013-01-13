@@ -219,15 +219,21 @@ cnoremap <C-v> <C-r>+
 " ファイル別指定
 " 
 "================================================
-" Markdown 
+" Markdown {{{
 "================================================
-autocmd BufRead,BufNewFile *.md  setfiletype markdown
-autocmd BufRead,BufNewFile *.mkd setfiletype markdown
-" 新規にMarkdownファイルを作成する際には、UTF-8で作成する。
-autocmd BufRead,BufNewFile *.md  set fileencoding=UTF-8
-autocmd BufRead,BufNewFile *.mkd set fileencoding=UTF-8
+" 拡張子設定[*.md, *.mkd]
+augroup FileMarkdown
+  autocmd!
+  autocmd BufRead,BufNewFile *md,*.mkd call <SID>file_markdown()
+augroup END
+function! s:file_markdown()
+  setfiletype markdown
+  set fileencoding=UTF-8
+  autocmd! FileMarkdown
+endfunction
 " Shift+Enterにて<br>タグ挿入
 au FileType markdown inoremap <S-Enter> <br><CR>
+"}}}
 
 " -------------------------------------------------------------------
 " ToHTML関連
