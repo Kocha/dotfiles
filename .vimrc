@@ -216,6 +216,20 @@ endif
 " クリップボードから貼り付け
 cnoremap <C-v> <C-r>+
 " -------------------------------------------------------------------
+" ファイル別指定
+" 
+"================================================
+" Markdown 
+"================================================
+autocmd BufRead,BufNewFile *.md  setfiletype markdown
+autocmd BufRead,BufNewFile *.mkd setfiletype markdown
+" 新規にMarkdownファイルを作成する際には、UTF-8で作成する。
+autocmd BufRead,BufNewFile *.md  set fileencoding=UTF-8
+autocmd BufRead,BufNewFile *.mkd set fileencoding=UTF-8
+" Shift+Enterにて<br>タグ挿入
+au FileType markdown inoremap <S-Enter> <br><CR>
+
+" -------------------------------------------------------------------
 " ToHTML関連
 "
 " 行番号をつける
@@ -224,7 +238,6 @@ let html_number_lines = 1
 let html_use_css = 0
 " <pre>タグを使用しないHTMLを生成する。
 " let html_no_pre = 1
-
 " -------------------------------------------------------------------
 " VimGrep関連
 "
@@ -236,7 +249,7 @@ augroup END
 " -------------------------------------------------------------------
 " HelpGrep関連
 "
-" :helpgrep検索後に QuickFixウィンドウを開く
+" :helpgrep検索後に unite-quickfixを開く
 augroup helpgrepopen
   autocmd!
   autocmd QuickFixCmdPost helpgrep Unite quickfix
@@ -591,16 +604,4 @@ endfor
 "      \ 'input' : "<C-o>:call setline('.', substitute(getline('.'), '\\s\\+$', '', ''))<CR><CR>",
 "      \ })
 "}}}
-
-" -------------------------------------------------------------------
-" ファイル別指定
-" 
-"================================================
-" Markdown 
-"================================================
-" 新規にMarkdownファイルを作成する際には、UTF-8で作成する。
-autocmd BufNewFile *.md set fileencoding=UTF-8
-autocmd BufNewFile *.mkd set fileencoding=UTF-8
-" Shift+Enterにて<br>タグ挿入
-au FileType markdown inoremap <S-Enter> <br><CR>
 
