@@ -314,6 +314,7 @@ NeoBundle 'scrooloose/syntastic'
 NeoBundle 'godlygeek/tabular'
 NeoBundle 'h1mesuke/unite-outline'
 NeoBundle 'tsukkee/unite-help'
+NeoBundle 'kmnk/vim-unite-giti'
 NeoBundle 'vim-scripts/DrawIt'
 NeoBundle 'vim-scripts/Colour-Sampler-Pack'
 NeoBundle 'vim-jp/vimdoc-ja'
@@ -421,7 +422,7 @@ let g:user_zen_settings = { 'indentation':'    ' }
 " unite.vim関連 {{{
 " 
 " 入力モードで開始する
-let g:unite_enable_start_insert=1
+" let g:unite_enable_start_insert = 1
 " バッファ一覧
 nnoremap <silent> ,ub :<C-u>Unite buffer<CR>
 " ファイル一覧
@@ -445,6 +446,13 @@ au FileType unite inoremap <silent> <buffer> <expr> <C-l> unite#do_action('vspli
 " ESCキーを2回押すと終了する
 au FileType unite nnoremap <silent> <buffer> <ESC><ESC> q
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>q
+"}}}
+
+" -------------------------------------------------------------------
+" unite-tig関連 {{{
+" 
+" ,ut に unite-tigマッピング 
+nnoremap <silent> ,ut :<C-u>Unite tig -no-split<CR>
 "}}}
 
 " -------------------------------------------------------------------
