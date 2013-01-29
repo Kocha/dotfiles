@@ -218,7 +218,6 @@ cnoremap <C-v> <C-r>+
 " -------------------------------------------------------------------
 " ファイル別指定
 " 
-
 "================================================
 " Help {{{
 "================================================
@@ -322,6 +321,7 @@ NeoBundle 'godlygeek/tabular'
 NeoBundle 'h1mesuke/unite-outline'
 NeoBundle 'tsukkee/unite-help'
 NeoBundle 'kmnk/vim-unite-giti'
+NeoBundle 'tpope/vim-surround'
 NeoBundle 'vim-scripts/DrawIt'
 NeoBundle 'vim-scripts/Colour-Sampler-Pack'
 NeoBundle 'vim-jp/vimdoc-ja'
