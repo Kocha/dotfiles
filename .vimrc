@@ -46,7 +46,7 @@ set tabstop=4
 set statusline=%<%f\%m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%y%=%l,%c%V%8P
 " ステータスラインに日時を追加表示する
 function! g:Date()
-	return strftime("%x %H:%M")
+  return strftime("%x %H:%M")
 endfunction
 set statusline+=\ \%{g:Date()}
 " ステータスラインに補完候補を表示
@@ -144,10 +144,8 @@ endfunction
 " キーマップ関連
 " 
 " AllMaps
-command!
-\   -nargs=* -complete=mapping
-\   AllMaps
-\   map <args> | map! <args> | lmap <args>
+command! -nargs=* -complete=mapping
+\   AllMaps map <args> | map! <args> | lmap <args>
 "================================================
 " Normal+Virtualモード関係
 "================================================
@@ -188,7 +186,7 @@ nnoremap ,re :%s/<\(p\\|\/p\\|br\s*\/*\)>//g<CR>:%s/\n<hr/<hr/g<CR>:%s/<hr\s\/>\
 " 挿入モード時に、行頭/行末へ移動
 inoremap <C-e> <ESC>A
 inoremap <C-a> <ESC>0i
-" <C-V> Clipboad copy
+" <C-V> Clipboadから貼り付け
 inoremap <C-v> <ESC>"*pa
 " 挿入モード時に、カーソル移動
 " inoremap <C-H> <Left>
@@ -322,6 +320,7 @@ NeoBundle 'h1mesuke/unite-outline'
 NeoBundle 'tsukkee/unite-help'
 NeoBundle 'kmnk/vim-unite-giti'
 NeoBundle 'tpope/vim-surround'
+NeoBundle 'rbtnn/clever-f.vim'
 NeoBundle 'vim-scripts/DrawIt'
 NeoBundle 'vim-scripts/Colour-Sampler-Pack'
 NeoBundle 'vim-jp/vimdoc-ja'
