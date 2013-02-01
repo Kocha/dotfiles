@@ -322,6 +322,7 @@ NeoBundle 'tsukkee/unite-help'
 NeoBundle 'kmnk/vim-unite-giti'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'rhysd/clever-f.vim'
+NeoBundle 'glidenote/memolist.vim'
 NeoBundle 'vim-scripts/DrawIt'
 NeoBundle 'vim-scripts/Colour-Sampler-Pack'
 NeoBundle 'vim-jp/vimdoc-ja'
@@ -576,6 +577,19 @@ endfor
 " '/'カレントディレクトリ検索時に unite.vimを使用する。
 " autocmd FileType vimfiler nnoremap <buffer><silent>/ 
 "         \ :<C-u>Unite file -default-action=vimfiler<CR>
+"}}}
+
+" -------------------------------------------------------------------
+" memolist.vim関連 {{{
+" 
+let g:memolist_path = "$HOME/Blog"
+let g:memolist_memo_suffix = "md"
+" tag/categoryを入力
+let g:memolist_prompt_tags = 1
+let g:memolist_prompt_categories = 1
+" MemolistでVimFilerを使用する
+let g:memolist_vimfiler = 1
+let g:memolist_template_dir_path = "$HOME/.vim/template/memolist"
 "}}}
 
 " -------------------------------------------------------------------
