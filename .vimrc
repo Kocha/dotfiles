@@ -187,7 +187,7 @@ nnoremap ,re :%s/<\(p\\|\/p\\|br\s*\/*\)>//g<CR>:%s/\n<hr/<hr/g<CR>:%s/<hr\s\/>\
 " 挿入モード時に、行頭/行末へ移動
 inoremap <C-e> <ESC>A
 inoremap <C-a> <ESC>0i
-" <C-V> Clipboadから貼り付け
+" <C-V> Clipboardから貼り付け
 inoremap <C-v> <ESC>"*pa
 " 挿入モード時に、カーソル移動
 " inoremap <C-H> <Left>
@@ -321,7 +321,7 @@ NeoBundle 'h1mesuke/unite-outline'
 NeoBundle 'tsukkee/unite-help'
 NeoBundle 'kmnk/vim-unite-giti'
 NeoBundle 'tpope/vim-surround'
-NeoBundle 'rbtnn/clever-f.vim'
+NeoBundle 'rhysd/clever-f.vim'
 NeoBundle 'vim-scripts/DrawIt'
 NeoBundle 'vim-scripts/Colour-Sampler-Pack'
 NeoBundle 'vim-jp/vimdoc-ja'
