@@ -229,7 +229,7 @@ au FileType help nnoremap q :q<CR>
 " 拡張子設定[*.md, *.mkd]
 augroup FileMarkdown
   autocmd!
-  autocmd BufRead,BufNewFile *md,*.mkd call <SID>file_markdown()
+  autocmd BufRead,BufNewFile *.md,*.mkd call <SID>file_markdown()
 augroup END
 function! s:file_markdown()
   setfiletype markdown
@@ -303,11 +303,13 @@ NeoBundle 'thinca/vim-visualstar'
 NeoBundle 'tyru/caw.vim'
 NeoBundle 'tyru/eskk.vim'
 NeoBundle 'tyru/open-browser.vim'
+NeoBundle 'tyru/coolgrep.vim'
 " NeoBundle 'kana/vim-smartinput'
 NeoBundle 'osyo-manga/unite-quickfix'
 NeoBundle 'osyo-manga/unite-quickrun_config'
 NeoBundle "osyo-manga/shabadou.vim"
 NeoBundle "osyo-manga/vim-watchdogs"
+NeoBundle "osyo-manga/unite-qfixhowm"
 " NeoBundle 'jceb/vim-hier'
 NeoBundle 'dannyob/quickfixstatus'
 NeoBundle 'mattn/webapi-vim'
@@ -322,11 +324,13 @@ NeoBundle 'tsukkee/unite-help'
 NeoBundle 'kmnk/vim-unite-giti'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'rhysd/clever-f.vim'
-NeoBundle 'glidenote/memolist.vim'
+NeoBundle 'fuenor/qfixhowm'
 NeoBundle 'vim-scripts/DrawIt'
 NeoBundle 'vim-scripts/Colour-Sampler-Pack'
 NeoBundle 'vim-jp/vimdoc-ja'
 
+NeoBundle 'supermomonga/shaberu.vim'
+NeoBundle 't9md/vim-textmanip'
 "================================================
 " NeoBundleLazy List {{{
 "================================================
@@ -582,16 +586,43 @@ endfor
 " -------------------------------------------------------------------
 " memolist.vim関連 {{{
 " 
-let g:memolist_path = "$HOME/Blog"
-let g:memolist_memo_suffix = "md"
-" tag/categoryを入力
-let g:memolist_prompt_tags = 1
-let g:memolist_prompt_categories = 1
-" MemolistでVimFilerを使用する
-let g:memolist_vimfiler = 1
-let g:memolist_template_dir_path = "$HOME/.vim/template/memolist"
+" let g:memolist_path = "$HOME/Blog"
+" let g:memolist_memo_suffix = "md"
+" " tag/categoryを入力
+" let g:memolist_prompt_tags = 1
+" let g:memolist_prompt_categories = 1
+" " MemolistでVimFilerを使用する
+" let g:memolist_vimfiler = 1
+" let g:memolist_template_dir_path = "$HOME/.vim/template/memolist"
 "}}}
 
+" -------------------------------------------------------------------
+" QFixHowm関連 {{{
+"
+" キーマップリーダー
+let g:QFixHowm_Key = 'g'
+
+let g:QFixHowm_HowmMode = 0
+let g:QFixHowm_Title    = '#'
+let g:QFixHowm_UserFileType = 'markdown'
+let g:QFixHowm_UserFileExt  = 'md'
+
+let g:qfixmemo_template = [ '%TITLE% ', '[%Y-%m-%d %H:%M]', ""]
+
+let g:howm_filename     = '%Y/%m/%Y-%m-%d-%H%M%S.md'
+let g:howm_fileencoding = 'utf-8'
+let g:howm_fileformat   = 'unix'
+
+"================================================
+" unite-qfixhowm 設定
+"================================================
+" 更新日順で表示する場合
+call unite#custom_source('qfixhowm', 'sorters', 'sorter_qfixhowm_updatetime')
+" 新規作成時の開き方
+let g:unite_qfixhowm_new_memo_cmd = "tabnew"
+" 起動
+nnoremap <silent> ,u<Space> :<C-u>Unite qfixhowm/new qfixhowm:nocache -hide-source-names<CR>
+"}}}
 " -------------------------------------------------------------------
 " vim-smartinput関連 {{{
 "
