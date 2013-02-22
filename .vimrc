@@ -621,7 +621,8 @@ call unite#custom_source('qfixhowm', 'sorters', 'sorter_qfixhowm_updatetime')
 " 新規作成時の開き方
 let g:unite_qfixhowm_new_memo_cmd = "tabnew"
 " 起動
-nnoremap <silent> ,u<Space> :<C-u>Unite qfixhowm/new qfixhowm:nocache -hide-source-names<CR>
+nnoremap <silent> ,u<Space> :<C-u>Unite qfixhowm/new qfixhowm:nocache 
+                             \ -hide-source-names -auto-preview -no-split<CR>
 "}}}
 " -------------------------------------------------------------------
 " vim-smartinput関連 {{{
