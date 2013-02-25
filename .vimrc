@@ -310,6 +310,7 @@ NeoBundle 'osyo-manga/unite-quickrun_config'
 NeoBundle "osyo-manga/shabadou.vim"
 NeoBundle "osyo-manga/vim-watchdogs"
 NeoBundle "osyo-manga/unite-qfixhowm"
+NeoBundle "osyo-manga/quickrun-outputter-replace_region"
 " NeoBundle 'jceb/vim-hier'
 NeoBundle 'dannyob/quickfixstatus'
 NeoBundle 'mattn/webapi-vim'
@@ -504,6 +505,23 @@ let g:quickrun_config['markdown'] = {
     \ 'command'  : 'bluefeather',
     \ 'exec'     : 'cat %s | %c -',
     \ }
+
+"================================================
+" -outputter-replace_region関連 {{{
+"================================================
+" 失敗した場合にエラーメッセージで置き換えられるので
+" 成功した場合のみ置き換えるようなコマンドを定義
+command! -nargs=* -range=0 -complete=customlist,quickrun#complete
+  \ ReplaceRegion
+  \ QuickRun
+  \     -mode v
+  \     -outputter error
+  \     -outputter/success replace_region
+  \     -outputter/error message
+  \     -outputter/message/log 1
+  \     -hook/unite_quickfix/enable 0
+  \     <args>
+"}}}
 "}}}
 
 " -------------------------------------------------------------------
@@ -624,6 +642,7 @@ let g:unite_qfixhowm_new_memo_cmd = "tabnew"
 nnoremap <silent> ,u<Space> :<C-u>Unite qfixhowm/new qfixhowm:nocache 
                              \ -hide-source-names -auto-preview -no-split<CR>
 "}}}
+
 " -------------------------------------------------------------------
 " vim-smartinput関連 {{{
 "
