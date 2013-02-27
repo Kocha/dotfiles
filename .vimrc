@@ -621,7 +621,7 @@ endfor
 let g:QFixHowm_Key = 'g'
 
 let g:QFixHowm_HowmMode = 0
-let g:QFixHowm_Title    = '#'
+let g:QFixHowm_Title    = '#='
 let g:QFixHowm_UserFileType = 'markdown'
 let g:QFixHowm_UserFileExt  = 'md'
 
