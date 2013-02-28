@@ -641,6 +641,8 @@ let g:unite_qfixhowm_new_memo_cmd = "tabnew"
 " 起動
 nnoremap <silent> ,u<Space> :<C-u>Unite qfixhowm/new qfixhowm:nocache 
                              \ -hide-source-names -auto-preview -no-split<CR>
+
+call unite#custom_default_action('qfixhowm' , 'tabopen')
 "}}}
 
 " -------------------------------------------------------------------
