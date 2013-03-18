@@ -493,18 +493,24 @@ let g:quickrun_config = {
     \   "outputter/buffer/running_mark" : "",
     \   "runner" : "vimproc",
     \   "runner/vimproc/updatetime" : 40,
-    \ }
+    \ },
+    \ "make" : {
+    \   "command"   : "make",
+    \   "exec"      : "%c %o",
+    \   "outputter" : "error:buffer:quickfix",
+    \   "runner"    : "vimproc",
+    \ },
     \}
 " Textile記法設定
 let g:quickrun_config['textile'] = {
-    \ 'command'  : 'redcloth',
-    \ 'exec'     : '%c  %s',
+    \ 'command' : 'redcloth',
+    \ 'exec'    : '%c  %s',
     \ }
     " \ 'outputter': 'browser'
 " Markdown記法設定
 let g:quickrun_config['markdown'] = {
-    \ 'command'  : 'bluefeather',
-    \ 'exec'     : 'cat %s | %c -',
+    \ 'command' : 'bluefeather',
+    \ 'exec'    : 'cat %s | %c -',
     \ }
 
 "================================================
