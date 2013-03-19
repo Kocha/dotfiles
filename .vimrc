@@ -418,6 +418,9 @@ inoremap <expr><C-y>  neocomplcache#close_popup()
 " -------------------------------------------------------------------
 " neosnippet関連
 " 
+" previewウィンドウを表示させない
+set completeopt-=preview
+" キーマップ
 imap <C-p>     <Plug>(neosnippet_expand_or_jump)
 smap <C-p>     <Plug>(neosnippet_expand_or_jump)
 " SuperTab like snippets behavior.
