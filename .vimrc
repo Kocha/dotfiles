@@ -239,6 +239,13 @@ endfunction
 " Shift+Enterにて<br>タグ挿入
 au FileType markdown inoremap <S-Enter> <br><CR>
 " }}}
+"================================================
+" Template {{{
+"================================================
+" 新規ファイルの際に挿入する。
+autocmd BufNewFile *.h,*.c,*.cpp 0r $HOME/.vim/template/template.h
+autocmd BufNewFile *.vim 0r $HOME/.vim/template/template.vim
+" }}}
 
 " -------------------------------------------------------------------
 " ToHTML関連
@@ -623,6 +630,9 @@ endfor
 " let g:memolist_vimfiler = 1
 " let g:memolist_template_dir_path = "$HOME/.vim/template/memolist"
 "}}}
+
+
+
 
 " -------------------------------------------------------------------
 " QFixHowm関連 {{{
