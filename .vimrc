@@ -631,8 +631,12 @@ endfor
 " let g:memolist_template_dir_path = "$HOME/.vim/template/memolist"
 "}}}
 
-
-
+" -------------------------------------------------------------------
+" autodate.vim関連 {{{
+"
+let autodate_keyword_pre  = "Last Modified:"
+let autodate_keyword_post = "."
+"}}}
 
 " -------------------------------------------------------------------
 " QFixHowm関連 {{{
