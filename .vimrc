@@ -319,6 +319,7 @@ NeoBundle "osyo-manga/shabadou.vim"
 NeoBundle "osyo-manga/vim-watchdogs"
 NeoBundle "osyo-manga/unite-qfixhowm"
 NeoBundle "osyo-manga/quickrun-outputter-replace_region"
+NeoBundle "osyo-manga/vim-textobj-multiblock"
 " NeoBundle 'jceb/vim-hier'
 NeoBundle 'dannyob/quickfixstatus'
 NeoBundle 'mattn/webapi-vim'
@@ -329,6 +330,7 @@ NeoBundle 'mattn/excitetranslate-vim'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'godlygeek/tabular'
 NeoBundle 'tsukkee/unite-help'
+NeoBundle "kana/vim-textobj-user"
 NeoBundle 'kmnk/vim-unite-giti'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'rhysd/clever-f.vim'
