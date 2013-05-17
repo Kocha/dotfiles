@@ -237,7 +237,7 @@ function! s:file_markdown()
   autocmd! FileMarkdown
 endfunction
 " Shift+Enterにて<br>タグ挿入
-au FileType markdown inoremap <S-Enter> <br><CR>
+au FileType markdown inoremap <S-Enter> <br /><CR>
 " }}}
 "================================================
 " Template {{{
