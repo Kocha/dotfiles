@@ -576,7 +576,7 @@ let g:vimfiler_edit_action = 'tabopen'
 if has("gui_macvim")
   if has('vim_starting')
     if expand("%") == ""
-      autocmd VimEnter * VimFiler
+      autocmd VimEnter * VimFiler -status
     endif
   endif
 endif
