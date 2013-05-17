@@ -333,6 +333,7 @@ NeoBundle 'tsukkee/unite-help'
 NeoBundle "kana/vim-textobj-user"
 NeoBundle 'kmnk/vim-unite-giti'
 NeoBundle 'tpope/vim-surround'
+NeoBundle 'yonchu/accelerated-smooth-scroll'
 NeoBundle 'rhysd/clever-f.vim'
 NeoBundle 'fuenor/qfixhowm'
 NeoBundle 'airblade/vim-gitgutter'
