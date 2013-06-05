@@ -181,6 +181,8 @@ nnoremap <C-Enter> yypk
 nnoremap <S-Enter> dd
 " Blog用
 nnoremap ,re :%s/<\(p\\|\/p\\|br\s*\/*\)>//g<CR>:%s/\n<hr/<hr/g<CR>:%s/<hr\s\/>\n/<hr \/>/g<CR>
+"縦画面分割後に連携
+nnoremap ,vp :<C-u>vsp<CR>z+ :set scrollbind<CR><C-w><C-w>:set scrollbind<CR>
 "================================================
 " Insertモード関係
 "================================================
