@@ -323,7 +323,7 @@ NeoBundle "osyo-manga/unite-qfixhowm"
 NeoBundle "osyo-manga/quickrun-outputter-replace_region"
 NeoBundle "osyo-manga/vim-textobj-multiblock"
 " NeoBundle 'jceb/vim-hier'
-NeoBundle 'dannyob/quickfixstatus'
+" NeoBundle 'dannyob/quickfixstatus'
 NeoBundle 'mattn/webapi-vim'
 NeoBundle 'mattn/multi-vim'
 NeoBundle 'mattn/zencoding-vim'
