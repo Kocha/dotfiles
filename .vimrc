@@ -453,8 +453,8 @@ let g:user_zen_settings = { 'indentation':'    ' }
 " 
 " 入力モードで開始する
 " let g:unite_enable_start_insert = 1
-" バッファ一覧
-nnoremap <silent> ,ub :<C-u>Unite buffer<CR>
+" Bookmark一覧
+nnoremap <silent> ,ub :<C-u>Unite bookmark<CR>
 " ファイル一覧
 nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
 " レジスタ一覧
@@ -622,8 +622,9 @@ endfor
 " '/'カレントディレクトリ検索時に unite.vimを使用する。
 " autocmd FileType vimfiler nnoremap <buffer><silent>/ 
 "         \ :<C-u>Unite file -default-action=vimfiler<CR>
+" unite bookmark->Enterにて移動
+autocmd FileType vimfiler call unite#custom_default_action('directory', 'cd')
 "}}}
-
 " -------------------------------------------------------------------
 " memolist.vim関連 {{{
 " 
