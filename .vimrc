@@ -301,7 +301,12 @@ call neobundle#rc(expand('~/.vim/bundle/'))
 
 " Plugins List
 NeoBundle 'Shougo/neobundle.vim'
-NeoBundle 'Shougo/vimproc'
+NeoBundle 'Shougo/vimproc', { 'build': {
+  \ 'windows': 'make -f make_mingw32.mak',
+  \ 'cygwin' : 'make -f make_cygwin.mak',
+  \ 'mac'    : 'make -f make_mac.mak',
+  \ 'unix'   : 'make -f make_unix.mak',
+  \ } }
 NeoBundle 'Shougo/vinarise' 
 NeoBundle 'Shougo/neocomplcache' 
 NeoBundle 'Shougo/neosnippet' 
