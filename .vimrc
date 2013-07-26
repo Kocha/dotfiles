@@ -179,6 +179,8 @@ nnoremap Y y$
 nnoremap <C-Enter> yypk
 " 行削除
 nnoremap <S-Enter> dd
+" 行番号表示の切り替え
+nnoremap <C-x><C-n> :setlocal nu!<CR>
 " Blog用
 nnoremap ,re :%s/<\(p\\|\/p\\|br\s*\/*\)>//g<CR>:%s/\n<hr/<hr/g<CR>:%s/<hr\s\/>\n/<hr \/>/g<CR>
 "縦画面分割後に連携
@@ -676,7 +678,7 @@ call unite#custom_source('qfixhowm', 'sorters', 'sorter_qfixhowm_updatetime')
 let g:unite_qfixhowm_new_memo_cmd = "tabnew"
 " 起動
 nnoremap <silent> ,u<Space> :<C-u>Unite qfixhowm/new qfixhowm:nocache 
-                             \ -hide-source-names -auto-preview -no-split<CR>
+                             \ -hide-source-names -no-quit -no-split<CR>
 
 call unite#custom_default_action('qfixhowm' , 'tabopen')
 "}}}
