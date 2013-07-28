@@ -158,7 +158,7 @@ noremap <F2> <ESC>:bp<CR>
 noremap <F3> <ESC>:bn<CR>
 noremap <F4> <ESC>:bw<CR>
 " 行頭/行末へ移動
-noremap <C-a> 0
+noremap <C-a> ^
 noremap <C-e> $
 "================================================
 " Normalモード関係
@@ -190,7 +190,7 @@ nnoremap ,vp :<C-u>vsp<CR>z+ :set scrollbind<CR><C-w><C-w>:set scrollbind<CR>
 "================================================
 " 挿入モード時に、行頭/行末へ移動
 inoremap <C-e> <ESC>A
-inoremap <C-a> <ESC>0i
+inoremap <C-a> <ESC>^i
 " <C-V> Clipboardから貼り付け
 inoremap <C-v> <ESC>"*pa
 " 挿入モード時に、カーソル移動
@@ -237,7 +237,7 @@ augroup FileMarkdown
 augroup END
 function! s:file_markdown()
   setfiletype markdown
-  set fileencoding=UTF-8
+  setlocal fileencoding=UTF-8
   autocmd! FileMarkdown
 endfunction
 " Shift+Enterにて<br>タグ挿入
@@ -309,9 +309,9 @@ NeoBundle 'Shougo/vimproc', { 'build': {
   \ 'mac'    : 'make -f make_mac.mak',
   \ 'unix'   : 'make -f make_unix.mak',
   \ } }
-NeoBundle 'Shougo/vinarise' 
-NeoBundle 'Shougo/neocomplcache' 
-NeoBundle 'Shougo/neosnippet' 
+NeoBundle 'Shougo/vinarise'
+NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/unite-outline'
 NeoBundle 'thinca/vim-ref'
@@ -324,11 +324,11 @@ NeoBundle 'tyru/coolgrep.vim'
 " NeoBundle 'kana/vim-smartinput'
 NeoBundle 'osyo-manga/unite-quickfix'
 NeoBundle 'osyo-manga/unite-quickrun_config'
-NeoBundle "osyo-manga/shabadou.vim"
-NeoBundle "osyo-manga/vim-watchdogs"
-NeoBundle "osyo-manga/unite-qfixhowm"
-NeoBundle "osyo-manga/quickrun-outputter-replace_region"
-NeoBundle "osyo-manga/vim-textobj-multiblock"
+NeoBundle 'osyo-manga/shabadou.vim'
+NeoBundle 'osyo-manga/vim-watchdogs'
+NeoBundle 'osyo-manga/unite-qfixhowm'
+NeoBundle 'osyo-manga/quickrun-outputter-replace_region'
+NeoBundle 'osyo-manga/vim-textobj-multiblock'
 " NeoBundle 'jceb/vim-hier'
 " NeoBundle 'dannyob/quickfixstatus'
 NeoBundle 'mattn/webapi-vim'
@@ -339,7 +339,7 @@ NeoBundle 'mattn/excitetranslate-vim'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'godlygeek/tabular'
 NeoBundle 'tsukkee/unite-help'
-NeoBundle "kana/vim-textobj-user"
+NeoBundle 'kana/vim-textobj-user'
 NeoBundle 'kmnk/vim-unite-giti'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'yonchu/accelerated-smooth-scroll'
@@ -498,7 +498,7 @@ nnoremap <silent> ,ut :<C-u>Unite tig -no-split<CR>
 " コンフィグを全クリア
 let g:quickrun_config = {}
 " 横分割をするようにする
-let g:quickrun_config['*'] = {'split': ''}
+" let g:quickrun_config['*'] = {'split': ''}
 " コンフィグ設定
 " http://d.hatena.ne.jp/osyo-manga/20120919/1348054752
 let g:quickrun_config = {
@@ -594,37 +594,39 @@ endif
 " q で VimFilerを閉じる
 autocmd FileType vimfiler nmap <buffer> q <Plug>(vimfiler_close)
 " VimFiler の読み込みを遅延しつつデフォルトのファイラに設定 {{{
-augroup LoadVimFiler
-    autocmd!
-    autocmd BufEnter,BufCreate,BufWinEnter * call <SID>load_vimfiler(expand('<amatch>'))
-augroup END
-" :edit {dir} や unite.vim などでディレクトリを開こうとした場合
-function! s:load_vimfiler(path)
-    if exists('g:loaded_vimfiler')
-        autocmd! LoadVimFiler
-        return
-    endif
-
-    let path = a:path
-    " for ':edit ~'
-    if fnamemodify(path, ':t') ==# '~'
-        let path = expand('~')
-    endif
-
-    if isdirectory(path)
-        NeoBundleSource vimfiler
-    endif
-
-    autocmd! LoadVimFiler
-endfunction
-" 起動時にディレクトリを指定した場合
-for arg in argv()
-    if isdirectory(getcwd().'/'.arg)
-        NeoBundleSource vimfiler
-        autocmd! LoadVimFiler
-        break
-    endif
-endfor
+" イマイチだったので削除
+"
+" augroup LoadVimFiler
+"     autocmd!
+"     autocmd BufEnter,BufCreate,BufWinEnter * call <SID>load_vimfiler(expand('<amatch>'))
+" augroup END
+" " :edit {dir} や unite.vim などでディレクトリを開こうとした場合
+" function! s:load_vimfiler(path)
+"     if exists('g:loaded_vimfiler')
+"         autocmd! LoadVimFiler
+"         return
+"     endif
+"
+"     let path = a:path
+"     " for ':edit ~'
+"     if fnamemodify(path, ':t') ==# '~'
+"         let path = expand('~')
+"     endif
+"
+"     if isdirectory(path)
+"         NeoBundleSource vimfiler
+"     endif
+"
+"     autocmd! LoadVimFiler
+" endfunction
+" " 起動時にディレクトリを指定した場合
+" for arg in argv()
+"     if isdirectory(getcwd().'/'.arg)
+"         NeoBundleSource vimfiler
+"         autocmd! LoadVimFiler
+"         break
+"     endif
+" endfor
 "}}}
 " '/'カレントディレクトリ検索時に unite.vimを使用する。
 " autocmd FileType vimfiler nnoremap <buffer><silent>/ 
