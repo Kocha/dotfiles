@@ -150,13 +150,6 @@ command! -nargs=* -complete=mapping
 "================================================
 " Normal+Virtualモード関係
 "================================================
-" バッファ移動用キーマップ
-" F2: 前のバッファ
-" F3: 次のバッファ
-" F4: バッファ削除
-noremap <F2> <ESC>:bp<CR>
-noremap <F3> <ESC>:bn<CR>
-noremap <F4> <ESC>:bw<CR>
 " 行頭/行末へ移動
 noremap <C-a> ^
 noremap <C-e> $
@@ -293,7 +286,6 @@ augroup END
 " -------------------------------------------------------------------
 " プラグイン管理(NeoBundle) {{{
 " 
-set nocompatible           " be iMproved
 filetype plugin indent off " required!
 
 if has('vim_starting')
