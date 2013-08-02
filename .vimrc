@@ -339,6 +339,7 @@ NeoBundle 'rhysd/clever-f.vim'
 NeoBundle 'deris/vim-rengbang'
 NeoBundle 'fuenor/qfixhowm'
 NeoBundle 'airblade/vim-gitgutter'
+NeoBundle 'joker1007/vim-markdown-quote-syntax'
 NeoBundle 'vim-scripts/DrawIt'
 NeoBundle 'vim-scripts/Colour-Sampler-Pack'
 NeoBundle 'vim-jp/vimdoc-ja'
@@ -675,6 +676,20 @@ nnoremap <silent> ,u<Space> :<C-u>Unite qfixhowm/new qfixhowm:nocache
                              \ -hide-source-names -no-quit -no-split<CR>
 
 call unite#custom_default_action('qfixhowm' , 'tabopen')
+"}}}
+
+" -------------------------------------------------------------------
+" vim-markdown-quote-syntax関連 {{{
+"
+" syntax追加
+let g:markdown_quote_syntax_filetypes = {
+  \ "verilog" : {
+  \   "start" : "verilog",
+  \},
+  \ "systemverilog" : {
+  \   "start" : "systemverilog",
+  \},
+\}
 "}}}
 
 " -------------------------------------------------------------------
