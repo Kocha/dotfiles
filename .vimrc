@@ -339,7 +339,6 @@ NeoBundle 'rhysd/clever-f.vim'
 NeoBundle 'deris/vim-rengbang'
 NeoBundle 'fuenor/qfixhowm'
 NeoBundle 'airblade/vim-gitgutter'
-NeoBundle 'joker1007/vim-markdown-quote-syntax'
 NeoBundle 'vim-scripts/DrawIt'
 NeoBundle 'vim-scripts/Colour-Sampler-Pack'
 NeoBundle 'vim-jp/vimdoc-ja'
@@ -357,6 +356,7 @@ NeoBundleLazy 'Shougo/vimshell', {
 \}
 " Markdown, Textile
 NeoBundleLazy "hallison/vim-markdown",  {"autoload" : { "filetypes" : ["markdown"] }}
+NeoBundleLazy "joker1007/vim-markdown-quote-syntax",  {"autoload" : { "filetypes" : ["markdown"] }}
 NeoBundleLazy "timcharper/textile.vim", {"autoload" : { "filetypes" : ["textile"] }}
 " haskell
 NeoBundleLazy "dag/vim2hs",                  {"autoload" : { "filetypes" : ["haskell"] }}
@@ -507,6 +507,7 @@ let g:quickrun_config = {
     \   "outputter/buffer/split" : ":botright 8sp",
     \   "outputter/buffer/into" : 1,
     \   "outputter/buffer/running_mark" : "",
+    \   "outputter/quickfix/open_cmd" : '',
     \   "runner" : "vimproc",
     \   "runner/vimproc/updatetime" : 40,
     \ },
@@ -683,6 +684,9 @@ call unite#custom_default_action('qfixhowm' , 'tabopen')
 "
 " syntax追加
 let g:markdown_quote_syntax_filetypes = {
+  \ "vhdl" : {
+  \   "start" : "vhdl",
+  \},
   \ "verilog" : {
   \   "start" : "verilog",
   \},
