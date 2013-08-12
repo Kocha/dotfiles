@@ -328,7 +328,7 @@ NeoBundle 'mattn/multi-vim'
 NeoBundle 'mattn/zencoding-vim'
 NeoBundle 'mattn/excitetranslate-vim'
 " NeoBundle 'gregsexton/VimCalc'
-NeoBundle 'scrooloose/syntastic'
+NeoBundle 'scrooloose/syntastic', 'gcc_refactor'
 NeoBundle 'godlygeek/tabular'
 NeoBundle 'tsukkee/unite-help'
 NeoBundle 'kana/vim-textobj-user'
@@ -513,7 +513,7 @@ let g:quickrun_config = {
     \ },
     \ "make" : {
     \   "command"   : "make",
-    \   "exec"      : "%c %o",
+    \   "exec"      : "%c %o %a",
     \   "outputter" : "error:buffer:quickfix",
     \   "runner"    : "vimproc",
     \ },
