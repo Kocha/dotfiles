@@ -321,6 +321,7 @@ NeoBundle 'osyo-manga/vim-watchdogs'
 NeoBundle 'osyo-manga/unite-qfixhowm'
 NeoBundle 'osyo-manga/quickrun-outputter-replace_region'
 NeoBundle 'osyo-manga/vim-textobj-multiblock'
+NeoBundle 'osyo-manga/vim-anzu'
 " NeoBundle 'jceb/vim-hier'
 " NeoBundle 'dannyob/quickfixstatus'
 NeoBundle 'mattn/webapi-vim'
@@ -586,8 +587,9 @@ if has("gui_macvim")
   endif
 endif
 " q で VimFilerを閉じる
-autocmd FileType vimfiler nmap <buffer> q <Plug>(vimfiler_close)
-" VimFiler の読み込みを遅延しつつデフォルトのファイラに設定 {{{
+autocmd FileType vimfiler nnoremap <buffer> q <Plug>(vimfiler_close)
+
+ " VimFiler の読み込みを遅延しつつデフォルトのファイラに設定 {{{
 " イマイチだったので削除
 "
 " augroup LoadVimFiler
@@ -694,6 +696,25 @@ let g:markdown_quote_syntax_filetypes = {
   \   "start" : "systemverilog",
   \},
 \}
+"}}}
+
+" -------------------------------------------------------------------
+" vim-anzu関連 {{{
+"
+" キーマップ設定
+" nnoremap n <Plug>(anzu-n)
+" nnoremap N <Plug>(anzu-N)
+" nnoremap * <Plug>(anzu-star)
+" nnoremap # <Plug>(anzu-sharp)
+
+" ステータス情報を statusline へと表示する
+" set statusline=%{anzu#search_status()}
+
+" コマンドライン出力。
+nnoremap n <Plug>(anzu-n-with-echo)
+nnoremap N <Plug>(anzu-N-with-echo)
+nnoremap * <Plug>(anzu-star-with-echo)
+nnoremap # <Plug>(anzu-sharp-with-echo)
 "}}}
 
 " -------------------------------------------------------------------
