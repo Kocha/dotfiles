@@ -587,7 +587,7 @@ if has("gui_macvim")
   endif
 endif
 " q で VimFilerを閉じる
-autocmd FileType vimfiler nnoremap <buffer> q <Plug>(vimfiler_close)
+autocmd FileType vimfiler nmap <buffer> q <Plug>(vimfiler_close)
 
  " VimFiler の読み込みを遅延しつつデフォルトのファイラに設定 {{{
 " イマイチだったので削除
@@ -702,19 +702,19 @@ let g:markdown_quote_syntax_filetypes = {
 " vim-anzu関連 {{{
 "
 " キーマップ設定
-" nnoremap n <Plug>(anzu-n)
-" nnoremap N <Plug>(anzu-N)
-" nnoremap * <Plug>(anzu-star)
-" nnoremap # <Plug>(anzu-sharp)
+" nmap n <Plug>(anzu-n)
+" nmap N <Plug>(anzu-N)
+" nmap * <Plug>(anzu-star)
+" nmap # <Plug>(anzu-sharp)
 
 " ステータス情報を statusline へと表示する
 " set statusline=%{anzu#search_status()}
 
 " コマンドライン出力。
-nnoremap n <Plug>(anzu-n-with-echo)
-nnoremap N <Plug>(anzu-N-with-echo)
-nnoremap * <Plug>(anzu-star-with-echo)
-nnoremap # <Plug>(anzu-sharp-with-echo)
+nmap n <Plug>(anzu-n-with-echo)
+nmap N <Plug>(anzu-N-with-echo)
+nmap * <Plug>(anzu-star-with-echo)
+nmap # <Plug>(anzu-sharp-with-echo)
 "}}}
 
 " -------------------------------------------------------------------
