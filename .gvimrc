@@ -72,8 +72,7 @@ set mousehide
 " -------------------------------------------------------------------
 " プラグイン管理(NeoBundle)
 " 
-NeoBundleSource vim-powerline
-              \ vim-fontzoom
-              \ errormarker.vim
-              \ unite-colorscheme
+NeoBundleSourc vim-fontzoom
+NeoBundleSourc errormarker.vim
+NeoBundleSourc unite-colorscheme
 

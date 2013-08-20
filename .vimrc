@@ -17,7 +17,7 @@ set backspace=start,eol,indent
 
 " -------------------------------------------------------------------
 " Display関連
-" 
+"
 " テーマ色
 "colorscheme evening "colorscheme
 colorscheme ron "colorscheme
@@ -87,13 +87,13 @@ set fillchars=num:\|
 
 " -------------------------------------------------------------------
 " syntax color
-" 
+"
 syntax on
 "highlight LineNr ctermfg=darkgrey
 
 " -------------------------------------------------------------------
 " 検索関連
-" 
+"
 " 検索時に大/小文字を区別しない
 set ignorecase
 " 検索時に大文字を含んでいたら大/小を区別
@@ -107,7 +107,7 @@ set hlsearch
 
 " -------------------------------------------------------------------
 " Edit関連
-" 
+"
 " オートインデントしない(default:ON)
 "set noautoindent
 " TABキーを押した際にタブ文字の代わりにスペースをいれる
@@ -143,7 +143,7 @@ function! EBufdelete()
 endfunction
 " -------------------------------------------------------------------
 " キーマップ関連
-" 
+"
 " AllMaps
 command! -nargs=* -complete=mapping
 \   AllMaps map <args> | map! <args> | lmap <args>
@@ -162,10 +162,10 @@ nnoremap k gk
 nnoremap <Down> gj
 nnoremap <Up>   gk
 " ESC2回押しで検索ハイライトを消去
-nnoremap <ESC><ESC> :nohlsearch<CR>
+" nnoremap <ESC><ESC> :nohlsearch<CR>
 " 検索後画面の中心に。
-nnoremap n nzz
-nnoremap N Nzz
+" nnoremap n nzz
+" nnoremap N Nzz
 " カーソル部分から行末までコピー
 nnoremap Y y$
 " 行の二重化
@@ -213,7 +213,7 @@ endif
 cnoremap <C-v> <C-r>+
 " -------------------------------------------------------------------
 " ファイル別指定
-" 
+"
 "================================================
 " Help {{{
 "================================================
@@ -285,7 +285,7 @@ augroup END
 
 " -------------------------------------------------------------------
 " プラグイン管理(NeoBundle) {{{
-" 
+"
 filetype plugin indent off " required!
 
 if has('vim_starting')
@@ -301,6 +301,7 @@ NeoBundle 'Shougo/vimproc', { 'build': {
   \ 'mac'    : 'make -f make_mac.mak',
   \ 'unix'   : 'make -f make_unix.mak',
   \ } }
+NeoBundle 'Shougo/vimfiler'
 NeoBundle 'Shougo/vinarise'
 NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/neosnippet'
@@ -340,18 +341,17 @@ NeoBundle 'rhysd/clever-f.vim'
 NeoBundle 'deris/vim-rengbang'
 NeoBundle 'fuenor/qfixhowm'
 NeoBundle 'airblade/vim-gitgutter'
+NeoBundle 'bling/vim-airline'
 NeoBundle 'vim-scripts/DrawIt'
 NeoBundle 'vim-scripts/Colour-Sampler-Pack'
 NeoBundle 'vim-jp/vimdoc-ja'
 
 NeoBundle 'supermomonga/shaberu.vim'
 NeoBundle 't9md/vim-textmanip'
+NeoBundle 'modsound/gips-vim'
 "================================================
 " NeoBundleLazy List {{{
 "================================================
-NeoBundleLazy 'Shougo/vimfiler', {
-\   'autoload' : { 'commands' : [ "VimFilerTab", "VimFiler", "VimFilerExplorer" ] }
-\}
 NeoBundleLazy 'Shougo/vimshell', {
 \   'autoload' : { 'commands' : [ 'VimShell' ] }
 \}
@@ -368,7 +368,6 @@ NeoBundleLazy "ujihisa/unite-haskellimport", {"autoload" : { "filetypes" : ["has
 
 " gvim用 {{{
 NeoBundleLazy 'thinca/vim-fontzoom'
-NeoBundleLazy 'Lokaltog/vim-powerline'
 NeoBundleLazy 'vim-scripts/errormarker.vim'
 NeoBundleLazy 'ujihisa/unite-colorscheme'
 "}}}
@@ -393,7 +392,7 @@ endif
 " 以下プラグイン設定
 " -------------------------------------------------------------------
 " neocomplcache関連 {{{
-" 
+"
 " Use neocomplcache.
 let g:neocomplcache_enable_at_startup = 1
 " Use smartcase.
@@ -431,7 +430,7 @@ inoremap <expr><C-y>  neocomplcache#close_popup()
 
 " -------------------------------------------------------------------
 " neosnippet関連
-" 
+"
 " previewウィンドウを表示させない
 set completeopt-=preview
 " キーマップ
@@ -445,13 +444,13 @@ smap <expr><TAB> neosnippet#expandable() <Bar><Bar> neosnippet#jumpable() ?
 
 " -------------------------------------------------------------------
 " ZenCoding関連
-" 
+"
 " TABインデントをスペースに変更する。
 let g:user_zen_settings = { 'indentation':'    ' }
 
 " -------------------------------------------------------------------
 " unite.vim関連 {{{
-" 
+"
 " 入力モードで開始する
 " let g:unite_enable_start_insert = 1
 " Bookmark一覧
@@ -481,8 +480,8 @@ au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>q
 
 " -------------------------------------------------------------------
 " unite-tig関連 {{{
-" 
-" ,ut に unite-tigマッピング 
+"
+" ,ut に unite-tigマッピング
 nnoremap <silent> ,ut :<C-u>Unite tig -no-split<CR>
 "}}}
 
@@ -551,7 +550,7 @@ command! -nargs=* -range=0 -complete=customlist,quickrun#complete
 
 " -------------------------------------------------------------------
 " vim-watchdogs関連
-" 
+"
 " Setting
 call watchdogs#setup(g:quickrun_config)
 " 書き込み後にシンタックスチェックを行う
@@ -559,7 +558,7 @@ call watchdogs#setup(g:quickrun_config)
 
 " -------------------------------------------------------------------
 " vim-hier関連 {{{
-" 
+"
 " 波線で表示する場合は、以下の設定を行う
 " エラーを赤字の波線で
 " execute "highlight qf_error_ucurl cterm=undercurl ctermfg=Red gui=undercurl guisp=Red"
@@ -571,7 +570,7 @@ call watchdogs#setup(g:quickrun_config)
 
 " -------------------------------------------------------------------
 " Vimfiler関連 {{{
-" 
+"
 " Vimfilerをデフォルトのファイラーにする。
 let g:vimfiler_as_default_explorer = 1
 " safe_modeを解除する。
@@ -625,14 +624,14 @@ autocmd FileType vimfiler nmap <buffer> q <Plug>(vimfiler_close)
 " endfor
 "}}}
 " '/'カレントディレクトリ検索時に unite.vimを使用する。
-" autocmd FileType vimfiler nnoremap <buffer><silent>/ 
+" autocmd FileType vimfiler nnoremap <buffer><silent>/
 "         \ :<C-u>Unite file -default-action=vimfiler<CR>
 " unite bookmark->Enterにて移動
 autocmd FileType vimfiler call unite#custom_default_action('directory', 'cd')
 "}}}
 " -------------------------------------------------------------------
 " memolist.vim関連 {{{
-" 
+"
 " let g:memolist_path = "$HOME/Blog"
 " let g:memolist_memo_suffix = "md"
 " " tag/categoryを入力
@@ -675,7 +674,7 @@ call unite#custom_source('qfixhowm', 'sorters', 'sorter_qfixhowm_updatetime')
 " 新規作成時の開き方
 let g:unite_qfixhowm_new_memo_cmd = "tabnew"
 " 起動
-nnoremap <silent> ,u<Space> :<C-u>Unite qfixhowm/new qfixhowm:nocache 
+nnoremap <silent> ,u<Space> :<C-u>Unite qfixhowm/new qfixhowm:nocache
                              \ -hide-source-names -no-quit -no-split<CR>
 
 call unite#custom_default_action('qfixhowm' , 'tabopen')
@@ -704,17 +703,23 @@ let g:markdown_quote_syntax_filetypes = {
 " キーマップ設定
 " nmap n <Plug>(anzu-n)
 " nmap N <Plug>(anzu-N)
-" nmap * <Plug>(anzu-star)
-" nmap # <Plug>(anzu-sharp)
+nmap n nzz<Plug>(anzu-update-search-status)
+nmap N Nzz<Plug>(anzu-update-search-status)
+nmap * <Plug>(anzu-star)
+nmap # <Plug>(anzu-sharp)
+" ESC2回押しで検索ハイライトを消去
+nmap <silent> <ESC><ESC> :<C-u>nohlsearch<CR><Plug>(anzu-clear-search-status)
+" format = (該当数/全体数)
+let g:anzu_status_format = "(%i/%l)"
+"}}}
 
-" ステータス情報を statusline へと表示する
-" set statusline=%{anzu#search_status()}
-
-" コマンドライン出力。
-nmap n <Plug>(anzu-n-with-echo)
-nmap N <Plug>(anzu-N-with-echo)
-nmap * <Plug>(anzu-star-with-echo)
-nmap # <Plug>(anzu-sharp-with-echo)
+" -------------------------------------------------------------------
+" vim-airline関連 {{{
+"
+" vim-anzuの表示を statuslineに
+let g:airline_section_c = '%F %{anzu#search_status()}'
+" whitespace無効
+let g:airline#extensions#whitespace#enabled = 0
 "}}}
 
 " -------------------------------------------------------------------
