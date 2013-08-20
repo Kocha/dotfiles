@@ -336,7 +336,7 @@ NeoBundle 'tsukkee/unite-help'
 NeoBundle 'kana/vim-textobj-user'
 NeoBundle 'kmnk/vim-unite-giti'
 NeoBundle 'tpope/vim-surround'
-NeoBundle 'yonchu/accelerated-smooth-scroll'
+" NeoBundle 'yonchu/accelerated-smooth-scroll'
 NeoBundle 'rhysd/clever-f.vim'
 NeoBundle 'deris/vim-rengbang'
 NeoBundle 'fuenor/qfixhowm'
@@ -718,6 +718,8 @@ let g:anzu_status_format = "(%i/%l)"
 "
 " vim-anzuの表示を statuslineに
 let g:airline_section_c = '%F %{anzu#search_status()}'
+" vim-gitgutter無効
+let g:airline#extensions#hunks#enabled = 0
 " whitespace無効
 let g:airline#extensions#whitespace#enabled = 0
 "}}}
