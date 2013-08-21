@@ -327,7 +327,6 @@ NeoBundle 'osyo-manga/vim-anzu'
 " NeoBundle 'dannyob/quickfixstatus'
 NeoBundle 'mattn/webapi-vim'
 NeoBundle 'mattn/multi-vim'
-NeoBundle 'mattn/zencoding-vim'
 NeoBundle 'mattn/excitetranslate-vim'
 " NeoBundle 'gregsexton/VimCalc'
 NeoBundle 'scrooloose/syntastic', 'gcc_refactor'
@@ -377,8 +376,14 @@ NeoBundleLazy 'ujihisa/unite-colorscheme'
 " systemverilog_syntax,DirDiff,vim-systemc,gtags,vim-rtl
 NeoBundleLocal ~/.vim/plugins
 
-"" NeoBundleの処理が終わってから再度ON
-" filetype plugin indent on
+"================================================
+" .vimrc_local_bundle {{{
+if filereadable(expand('~/.vimrc_local_bundle'))
+  source ~/.vimrc_local_bundle
+endif
+"}}}
+
+" NeoBundleの処理が終わってから再度ON
 filetype plugin on
 " Installation check.
 if neobundle#exists_not_installed_bundles()
@@ -441,12 +446,6 @@ imap <expr><TAB> neosnippet#expandable() <Bar><Bar> neosnippet#jumpable() ?
 \ "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<C-n>" : "\<TAB>"
 smap <expr><TAB> neosnippet#expandable() <Bar><Bar> neosnippet#jumpable() ?
 \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-
-" -------------------------------------------------------------------
-" ZenCoding関連
-"
-" TABインデントをスペースに変更する。
-let g:user_zen_settings = { 'indentation':'    ' }
 
 " -------------------------------------------------------------------
 " unite.vim関連 {{{
@@ -629,18 +628,6 @@ autocmd FileType vimfiler nmap <buffer> q <Plug>(vimfiler_close)
 " unite bookmark->Enterにて移動
 autocmd FileType vimfiler call unite#custom_default_action('directory', 'cd')
 "}}}
-" -------------------------------------------------------------------
-" memolist.vim関連 {{{
-"
-" let g:memolist_path = "$HOME/Blog"
-" let g:memolist_memo_suffix = "md"
-" " tag/categoryを入力
-" let g:memolist_prompt_tags = 1
-" let g:memolist_prompt_categories = 1
-" " MemolistでVimFilerを使用する
-" let g:memolist_vimfiler = 1
-" let g:memolist_template_dir_path = "$HOME/.vim/template/memolist"
-"}}}
 
 " -------------------------------------------------------------------
 " autodate.vim関連 {{{
@@ -717,7 +704,7 @@ let g:anzu_status_format = "(%i/%l)"
 " vim-airline関連 {{{
 "
 " vim-anzuの表示を statuslineに
-let g:airline_section_c = '%F %{anzu#search_status()}'
+let g:airline_section_c = '%F%m %{anzu#search_status()}'
 " vim-gitgutter無効
 let g:airline#extensions#hunks#enabled = 0
 " whitespace無効
@@ -770,5 +757,12 @@ let g:airline#extensions#whitespace#enabled = 0
 "      \ 'at'    : '\s\+\%#', 'char': '<CR>',
 "      \ 'input' : "<C-o>:call setline('.', substitute(getline('.'), '\\s\\+$', '', ''))<CR><CR>",
 "      \ })
+"}}}
+
+" -------------------------------------------------------------------
+" .vimrc_local {{{
+if filereadable(expand('~/.vimrc_local'))
+  source ~/.vimrc_local
+endif
 "}}}
 

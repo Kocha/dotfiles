@@ -1,15 +1,15 @@
 " vim: set ts=4 sw=4 sts=0:
 " -------------------------------------------------------------------
 " System関連
-" 
+"
 " 選択しただけでクリップボードにコピー
 set guioptions+=a
 
 " -------------------------------------------------------------------
 " Display関連
-" 
+"
 " テーマ色
-colorscheme koehler 
+colorscheme koehler
 " タブを常に表示
 set showtabline=2 "タブを常に表示
 " Windowサイズ指定
@@ -38,7 +38,7 @@ endif
 
 " -------------------------------------------------------------------
 " キーマップ関連
-" 
+"
 "================================================
 " Normalモード関係
 "================================================
@@ -71,8 +71,14 @@ set mousehide
 
 " -------------------------------------------------------------------
 " プラグイン管理(NeoBundle)
-" 
+"
 NeoBundleSourc vim-fontzoom
 NeoBundleSourc errormarker.vim
 NeoBundleSourc unite-colorscheme
 
+" -------------------------------------------------------------------
+" .gvimrc_local {{{
+if filereadable(expand('~/.gvimrc_local'))
+  source ~/.gvimrc_local
+endif
+"}}}
