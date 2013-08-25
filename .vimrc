@@ -21,6 +21,8 @@ set backspace=start,eol,indent
 " テーマ色
 "colorscheme evening "colorscheme
 colorscheme ron "colorscheme
+" 色数
+set t_Co=256
 " ステータスバーを常に表示
 set laststatus=2
 " 行数の表示
@@ -702,6 +704,16 @@ let g:anzu_status_format = "(%i/%l)"
 " -------------------------------------------------------------------
 " vim-airline関連 {{{
 "
+" powerline symbols
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline#extensions#branch#symbol = ''
+let g:airline#extensions#readonly#symbol = ''
+let g:airline_linecolumn_prefix = ''
+" Buffer番号表示
+let g:airline_section_b = '#%n'
 " vim-anzuの表示を statuslineに
 let g:airline_section_c = '%F%m %{anzu#search_status()}'
 " vim-gitgutter無効
