@@ -699,6 +699,8 @@ nmap # <Plug>(anzu-sharp)
 nmap <silent> <ESC><ESC> :<C-u>nohlsearch<CR><Plug>(anzu-clear-search-status)
 " format = (該当数/全体数)
 let g:anzu_status_format = "(%i/%l)"
+" vim-airlineの拡張を無効
+let g:airline#extensions#anzu#enabled = 0
 "}}}
 
 " -------------------------------------------------------------------
