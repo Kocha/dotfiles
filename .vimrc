@@ -341,7 +341,6 @@ NeoBundle 'tpope/vim-surround'
 NeoBundle 'rhysd/clever-f.vim'
 NeoBundle 'deris/vim-rengbang'
 NeoBundle 'fuenor/qfixhowm'
-NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'bling/vim-airline'
 NeoBundle 'vim-scripts/DrawIt'
 NeoBundle 'vim-scripts/Colour-Sampler-Pack'
@@ -722,6 +721,8 @@ let g:airline_section_c = '%F%m %{anzu#search_status()}'
 let g:airline#extensions#hunks#enabled = 0
 " whitespace無効
 let g:airline#extensions#whitespace#enabled = 0
+" syntastic無効
+let g:airline#extensions#syntastic#enabled = 0
 "}}}
 
 " -------------------------------------------------------------------
