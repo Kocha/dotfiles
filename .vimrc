@@ -341,7 +341,7 @@ NeoBundle 'tpope/vim-surround'
 NeoBundle 'rhysd/clever-f.vim'
 NeoBundle 'deris/vim-rengbang'
 NeoBundle 'fuenor/qfixhowm'
-NeoBundle 'bling/vim-airline'
+NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'vim-scripts/DrawIt'
 NeoBundle 'vim-scripts/Colour-Sampler-Pack'
 NeoBundle 'vim-jp/vimdoc-ja'
@@ -586,6 +586,8 @@ if has("gui_macvim")
 endif
 " q で VimFilerを閉じる
 autocmd FileType vimfiler nmap <buffer> q <Plug>(vimfiler_close)
+" statuslineの上書きを行わない
+let g:vimfiler_force_overwrite_statusline = 0
 
  " VimFiler の読み込みを遅延しつつデフォルトのファイラに設定 {{{
 " イマイチだったので削除
@@ -698,31 +700,66 @@ nmap # <Plug>(anzu-sharp)
 nmap <silent> <ESC><ESC> :<C-u>nohlsearch<CR><Plug>(anzu-clear-search-status)
 " format = (該当数/全体数)
 let g:anzu_status_format = "(%i/%l)"
-" vim-airlineの拡張を無効
-let g:airline#extensions#anzu#enabled = 0
 "}}}
 
 " -------------------------------------------------------------------
-" vim-airline関連 {{{
+" lightline.vim関連 {{{
 "
-" powerline symbols
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
-let g:airline#extensions#branch#symbol = ''
-let g:airline#extensions#readonly#symbol = ''
-let g:airline_linecolumn_prefix = ''
-" Buffer番号表示
-let g:airline_section_b = '#%n'
-" vim-anzuの表示を statuslineに
-let g:airline_section_c = '%F%m %{anzu#search_status()}'
-" vim-gitgutter無効
-let g:airline#extensions#hunks#enabled = 0
-" whitespace無効
-let g:airline#extensions#whitespace#enabled = 0
-" syntastic無効
-let g:airline#extensions#syntastic#enabled = 0
+let g:lightline = {
+  \ 'mode_map': {'c': 'NORMAL'},
+  \ 'active' : {
+  \   'left' : [ [ 'mode', 'paste' ], [ 'filename' ] ],
+  \   'right': [ [ 'lineinfo' ],
+  \            [ 'percent' ],
+  \            [ 'filetype', 'fileencoding', 'fileformat' ] ]
+  \ },
+  \ 'component_function': {
+  \   'mode'         : 'MyMode',
+  \   'modified'     : 'MyModified',
+  \   'readonly'     : 'MyReadonly',
+  \   'filename'     : 'MyFilename',
+  \   'fileformat'   : 'MyFileformat',
+  \   'filetype'     : 'MyFiletype',
+  \   'fileencoding' : 'MyFileencoding'
+  \ },
+\ }
+
+function! MyModified()
+  return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '[+]' : &modifiable ? '' : '-'
+endfunction
+
+function! MyReadonly()
+  return &ft !~? 'help\|vimfiler\|gundo' && &readonly ? 'x' : ''
+endfunction
+
+function! MyFilename()
+  return ('' != MyReadonly() ? MyReadonly() . ' ' : '') .
+        \ (&ft == 'vimfiler' ? vimfiler#get_status_string() :
+        \  &ft == 'unite' ?  unite#get_status_string() :
+        \  &ft == 'vimshell' ? vimshell#get_status_string() :
+        \ '' != expand('%:t') ? expand('%:t') : '[No Name]') .
+        \ ('' != MyModified() ? ' ' . MyModified() : '') .
+        \ anzu#search_status()
+endfunction
+
+function! MyFileformat()
+  return &ft !~? 'vimfiler\|unite\|vimshell' ?
+        \ winwidth('.') > 70 ? &fileformat : '' : ''
+endfunction
+
+function! MyFiletype()
+  return winwidth('.') > 70 ? (strlen(&filetype) ? &filetype : 'no ft') : ''
+endfunction
+
+function! MyFileencoding()
+  return &ft !~? 'vimfiler\|unite\|vimshell' ?
+       \ winwidth('.') > 70 ? (strlen(&fenc) ? &fenc : &enc) : '' : ''
+endfunction
+
+function! MyMode()
+  return winwidth('.') > 60 ? lightline#mode() : ''
+endfunction
+
 "}}}
 
 " -------------------------------------------------------------------
