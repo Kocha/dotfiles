@@ -452,6 +452,8 @@ smap <expr><TAB> neosnippet#expandable() <Bar><Bar> neosnippet#jumpable() ?
 "
 " 入力モードで開始する
 " let g:unite_enable_start_insert = 1
+" statuslineの上書きを行わない
+let g:unite_force_overwrite_statusline = 0
 " Bookmark一覧
 nnoremap <silent> ,ub :<C-u>Unite bookmark<CR>
 " ファイル一覧
