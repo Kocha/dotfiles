@@ -122,7 +122,7 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 set virtualedit=block
 " Undo拡張
 set undofile
-set undodir=~/.undo
+set undodir=$VIMHOME/.undo
 " ウィンドウを閉じずにバッファを閉じる
 command! Ebd call EBufdelete()
 function! EBufdelete()
@@ -291,9 +291,9 @@ augroup END
 filetype plugin indent off " required!
 
 if has('vim_starting')
-  set runtimepath+=~/.vim/bundle/neobundle.vim/
+  set runtimepath+=$VIMHOME/.vim/bundle/neobundle.vim/
 endif
-call neobundle#rc(expand('~/.vim/bundle/'))
+call neobundle#rc(expand('$VIMHOME/.vim/bundle/'))
 
 " Plugins List
 NeoBundle 'Shougo/neobundle.vim'
@@ -374,12 +374,12 @@ NeoBundleLazy 'ujihisa/unite-colorscheme'
 
 " 個別プラグイン
 " systemverilog_syntax,DirDiff,vim-systemc,gtags,vim-rtl
-NeoBundleLocal ~/.vim/plugins
+NeoBundleLocal $VIMHOME/.vim/plugins
 
 "================================================
 " .vimrc_local_bundle {{{
-if filereadable(expand('~/.vimrc_local_bundle'))
-  source ~/.vimrc_local_bundle
+if filereadable(expand('$VIMHOME/.vimrc_local_bundle'))
+  source $VIMHOME/.vimrc_local_bundle
 endif
 "}}}
 
@@ -817,8 +817,8 @@ endfunction
 
 " -------------------------------------------------------------------
 " .vimrc_local {{{
-if filereadable(expand('~/.vimrc_local'))
-  source ~/.vimrc_local
+if filereadable(expand('$VIMHOME/.vimrc_local'))
+  source $VIMHOME/.vimrc_local
 endif
 "}}}
 

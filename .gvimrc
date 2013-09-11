@@ -80,7 +80,7 @@ NeoBundleSourc unite-colorscheme
 
 " -------------------------------------------------------------------
 " .gvimrc_local {{{
-if filereadable(expand('~/.gvimrc_local'))
-  source ~/.gvimrc_local
+if filereadable(expand('$VIMHOME/.gvimrc_local'))
+  source $VIMHOME/.gvimrc_local
 endif
 "}}}
