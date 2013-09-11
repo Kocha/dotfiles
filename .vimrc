@@ -85,7 +85,7 @@ endif
 
 " 行数の横の文字列を変更(オリジナル)
 " set numberchar=\|
-set fillchars=num:\|
+" set fillchars=num:\|
 
 " -------------------------------------------------------------------
 " syntax color
