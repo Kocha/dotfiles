@@ -1,7 +1,12 @@
 " vim: set ts=4 sw=4 sts=0 foldmethod=marker:
 " -------------------------------------------------------------------
+"
+augroup MyVimrc
+  autocmd!
+augroup END
+" -------------------------------------------------------------------
 " System関連
-
+"
 "vi互換の動きにしない
 set nocompatible
 "左右のカーソル移動で行間移動可能にする。
@@ -11,7 +16,7 @@ set whichwrap=b,s,<,>,[,]
 set clipboard=unnamed,autoselect
 " コメント行にてEnterキー入力後コメントになる動作を解除
 " ft=vimでは効果なし() "set fo-=ro
-autocmd FileType * setlocal formatoptions-=ro
+autocmd MyVimrc FileType * setlocal formatoptions-=ro
 " backspaceの拡張
 set backspace=start,eol,indent
 
@@ -91,7 +96,6 @@ endif
 " syntax color
 "
 syntax on
-"highlight LineNr ctermfg=darkgrey
 
 " -------------------------------------------------------------------
 " 検索関連
@@ -117,7 +121,8 @@ set hlsearch
 "バックアップを取らない
 set nobackup
 " 最後に編集した部分にカーソルを移動
-au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+autocmd MyVimrc BufReadPost *
+  \ if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 " 文字がない部分でも矩形選択可能にする
 set virtualedit=block
 " Undo拡張
@@ -148,7 +153,7 @@ endfunction
 "
 " AllMaps
 command! -nargs=* -complete=mapping
-\   AllMaps map <args> | map! <args> | lmap <args>
+  \ AllMaps map <args> | map! <args> | lmap <args>
 "================================================
 " Normal+Virtualモード関係
 "================================================
@@ -203,7 +208,7 @@ inoremap <> <><Left>
 "================================================
 " コマンドライン関係
 "================================================
-" <C-A>で先頭へ
+" <C-a>で先頭へ
 cnoremap <C-a> <Home>
 " %% を入力すると現在編集中のファイルのフォルダのパスを展開
 if has('win32')
@@ -220,7 +225,7 @@ cnoremap <C-v> <C-r>+
 " Help {{{
 "================================================
 " q で閉じる
-au FileType help nnoremap q :q<CR>
+autocmd MyVimrc FileType help nnoremap q :q<CR>
 " }}}
 "================================================
 " Markdown {{{
@@ -236,14 +241,14 @@ function! s:file_markdown()
   autocmd! FileMarkdown
 endfunction
 " Shift+Enterにて<br>タグ挿入
-au FileType markdown inoremap <S-Enter> <br /><CR>
+autocmd MyVimrc FileType markdown inoremap <S-Enter> <br /><CR>
 " }}}
 "================================================
 " Template {{{
 "================================================
 " 新規ファイルの際に挿入する。
-autocmd BufNewFile *.h,*.c,*.cpp 0r $HOME/.vim/template/template.h
-autocmd BufNewFile *.vim 0r $HOME/.vim/template/template.vim
+autocmd MyVimrc BufNewFile *.h,*.c,*.cpp 0r $HOME/.vim/template/template.h
+autocmd MyVimrc BufNewFile *.vim 0r $HOME/.vim/template/template.vim
 " }}}
 
 " -------------------------------------------------------------------
@@ -274,11 +279,12 @@ augroup END
 " -------------------------------------------------------------------
 " QuickFix関連
 "
-" Quickfixウィンドウだけの場合に自動で閉じる
+" QuickFixウィンドウだけの場合に自動で閉じる
 augroup qfautoclose
   autocmd!
   " Auto-close quickfix window
-  autocmd WinEnter * if (winnr('$') == 1) && (getbufvar(winbufnr(0), '&buftype')) == 'quickfix' | quit | endif
+  autocmd WinEnter * 
+    \ if (winnr('$') == 1) && (getbufvar(winbufnr(0), '&buftype')) == 'quickfix' | quit | endif
 augroup END
 " -------------------------------------------------------------------
 " 標準プラグイン関連
@@ -469,14 +475,14 @@ nnoremap <silent> ,ua :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mr
 " ヘルプ
 nnoremap <silent> ,uh :<C-u>Unite -start-insert help<CR>
 " ウィンドウを分割して開く
-au FileType unite nnoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
-au FileType unite inoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
+autocmd MyVimrc FileType unite nnoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
+autocmd MyVimrc FileType unite inoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
 " ウィンドウを縦に分割して開く
-au FileType unite nnoremap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
-au FileType unite inoremap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
+autocmd MyVimrc FileType unite nnoremap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
+autocmd MyVimrc FileType unite inoremap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
 " ESCキーを2回押すと終了する
-au FileType unite nnoremap <silent> <buffer> <ESC><ESC> q
-au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>q
+autocmd MyVimrc FileType unite nnoremap <silent> <buffer> <ESC><ESC> q
+autocmd MyVimrc FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>q
 "}}}
 
 " -------------------------------------------------------------------
@@ -582,12 +588,12 @@ let g:vimfiler_edit_action = 'tabopen'
 if has("gui_macvim")
   if has('vim_starting')
     if expand("%") == ""
-      autocmd VimEnter * VimFiler -status
+      autocmd MyVimrc VimEnter * VimFiler -status
     endif
   endif
 endif
 " q で VimFilerを閉じる
-autocmd FileType vimfiler nmap <buffer> q <Plug>(vimfiler_close)
+autocmd MyVimrc FileType vimfiler nmap <buffer> q <Plug>(vimfiler_close)
 " statuslineの上書きを行わない
 let g:vimfiler_force_overwrite_statusline = 0
 
@@ -627,10 +633,10 @@ let g:vimfiler_force_overwrite_statusline = 0
 " endfor
 "}}}
 " '/'カレントディレクトリ検索時に unite.vimを使用する。
-" autocmd FileType vimfiler nnoremap <buffer><silent>/
+" autocmd MyVimrc FileType vimfiler nnoremap <buffer><silent>/
 "         \ :<C-u>Unite file -default-action=vimfiler<CR>
 " unite bookmark->Enterにて移動
-autocmd FileType vimfiler call unite#custom_default_action('directory', 'cd')
+autocmd MyVimrc FileType vimfiler call unite#custom_default_action('directory', 'cd')
 "}}}
 
 " -------------------------------------------------------------------
