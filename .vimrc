@@ -314,7 +314,6 @@ NeoBundle 'Shougo/vimproc', { 'build': {
   \ } }
 NeoBundle 'Shougo/vimfiler'
 NeoBundle 'Shougo/vinarise'
-NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/unite-outline'
@@ -357,6 +356,19 @@ NeoBundle 'vim-jp/vimdoc-ja'
 
 NeoBundle 't9md/vim-textmanip'
 NeoBundle 'modsound/gips-vim'
+
+" Vim Version Check
+function! s:meet_neocomplete_requirements()
+    return has('lua') && (v:version > 703 || (v:version == 703 && has('patch885')))
+endfunction
+" neocomplete/neocomplcache install
+if s:meet_neocomplete_requirements()
+  NeoBundle 'Shougo/neocomplete.vim'
+  NeoBundleFetch 'Shougo/neocomplcache.vim'
+else
+  NeoBundleFetch 'Shougo/neocomplete.vim'
+  NeoBundle 'Shougo/neocomplcache.vim'
+endif
 "================================================
 " NeoBundleLazy List {{{
 "================================================
@@ -405,41 +417,77 @@ endif
 " -------------------------------------------------------------------
 " 以下プラグイン設定
 " -------------------------------------------------------------------
-" neocomplcache関連 {{{
+" neocomplete/neocomplcache関連 {{{
 "
-" Use neocomplcache.
-let g:neocomplcache_enable_at_startup = 1
-" Use smartcase.
-let g:neocomplcache_enable_smart_case = 1
-" Use camel case completion.
-" let g:neocomplcache_enable_camel_case_completion = 1
-" Use underbar completion.
-" let g:neocomplcache_enable_underbar_completion = 1
-" Set minimum syntax keyword length.
-" let g:neocomplcache_min_syntax_length = 3
-" let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
-" Define dictionary.
-let g:neocomplcache_dictionary_filetype_lists = {
-    \ 'default' : '',
-    \ 'vimshell' : $HOME.'/.vimshell_hist',
-    \ 'scheme' : $HOME.'/.gosh_completions'
-    \ }
-" Define keyword.
-if !exists('g:neocomplcache_keyword_patterns')
-  let g:neocomplcache_keyword_patterns = {}
+if s:meet_neocomplete_requirements()
+  " Use neocomplete.
+  let g:neocomplete_enable_at_startup = 1
+  " Use smartcase.
+  let g:neocomplete_enable_smart_case = 1
+  " Use camel case completion.
+  " let g:neocomplete_enable_camel_case_completion = 1
+  " Use underbar completion.
+  " let g:neocomplete_enable_underbar_completion = 1
+  " Set minimum syntax keyword length.
+  " let g:neocomplete_min_syntax_length = 3
+  " let g:neocomplete_lock_buffer_name_pattern = '\*ku\*'
+  " Define dictionary.
+  let g:neocomplete_dictionary_filetype_lists = {
+      \ 'default' : '',
+      \ 'vimshell' : $HOME.'/.vimshell_hist',
+      \ 'scheme' : $HOME.'/.gosh_completions'
+      \ }
+  " Define keyword.
+  if !exists('g:neocomplete_keyword_patterns')
+    let g:neocomplete_keyword_patterns = {}
+  endif
+  let g:neocomplete_keyword_patterns['default'] = '\h\w*'
+  " ===============================================
+  " Plugin key-mappings.
+  " <CR>: close popup and save indent.
+  inoremap <expr><CR>  neocomplete#close_popup() . "\<CR>"
+  " <TAB>: completion.
+  " inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+  " <C-h>, <BS>: close popup and delete backword char.
+  inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+  inoremap <expr><BS>  neocomplete#smart_close_popup()."\<C-h>"
+  inoremap <expr><C-y> neocomplete#close_popup()
+  " inoremap <expr><C-e>  neocomplete#cancel_popup()
+else
+  " Use neocomplcache.
+  let g:neocomplcache_enable_at_startup = 1
+  " Use smartcase.
+  let g:neocomplcache_enable_smart_case = 1
+  " Use camel case completion.
+  " let g:neocomplcache_enable_camel_case_completion = 1
+  " Use underbar completion.
+  " let g:neocomplcache_enable_underbar_completion = 1
+  " Set minimum syntax keyword length.
+  " let g:neocomplcache_min_syntax_length = 3
+  " let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
+  " Define dictionary.
+  let g:neocomplcache_dictionary_filetype_lists = {
+      \ 'default' : '',
+      \ 'vimshell' : $HOME.'/.vimshell_hist',
+      \ 'scheme' : $HOME.'/.gosh_completions'
+      \ }
+  " Define keyword.
+  if !exists('g:neocomplcache_keyword_patterns')
+    let g:neocomplcache_keyword_patterns = {}
+  endif
+  let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
+  " ===============================================
+  " Plugin key-mappings.
+  " <CR>: close popup and save indent.
+  inoremap <expr><CR>  neocomplcache#close_popup() . "\<CR>"
+  " <TAB>: completion.
+  " inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+  " <C-h>, <BS>: close popup and delete backword char.
+  inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
+  inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+  inoremap <expr><C-y>  neocomplcache#close_popup()
+  " inoremap <expr><C-e>  neocomplcache#cancel_popup()
 endif
-let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
-" ===============================================
-" Plugin key-mappings.
-" <CR>: close popup and save indent.
-inoremap <expr><CR>  neocomplcache#close_popup() . "\<CR>"
-" <TAB>: completion.
-" inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" <C-h>, <BS>: close popup and delete backword char.
-" inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><C-y>  neocomplcache#close_popup()
-" inoremap <expr><C-e>  neocomplcache#cancel_popup()
 "}}}
 
 " -------------------------------------------------------------------
