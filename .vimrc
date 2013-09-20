@@ -105,9 +105,9 @@ set ignorecase
 " 検索時に大文字を含んでいたら大/小を区別
 set smartcase
 " 検索をファイルの先頭へループしない
-set nowrapscan
+" set nowrapscan
 " 検索文字列入力時に順次対象文字列にヒットさせない
-set noincsearch
+" set noincsearch
 " 検索結果文字列のハイライトを有効にする
 set hlsearch
 
@@ -751,8 +751,10 @@ let g:markdown_quote_syntax_filetypes = {
 " キーマップ設定
 " nmap n <Plug>(anzu-n)
 " nmap N <Plug>(anzu-N)
-nmap n nzz<Plug>(anzu-update-search-status)
-nmap N Nzz<Plug>(anzu-update-search-status)
+" nmap n nzz<Plug>(anzu-update-search-status)
+" nmap N Nzz<Plug>(anzu-update-search-status)
+nmap n <Plug>(anzu-jump-n)zz
+nmap N <Plug>(anzu-N)zz
 nmap * <Plug>(anzu-star)
 nmap # <Plug>(anzu-sharp)
 " ESC2回押しで検索ハイライトを消去
