@@ -158,7 +158,7 @@ command! -nargs=* -complete=mapping
 " Normal+Virtualモード関係
 "================================================
 " 行頭/行末へ移動
-noremap <C-a> ^
+" noremap <C-a> ^
 noremap <C-e> $
 "================================================
 " Normalモード関係
