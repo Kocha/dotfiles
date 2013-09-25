@@ -8,7 +8,7 @@ augroup END
 " System関連
 "
 "vi互換の動きにしない
-set nocompatible
+" set nocompatible
 "左右のカーソル移動で行間移動可能にする。
 "set whichwrap=b,s,<,>,[,],h,l
 set whichwrap=b,s,<,>,[,]
@@ -33,7 +33,7 @@ set laststatus=2
 " 行数の表示
 set number
 " ステータスバーに表示
-set ruler
+" set ruler
 " 折り返し文字数指定
 "set textwidth=70
 set linespace=0
@@ -50,12 +50,12 @@ set smarttab
 " ファイル内の <Tab> が対応する空白の数
 set tabstop=4
 " ステータスラインに文字コードと改行文字を表示する
-set statusline=%<%f\%m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%y%=%l,%c%V%8P
+" set statusline=%<%f\%m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%y%=%l,%c%V%8P
 " ステータスラインに日時を追加表示する
-function! g:Date()
-  return strftime("%x %H:%M")
-endfunction
-set statusline+=\ \%{g:Date()}
+" function! g:Date()
+"   return strftime("%x %H:%M")
+" endfunction
+" set statusline+=\ \%{g:Date()}
 " ステータスラインに補完候補を表示
 set wildmenu
 " タブ文字を可視化
@@ -193,11 +193,15 @@ inoremap <C-e> <ESC>A
 inoremap <C-a> <ESC>^i
 " <C-V> Clipboardから貼り付け
 inoremap <C-v> <ESC>"*pa
-" 挿入モード時に、カーソル移動
-" inoremap <C-H> <Left>
-inoremap <C-j> <Down>
-inoremap <C-k> <Up>
-inoremap <C-l> <Right>
+" 挿入モード時に、カーソル移動(Emacs)
+" inoremap <C-h> <Left>
+" inoremap <C-j> <Down>
+" inoremap <C-k> <Up>
+" inoremap <C-l> <Right>
+inoremap <C-b> <Left>
+inoremap <C-n> <Down>
+inoremap <C-p> <Up>
+inoremap <C-f> <Right>
 " ()などの入力時の補助
 inoremap () ()<Left>
 inoremap [] []<Left>
@@ -234,10 +238,7 @@ autocmd MyVimrc FileType help nnoremap q :q<CR>
 " Markdown {{{
 "================================================
 " 拡張子設定[*.md, *.mkd]
-augroup FileMarkdown
-  autocmd!
-  autocmd BufRead,BufNewFile *.md,*.mkd call <SID>file_markdown()
-augroup END
+autocmd MyVimrc BufRead,BufNewFile *.md,*.mkd call <SID>file_markdown()
 function! s:file_markdown()
   setfiletype markdown
   setlocal fileencoding=UTF-8
@@ -267,28 +268,18 @@ let html_use_css = 0
 " VimGrep関連
 "
 " :vimgrep検索後に QuickFixウィンドウを開く
-augroup vimgrepopen
-  autocmd!
-  autocmd QuickFixCmdPost vimgrep cw
-augroup END
+autocmd MyVimrc QuickFixCmdPost vimgrep cw
 " -------------------------------------------------------------------
 " HelpGrep関連
 "
 " :helpgrep検索後に unite-quickfixを開く
-augroup helpgrepopen
-  autocmd!
-  autocmd QuickFixCmdPost helpgrep Unite quickfix
-augroup END
+autocmd MyVimrc QuickFixCmdPost helpgrep Unite quickfix
 " -------------------------------------------------------------------
 " QuickFix関連
 "
 " QuickFixウィンドウだけの場合に自動で閉じる
-augroup qfautoclose
-  autocmd!
-  " Auto-close quickfix window
-  autocmd WinEnter * 
-    \ if (winnr('$') == 1) && (getbufvar(winbufnr(0), '&buftype')) == 'quickfix' | quit | endif
-augroup END
+autocmd MyVimrc WinEnter * 
+  \ if (winnr('$') == 1) && (getbufvar(winbufnr(0), '&buftype')) == 'quickfix' | quit | endif
 " -------------------------------------------------------------------
 " 標準プラグイン関連
 "
