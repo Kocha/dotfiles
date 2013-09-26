@@ -242,7 +242,6 @@ autocmd MyVimrc BufRead,BufNewFile *.md,*.mkd call <SID>file_markdown()
 function! s:file_markdown()
   setfiletype markdown
   setlocal fileencoding=UTF-8
-  autocmd! FileMarkdown
 endfunction
 " Shift+Enterにて<br>タグ挿入
 autocmd MyVimrc FileType markdown inoremap <S-Enter> <br /><CR>
