@@ -237,7 +237,7 @@ cnoremap <expr> ? getcmdtype() == '?' ? '\?' : '?'
 " Help {{{
 "================================================
 " q で閉じる
-autocmd MyVimrc FileType help nnoremap q :q<CR>
+autocmd MyVimrc FileType help nnoremap <buffer> q :q<CR>
 " }}}
 "================================================
 " Markdown {{{
@@ -249,7 +249,7 @@ function! s:file_markdown()
   setlocal fileencoding=UTF-8
 endfunction
 " Shift+Enterにて<br>タグ挿入
-autocmd MyVimrc FileType markdown inoremap <S-Enter> <br /><CR>
+autocmd MyVimrc FileType markdown inoremap <buffer> <S-Enter> <br /><CR>
 " }}}
 "================================================
 " Template {{{
