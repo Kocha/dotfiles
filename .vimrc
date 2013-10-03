@@ -1,6 +1,11 @@
 " vim: set ts=4 sw=4 sts=0 foldmethod=marker:
 " -------------------------------------------------------------------
 "
+" 環境変数
+if !exists("$VIMHOME")
+  let $VIMHOME=$HOME
+endif
+
 augroup MyVimrc
   autocmd!
 augroup END
