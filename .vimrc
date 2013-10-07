@@ -181,7 +181,7 @@ nnoremap <Up>   gk
 " カーソル部分から行末までコピー
 nnoremap Y y$
 " 行の二重化
-nnoremap <C-Enter> yypk
+" nnoremap <C-Enter> yypk
 " 行削除
 nnoremap <S-Enter> dd
 " 行番号表示の切り替え
@@ -691,6 +691,13 @@ autocmd MyVimrc FileType vimfiler call unite#custom_default_action('directory', 
 "
 let autodate_keyword_pre  = "Last Modified:"
 let autodate_keyword_post = "."
+"}}}
+
+" -------------------------------------------------------------------
+" caw.vim関連 {{{
+"
+" 行の2重化してコメントアウト
+nmap <C-Enter> yy<Plug>(caw:i:comment)p
 "}}}
 
 " -------------------------------------------------------------------
