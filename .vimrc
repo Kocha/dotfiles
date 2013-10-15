@@ -592,23 +592,33 @@ let g:quickrun_config['markdown'] = {
 command! -nargs=* -range=0 -complete=customlist,quickrun#complete
   \ ReplaceRegion
   \ QuickRun
-  \     -mode v
-  \     -outputter error
-  \     -outputter/success replace_region
-  \     -outputter/error message
-  \     -outputter/message/log 1
-  \     -hook/unite_quickfix/enable 0
-  \     <args>
+  \   -mode v
+  \   -outputter error
+  \   -outputter/success replace_region
+  \   -outputter/error message
+  \   -outputter/message/log 1
+  \   -hook/unite_quickfix/enable 0
+  \   <args>
 "}}}
 "}}}
 
 " -------------------------------------------------------------------
-" vim-watchdogs関連
+" vim-watchdogs関連 {{{
 "
 " Setting
 call watchdogs#setup(g:quickrun_config)
 " 書き込み後にシンタックスチェックを行う
 " let g:watchdogs_check_BufWritePost_enable = 1
+" }}}
+
+" -------------------------------------------------------------------
+" vim-textobj-multiblock関連 {{{
+"
+omap ab <Plug>(textobj-multiblock-a)
+omap ib <Plug>(textobj-multiblock-i)
+xmap ab <Plug>(textobj-multiblock-a)
+xmap ib <Plug>(textobj-multiblock-i)
+" }}}
 
 " -------------------------------------------------------------------
 " vim-hier関連 {{{
