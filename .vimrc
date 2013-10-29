@@ -111,8 +111,8 @@ set ignorecase
 set smartcase
 " 検索をファイルの先頭へループしない
 " set nowrapscan
-" 検索文字列入力時に順次対象文字列にヒットさせない
-" set noincsearch
+" 検索文字列入力時に順次対象文字列にヒットさせる
+set incsearch
 " 検索結果文字列のハイライトを有効にする
 set hlsearch
 
