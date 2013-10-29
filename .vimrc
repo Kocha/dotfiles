@@ -292,6 +292,10 @@ autocmd MyVimrc WinEnter *
 " -------------------------------------------------------------------
 " プラグイン管理(NeoBundle) {{{
 "
+if exists("$USER_GIT_PROTOCOL")
+  let g:neobundle_default_git_protocol = $USER_GIT_PROTOCOL
+endif
+
 filetype plugin indent off " required!
 
 if has('vim_starting')
