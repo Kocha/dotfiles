@@ -621,10 +621,16 @@ call watchdogs#setup(g:quickrun_config)
 " -------------------------------------------------------------------
 " vim-textobj-multiblock関連 {{{
 "
+" キーマップ設定
 omap ab <Plug>(textobj-multiblock-a)
 omap ib <Plug>(textobj-multiblock-i)
 xmap ab <Plug>(textobj-multiblock-a)
 xmap ib <Plug>(textobj-multiblock-i)
+" 「」、（）に対応
+let g:textobj_multiblock_blocks = [
+  \ [ "「", "」" ],
+  \ [ "（", "）" ],
+  \]
 " }}}
 
 " -------------------------------------------------------------------
