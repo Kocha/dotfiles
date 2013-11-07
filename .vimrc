@@ -332,6 +332,7 @@ NeoBundle 'osyo-manga/unite-qfixhowm'
 NeoBundle 'osyo-manga/quickrun-outputter-replace_region'
 NeoBundle 'osyo-manga/vim-textobj-multiblock'
 NeoBundle 'osyo-manga/vim-anzu'
+NeoBundle 'osyo-manga/vim-over'
 " NeoBundle 'jceb/vim-hier'
 " NeoBundle 'dannyob/quickfixstatus'
 NeoBundle 'mattn/webapi-vim'
@@ -778,6 +779,13 @@ nmap # <Plug>(anzu-sharp)
 nmap <silent> <ESC><ESC> :<C-u>nohlsearch<CR><Plug>(anzu-clear-search-status)
 " format = (該当数/全体数)
 let g:anzu_status_format = "(%i/%l)"
+"}}}
+
+" -------------------------------------------------------------------
+" vim-over関連 {{{
+"
+" プロンプトの変更
+let g:over_command_line_prompt = ">:"
 "}}}
 
 " -------------------------------------------------------------------
