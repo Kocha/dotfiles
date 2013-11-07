@@ -125,6 +125,8 @@ set hlsearch
 " set expandtab
 "バックアップを取らない
 set nobackup
+" 隠れバッファを利用する
+set hidden
 " 最後に編集した部分にカーソルを移動
 autocmd MyVimrc BufReadPost *
   \ if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
