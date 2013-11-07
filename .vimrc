@@ -628,6 +628,8 @@ xmap ab <Plug>(textobj-multiblock-a)
 xmap ib <Plug>(textobj-multiblock-i)
 " 「」、（）に対応
 let g:textobj_multiblock_blocks = [
+  \ [ '(', ')' ],
+  \ [ '[', ']' ],
   \ [ "「", "」" ],
   \ [ "（", "）" ],
   \]
