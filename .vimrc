@@ -745,6 +745,8 @@ let g:qfixmemo_template = [ '%TITLE% ', '[%Y-%m-%d %H:%M]', ""]
 let g:howm_filename     = '%Y/%m/%Y-%m-%d-%H%M%S.md'
 let g:howm_fileencoding = 'utf-8'
 let g:howm_fileformat   = 'unix'
+" プレビューの無効
+let g:QFix_PreviewEnable = 0
 
 "================================================
 " unite-qfixhowm 設定
