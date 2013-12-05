@@ -519,7 +519,7 @@ nnoremap <silent> ,ub :<C-u>Unite bookmark<CR>
 " ファイル一覧
 nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
 " レジスタ一覧
-nnoremap <silent> ,ur :<C-u>Unite -buffer-name=register register<CR>
+nnoremap <silent> ,ur :<C-u>Unite -buffer-name=register -direction=botright register<CR>
 " 最近使用したファイル一覧
 nnoremap <silent> ,um :<C-u>Unite file_mru<CR>
 " 常用セット
@@ -757,7 +757,7 @@ call unite#custom_source('qfixhowm', 'sorters', 'sorter_qfixhowm_updatetime')
 let g:unite_qfixhowm_new_memo_cmd = "tabnew"
 " 起動
 nnoremap <silent> ,u<Space> :<C-u>Unite qfixhowm/new qfixhowm:nocache
-                             \ -hide-source-names -no-quit -no-split<CR>
+                             \ -hide-source-names -no-split<CR>
 
 call unite#custom_default_action('qfixhowm' , 'tabopen')
 "}}}
