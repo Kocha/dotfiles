@@ -358,6 +358,7 @@ NeoBundle 'vim-scripts/Colour-Sampler-Pack'
 NeoBundle 'vim-jp/vimdoc-ja'
 
 NeoBundle 't9md/vim-textmanip'
+NeoBundle 't9md/vim-quickhl'
 NeoBundle 'modsound/gips-vim'
 
 " Vim Version Check
@@ -792,7 +793,9 @@ nmap N <Plug>(anzu-N)zz
 nmap * <Plug>(anzu-star)
 nmap # <Plug>(anzu-sharp)
 " ESC2回押しで検索ハイライトを消去
-nmap <silent> <ESC><ESC> :<C-u>nohlsearch<CR><Plug>(anzu-clear-search-status)
+nmap <silent> <ESC><ESC> :<C-u>nohlsearch<CR>
+  \ <Plug>(anzu-clear-search-status)
+  \ <Plug>(quickhl-manual-reset)
 " format = (該当数/全体数)
 let g:anzu_status_format = "(%i/%l)"
 "}}}
@@ -802,6 +805,15 @@ let g:anzu_status_format = "(%i/%l)"
 "
 " プロンプトの変更
 let g:over_command_line_prompt = ">:"
+"}}}
+
+" -------------------------------------------------------------------
+" vim-quickhl関連 {{{
+"
+nmap <Space>m <Plug>(quickhl-manual-this)
+xmap <Space>m <Plug>(quickhl-manual-this)
+nmap <Space>M <Plug>(quickhl-manual-reset)
+xmap <Space>M <Plug>(quickhl-manual-reset)
 "}}}
 
 " -------------------------------------------------------------------
