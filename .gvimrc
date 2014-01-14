@@ -74,9 +74,9 @@ set mousehide
 " -------------------------------------------------------------------
 " プラグイン管理(NeoBundle)
 "
-NeoBundleSourc vim-fontzoom
-NeoBundleSourc errormarker.vim
-NeoBundleSourc unite-colorscheme
+NeoBundleSource vim-fontzoom
+NeoBundleSource errormarker.vim
+NeoBundleSource unite-colorscheme
 
 " -------------------------------------------------------------------
 " .gvimrc_local {{{
