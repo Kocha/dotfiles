@@ -316,6 +316,7 @@ NeoBundle 'Shougo/vimproc', { 'build': {
 NeoBundle 'Shougo/vimfiler'
 NeoBundle 'Shougo/vinarise'
 NeoBundle 'Shougo/neosnippet'
+NeoBundle "Shougo/neosnippet-snippets"
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/unite-outline'
 NeoBundle 'thinca/vim-ref'
