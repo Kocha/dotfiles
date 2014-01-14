@@ -665,14 +665,12 @@ let g:vimfiler_as_default_explorer = 1
 let g:vimfiler_safe_mode_by_default = 0
 " タブで開くようにする。
 let g:vimfiler_edit_action = 'tabopen'
-" 引数なしの場合は VimFilerを起動
-" if has("gui_macvim")
-"   if has('vim_starting')
-"     if expand("%") == ""
-"       autocmd MyVimrc VimEnter * VimFiler -status
-"     endif
-"   endif
-" endif
+" 引数なしの場合は VimFilerを起動(MacVimの場合のみ)
+if has("gui_macvim")
+  if has('vim_starting') && expand("%") == ""
+    autocmd MyVimrc VimEnter * VimFiler -status
+  endif
+endif
 " q で VimFilerを閉じる
 autocmd MyVimrc FileType vimfiler nmap <buffer> q <Plug>(vimfiler_close)
 " statuslineの上書きを行わない
@@ -929,6 +927,7 @@ let g:unite_source_menu_menus.startup = {
 \   [ "gvimrc", "edit " . $VIMHOME . "/.gvimrc"],
 \   [ "vimfiler", "VimFiler" ],
 \   [ "unite-howm", "Unite qfixhowm/new qfixhowm:nocache -hide-source-names -no-split" ],
+\   [ "unite-update", "Unite -log neobundle/update" ],
 \   [ "unite-file_mru", "Unite file_mru" ],
 \   [ "unite-directory_mru", "Unite directory_mru" ],
 \ ]
@@ -946,8 +945,10 @@ command! UniteStartup
 \ -quick-match
 
 " 引数なしの場合にStartMenu起動
-if has('vim_starting') && expand("%") == ""
-  autocmd MyVimrc VimEnter * nested :UniteStartup
+if !has("gui_macvim")
+  if has('vim_starting') && expand("%") == ""
+    autocmd MyVimrc VimEnter * nested :UniteStartup
+  endif
 endif
 
 " }}}
