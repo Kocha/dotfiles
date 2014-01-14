@@ -361,6 +361,7 @@ NeoBundle 'vim-jp/vimdoc-ja'
 
 NeoBundle 't9md/vim-textmanip'
 NeoBundle 't9md/vim-quickhl'
+NeoBundle 't9md/vim-choosewin'
 NeoBundle 'modsound/gips-vim'
 
 " Vim Version Check
@@ -816,6 +817,23 @@ nmap <Space>m <Plug>(quickhl-manual-this)
 xmap <Space>m <Plug>(quickhl-manual-this)
 nmap <Space>M <Plug>(quickhl-manual-reset)
 xmap <Space>M <Plug>(quickhl-manual-reset)
+"}}}
+
+" -------------------------------------------------------------------
+" vim-choosewin関連 {{{
+"
+" CTRL+w a で呼び出し
+nmap <C-w>a <Plug>(choosewin)
+" オーバーレイを使う
+let g:choosewin_overlay_enable = 1
+" マルチバイトバッファでオーバーレイフォントを崩さないように
+let g:choosewin_overlay_clear_multibyte = 1
+" 着地時にカーソル点滅OFF
+let g:choosewin_blink_on_land = 0
+" ステータスラインリプレイスOFF
+let g:choosewin_statusline_replace = 0
+" タブラインリプレイスOFF
+let g:choosewin_tabline_replace = 0
 "}}}
 
 " -------------------------------------------------------------------
