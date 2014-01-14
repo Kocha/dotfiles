@@ -257,8 +257,8 @@ autocmd MyVimrc FileType markdown inoremap <buffer> <S-Enter> <br /><CR>
 " Template {{{
 "================================================
 " 新規ファイルの際に挿入する。
-autocmd MyVimrc BufNewFile *.h,*.c,*.cpp 0r $HOME/.vim/template/template.h
-autocmd MyVimrc BufNewFile *.vim 0r $HOME/.vim/template/template.vim
+autocmd MyVimrc BufNewFile *.h,*.c,*.cpp 0r $VIMHOME/.vim/template/template.h
+autocmd MyVimrc BufNewFile *.vim 0r $VIMHOME/.vim/template/template.vim
 " }}}
 
 " -------------------------------------------------------------------
@@ -441,8 +441,8 @@ if s:meet_neocomplete_requirements()
   " Define dictionary.
   let g:neocomplete#dictionary_filetype_lists = {
       \ 'default' : '',
-      \ 'vimshell' : $HOME.'/.vimshell_hist',
-      \ 'scheme' : $HOME.'/.gosh_completions'
+      \ 'vimshell' : $VIMHOME.'/.vimshell_hist',
+      \ 'scheme' : $VIMHOME.'/.gosh_completions'
       \ }
   " Define keyword.
   if !exists('g:neocomplete#keyword_patterns')
@@ -475,8 +475,8 @@ else
   " Define dictionary.
   let g:neocomplcache_dictionary_filetype_lists = {
       \ 'default' : '',
-      \ 'vimshell' : $HOME.'/.vimshell_hist',
-      \ 'scheme' : $HOME.'/.gosh_completions'
+      \ 'vimshell' : $VIMHOME.'/.vimshell_hist',
+      \ 'scheme' : $VIMHOME.'/.gosh_completions'
       \ }
   " Define keyword.
   if !exists('g:neocomplcache_keyword_patterns')
