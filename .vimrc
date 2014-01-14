@@ -664,13 +664,13 @@ let g:vimfiler_safe_mode_by_default = 0
 " タブで開くようにする。
 let g:vimfiler_edit_action = 'tabopen'
 " 引数なしの場合は VimFilerを起動
-if has("gui_macvim")
-  if has('vim_starting')
-    if expand("%") == ""
-      autocmd MyVimrc VimEnter * VimFiler -status
-    endif
-  endif
-endif
+" if has("gui_macvim")
+"   if has('vim_starting')
+"     if expand("%") == ""
+"       autocmd MyVimrc VimEnter * VimFiler -status
+"     endif
+"   endif
+" endif
 " q で VimFilerを閉じる
 autocmd MyVimrc FileType vimfiler nmap <buffer> q <Plug>(vimfiler_close)
 " statuslineの上書きを行わない
@@ -880,6 +880,58 @@ function! MyMode()
 endfunction
 
 "}}}
+
+" -------------------------------------------------------------------
+" unite.vim for vim-startify 関連 {{{
+"
+let g:unite_source_alias_aliases = {
+\ "startup_file_mru" : {
+\  "source" : "file_mru",
+\ },
+\ "startup_directory_mru" : {
+\  "source" : "directory_mru",
+\ },
+\}
+
+" 表示数の制限
+call unite#custom_max_candidates("startup_file_mru", 10)
+call unite#custom_max_candidates("startup_directory_mru", 5)
+
+if !exists("g:unite_source_menu_menus")
+  let g:unite_source_menu_menus = {}
+endif
+
+" :Unite menu:startup での出力リスト
+let g:unite_source_menu_menus.startup = {
+\ "description" : "startup menu",
+\ "command_candidates" : [
+\   [ "edit",  "edit" ],
+\   [ "vimrc",  "edit " . $VIMHOME . "/.vimrc"],
+\   [ "gvimrc", "edit " . $VIMHOME . "/.gvimrc"],
+\   [ "vimfiler", "VimFiler" ],
+\   [ "unite-howm", "Unite qfixhowm/new qfixhowm:nocache -hide-source-names -no-split" ],
+\   [ "unite-file_mru", "Unite file_mru" ],
+\   [ "unite-directory_mru", "Unite directory_mru" ],
+\ ]
+\}
+
+command! UniteStartup
+\ Unite
+\ output:echo:"===:menu:===":! menu:startup
+\ output:echo:":":!
+\ output:echo:"===:file:mru:===":! startup_file_mru
+\ output:echo:":":!
+\ output:echo:"===:directory:mru:===":! startup_directory_mru
+\ -hide-source-names
+\ -no-split
+\ -quick-match
+
+" 引数なしの場合にStartMenu起動
+if has('vim_starting') && expand("%") == ""
+  autocmd MyVimrc VimEnter * nested :UniteStartup
+endif
+
+" }}}
 
 " -------------------------------------------------------------------
 " vim-smartinput関連 {{{
