@@ -591,9 +591,14 @@ let g:quickrun_config['textile'] = {
     \ }
     " \ 'outputter': 'browser'
 " Markdown記法設定
+" let g:quickrun_config['markdown'] = {
+"     \ 'command' : 'bluefeather',
+"     \ 'exec'    : 'cat %s | %c -',
+"     \ }
 let g:quickrun_config['markdown'] = {
-    \ 'command' : 'bluefeather',
-    \ 'exec'    : 'cat %s | %c -',
+    \ 'type': 'markdown/pandoc',
+    \ 'outputter': 'browser',
+    \ 'cmdopt': '-s'
     \ }
 
 "================================================
