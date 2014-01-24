@@ -281,6 +281,8 @@ autocmd MyVimrc QuickFixCmdPost helpgrep Unite quickfix
 " QuickFixウィンドウだけの場合に自動で閉じる
 autocmd MyVimrc WinEnter * 
   \ if (winnr('$') == 1) && (getbufvar(winbufnr(0), '&buftype')) == 'quickfix' | quit | endif
+" q で QuickFixを閉じる
+autocmd MyVimrc FileType qf nnoremap <silent> <buffer> q :quit<CR>
 " -------------------------------------------------------------------
 " 標準プラグイン関連
 "
