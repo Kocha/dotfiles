@@ -9,6 +9,9 @@ endif
 augroup MyVimrc
   autocmd!
 augroup END
+" UTF-8
+scriptencoding utf-8
+
 " -------------------------------------------------------------------
 " System関連
 "
@@ -78,20 +81,12 @@ set ambiwidth=double
 " 連結時のコメント削除&日本語の行の連結時には空白を入力しない
 set formatoptions+=jM
 " 全角スペースの表示
-function! ZenkakuSpace()
-  highlight ZenkakuSpace cterm=underline ctermfg=red gui=underline guifg=red
-endfunction
-
-if has('syntax')
-  augroup ZenkakuSpace
-    autocmd!
-    " ZenkakuSpaceをカラーファイルで設定するなら次の行は削除
-    autocmd ColorScheme   * call ZenkakuSpace()
-    " 全角スペースのハイライト指定
-    autocmd VimEnter,WinEnter * match ZenkakuSpace /　/
-  augroup END
-  call ZenkakuSpace()
-endif
+augroup highlightIdegraphicSpace
+  autocmd!
+  autocmd Colorscheme * highlight
+    \ IdeographicSpace cterm=underline ctermfg=red gui=underline guifg=red 
+  autocmd VimEnter,WinEnter,BufRead * match IdeographicSpace /　/
+augroup END
 
 " 行数の横の文字列を変更(オリジナル)
 " set numberchar=\|
