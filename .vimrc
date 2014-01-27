@@ -55,6 +55,8 @@ set showmatch
 " set smartindent
 " 行頭の余白内で Tab を打ち込むと、'shiftwidth' の数だけインデントする。
 set smarttab
+" shiftwidth
+set shiftwidth=2
 " ファイル内の <Tab> が対応する空白の数
 set tabstop=4
 " ステータスラインに文字コードと改行文字を表示する
@@ -361,6 +363,7 @@ NeoBundle 't9md/vim-textmanip'
 NeoBundle 't9md/vim-quickhl'
 NeoBundle 't9md/vim-choosewin'
 NeoBundle 'modsound/gips-vim'
+NeoBundle 'Yggdroot/indentLine'
 
 " Vim Version Check
 function! s:meet_neocomplete_requirements()
@@ -953,6 +956,13 @@ if !has("gui_macvim")
   endif
 endif
 
+" }}}
+
+" -------------------------------------------------------------------
+" indentLine 関連 {{{
+"
+let g:indentLine_color_term = 111
+let g:indentLine_color_gui = '#80a0ff'
 " }}}
 
 " -------------------------------------------------------------------
