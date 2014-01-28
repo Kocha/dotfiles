@@ -124,6 +124,8 @@ set hlsearch
 set nobackup
 " 隠れバッファを利用する
 set hidden
+" % で移動する括弧の構成に <> を追加する
+set matchpairs+=<:>
 " 最後に編集した部分にカーソルを移動
 autocmd MyVimrc BufReadPost *
   \ if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
