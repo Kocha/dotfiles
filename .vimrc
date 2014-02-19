@@ -320,6 +320,7 @@ NeoBundle 'Shougo/neosnippet'
 NeoBundle "Shougo/neosnippet-snippets"
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/unite-outline'
+NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'thinca/vim-ref'
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'thinca/vim-visualstar'
