@@ -112,6 +112,13 @@ set smartcase
 set incsearch
 " 検索結果文字列のハイライトを有効にする
 set hlsearch
+" 直前の検索パターンと'hlsearch'をバッファローカルにする
+" autocmd WinLeave *
+" \   let b:vimrc_pattern = @/
+" \ | let b:vimrc_hlsearch = &hlsearch
+" autocmd WinEnter *
+" \   let @/ = get(b:, 'vimrc_pattern', @/)
+" \ | let &l:hlsearch = get(b:, 'vimrc_hlsearch', &l:hlsearch)
 
 " -------------------------------------------------------------------
 " Edit関連
