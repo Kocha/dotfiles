@@ -888,17 +888,19 @@ endfunction
 
 function! MyFilename()
   return ('' != MyReadonly() ? MyReadonly() . ' ' : '') .
-        \ (&ft == 'vimfiler' ? vimfiler#get_status_string() :
-        \  &ft == 'unite' ?  unite#get_status_string() :
-        \  &ft == 'vimshell' ? vimshell#get_status_string() :
-        \ '' != expand('%') ? expand('%') : '[No Name]') .
-        \ ('' != MyModified() ? ' ' . MyModified() : '') .
-        \ anzu#search_status()
+    \ (&ft == 'vimfiler' ? vimfiler#get_status_string() :
+    \  &ft == 'unite' ?  unite#get_status_string() :
+    \  &ft == 'vimshell' ? vimshell#get_status_string() :
+    \ '' != expand('%') ? (strlen(expand('%') > 45)) ?
+    \   strpart(expand('%'), strlen(expand('%')) - 45) :
+    \   expand('%') : '[No Name]') .
+    \ ('' != MyModified() ? ' ' . MyModified() : '') .
+    \ anzu#search_status()
 endfunction
 
 function! MyFileformat()
   return &ft !~? 'vimfiler\|unite\|vimshell' ?
-        \ winwidth('.') > 70 ? &fileformat : '' : ''
+    \ winwidth('.') > 70 ? &fileformat : '' : ''
 endfunction
 
 function! MyFiletype()
@@ -907,7 +909,7 @@ endfunction
 
 function! MyFileencoding()
   return &ft !~? 'vimfiler\|unite\|vimshell' ?
-       \ winwidth('.') > 70 ? (strlen(&fenc) ? &fenc : &enc) : '' : ''
+    \ winwidth('.') > 70 ? (strlen(&fenc) ? &fenc : &enc) : '' : ''
 endfunction
 
 function! MyMode()
