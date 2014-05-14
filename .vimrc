@@ -314,7 +314,7 @@ endif
 call neobundle#rc(expand('$VIMHOME/.vim/bundle/'))
 
 " Plugins List
-NeoBundle 'Shougo/neobundle.vim'
+NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/vimproc', { 'build': {
   \ 'windows': 'make -f make_mingw32.mak',
   \ 'cygwin' : 'make -f make_cygwin.mak',
