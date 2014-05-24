@@ -295,6 +295,23 @@ autocmd MyVimrc WinEnter *
 " q で QuickFixを閉じる
 autocmd MyVimrc FileType qf nnoremap <silent> <buffer> q :quit<CR>
 " -------------------------------------------------------------------
+" Markdown関連
+"
+let g:markdown_fenced_languages = [
+  \ 'c',
+  \ 'cpp',
+  \ 'python',
+  \ 'perl',
+  \ 'ruby',
+  \ 'sh',
+  \ 'systemverilog',
+  \ 'tcl',
+  \ 'tcsh',
+  \ 'vhdl',
+  \ 'verilog',
+  \]
+
+" -------------------------------------------------------------------
 " 標準プラグイン関連
 "
 " source $VIMRUNTIME/macros/matchit.vim
@@ -398,8 +415,8 @@ NeoBundleLazy 'Shougo/vimshell', {
 \   'autoload' : { 'commands' : [ 'VimShell' ] }
 \}
 " Markdown, Textile
-NeoBundleLazy "hallison/vim-markdown",  {"autoload" : { "filetypes" : ["markdown"] }}
-NeoBundleLazy "joker1007/vim-markdown-quote-syntax",  {"autoload" : { "filetypes" : ["markdown"] }}
+" NeoBundleLazy "hallison/vim-markdown",  {"autoload" : { "filetypes" : ["markdown"] }}
+" NeoBundleLazy "joker1007/vim-markdown-quote-syntax",  {"autoload" : { "filetypes" : ["markdown"] }}
 NeoBundleLazy "timcharper/textile.vim", {"autoload" : { "filetypes" : ["textile"] }}
 " haskell
 NeoBundleLazy "dag/vim2hs",                  {"autoload" : { "filetypes" : ["haskell"] }}
@@ -788,17 +805,17 @@ call unite#custom_default_action('qfixhowm' , 'tabopen')
 " vim-markdown-quote-syntax関連 {{{
 "
 " syntax追加
-let g:markdown_quote_syntax_filetypes = {
-  \ "vhdl" : {
-  \   "start" : "vhdl",
-  \},
-  \ "verilog" : {
-  \   "start" : "verilog",
-  \},
-  \ "systemverilog" : {
-  \   "start" : "systemverilog",
-  \},
-\}
+" let g:markdown_quote_syntax_filetypes = {
+"   \ "vhdl" : {
+"   \   "start" : "vhdl",
+"   \},
+"   \ "verilog" : {
+"   \   "start" : "verilog",
+"   \},
+"   \ "systemverilog" : {
+"   \   "start" : "systemverilog",
+"   \},
+" \}
 "}}}
 
 " -------------------------------------------------------------------
