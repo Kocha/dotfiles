@@ -393,7 +393,7 @@ NeoBundle 'vim-jp/vimdoc-ja'
 NeoBundle 't9md/vim-textmanip'
 NeoBundle 't9md/vim-quickhl'
 NeoBundle 't9md/vim-choosewin'
-NeoBundle 'modsound/gips-vim'
+" NeoBundle 'modsound/gips-vim'
 NeoBundle 'Yggdroot/indentLine'
 
 " Vim Version Check
