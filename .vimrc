@@ -328,7 +328,7 @@ filetype plugin indent off " required!
 if has('vim_starting')
   set runtimepath+=$VIMHOME/.vim/bundle/neobundle.vim/
 endif
-call neobundle#rc(expand('$VIMHOME/.vim/bundle/'))
+call neobundle#begin(expand('$VIMHOME/.vim/bundle/'))
 
 " Plugins List
 NeoBundleFetch 'Shougo/neobundle.vim'
@@ -443,6 +443,7 @@ if filereadable(expand('$VIMHOME/.vimrc_local_bundle'))
 endif
 "}}}
 
+call neobundle#end()
 " NeoBundleの処理が終わってから再度ON
 filetype plugin on
 " Installation check.
