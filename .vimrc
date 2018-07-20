@@ -389,6 +389,7 @@ NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'vim-scripts/DrawIt'
 NeoBundle 'vim-scripts/Colour-Sampler-Pack'
 NeoBundle 'vim-jp/vimdoc-ja'
+NeoBundle 'previm/previm'
 
 NeoBundle 't9md/vim-textmanip'
 NeoBundle 't9md/vim-quickhl'
