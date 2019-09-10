@@ -89,6 +89,10 @@ augroup highlightIdegraphicSpace
     \ IdeographicSpace cterm=underline ctermfg=red gui=underline guifg=red 
   autocmd VimEnter,WinEnter,BufRead * match IdeographicSpace /　/
 augroup END
+" 選択行のハイライト
+set cursorline
+" アンダーラインを引く(color terminal)
+highlight CursorLine cterm=NONE ctermfg=white ctermbg=black
 
 " 行数の横の文字列を変更(オリジナル)
 " set numberchar=\|
