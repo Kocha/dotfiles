@@ -92,7 +92,7 @@ augroup END
 " 選択行のハイライト
 set cursorline
 " アンダーラインを引く(color terminal)
-highlight CursorLine cterm=NONE ctermfg=white ctermbg=black
+highlight CursorLine cterm=underline ctermfg=NONE ctermbg=NONE
 
 " 行数の横の文字列を変更(オリジナル)
 " set numberchar=\|
