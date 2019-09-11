@@ -13,7 +13,7 @@ colorscheme koehler
 " タブを常に表示
 set showtabline=2 "タブを常に表示
 " 選択行にアンダーラインを引く
-highlight CursorLine gui=NONE guifg=white guibg=black
+highlight CursorLine gui=underline guifg=NONE guibg=NONE
 " Windowサイズ指定
 if has('gui_macvim')
   set columns=100
