@@ -4,10 +4,6 @@
 	editor = vim
 [push]
 	default = matching
-[pager]
-	log  = diff-highlight | less
-	show = diff-highlight | less
-	diff = diff-highlight | less
 [alias]
 	co = checkout
 	st = status
