@@ -267,8 +267,8 @@ autocmd MyVimrc FileType markdown inoremap <buffer> <S-Enter> <br /><CR>
 " Template {{{
 "================================================
 " 新規ファイルの際に挿入する。
-autocmd MyVimrc BufNewFile *.h,*.c,*.cpp 0r $VIMHOME/.vim/template/template.h
-autocmd MyVimrc BufNewFile *.vim 0r $VIMHOME/.vim/template/template.vim
+" autocmd MyVimrc BufNewFile *.h,*.c,*.cpp 0r $VIMHOME/.vim/template/template.h
+" autocmd MyVimrc BufNewFile *.vim 0r $VIMHOME/.vim/template/template.vim
 " }}}
 
 " -------------------------------------------------------------------
@@ -321,125 +321,98 @@ let g:markdown_fenced_languages = [
 " source $VIMRUNTIME/macros/matchit.vim
 
 " -------------------------------------------------------------------
-" プラグイン管理(NeoBundle) {{{
+" プラグイン管理(Vundle) {{{
 "
-if exists("$USER_GIT_PROTOCOL")
-  let g:neobundle_default_git_protocol = $USER_GIT_PROTOCOL
-endif
-
+set nocompatible           " be iMproved, required
 filetype plugin indent off " required!
 
 if has('vim_starting')
-  set runtimepath+=$VIMHOME/.vim/bundle/neobundle.vim/
+  set runtimepath+=$VIMHOME/.vim/bundle/Vundle.vim
 endif
-call neobundle#begin(expand('$VIMHOME/.vim/bundle/'))
+call vundle#begin()
 
 " Plugins List
-NeoBundleFetch 'Shougo/neobundle.vim'
-NeoBundle 'Shougo/vimproc', { 'build': {
-  \ 'windows': 'make -f make_mingw32.mak',
-  \ 'cygwin' : 'make -f make_cygwin.mak',
-  \ 'mac'    : 'make -f make_mac.mak',
-  \ 'unix'   : 'make -f make_unix.mak',
-  \ } }
-NeoBundle 'Shougo/vimfiler'
-NeoBundle 'Shougo/vinarise'
-NeoBundle 'Shougo/neosnippet'
-NeoBundle "Shougo/neosnippet-snippets"
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/unite-outline'
-NeoBundle 'Shougo/neomru.vim'
-NeoBundle 'thinca/vim-ref'
-NeoBundle 'thinca/vim-quickrun'
-NeoBundle 'thinca/vim-visualstar'
-NeoBundle 'thinca/vim-qfreplace'
-NeoBundle 'tyru/caw.vim'
-NeoBundle 'tyru/eskk.vim'
-NeoBundle 'tyru/open-browser.vim'
-NeoBundle 'tyru/coolgrep.vim'
-" NeoBundle 'kana/vim-smartinput'
-NeoBundle 'osyo-manga/unite-quickfix'
-NeoBundle 'osyo-manga/unite-quickrun_config'
-NeoBundle 'osyo-manga/shabadou.vim'
-NeoBundle 'osyo-manga/vim-watchdogs'
-NeoBundle 'osyo-manga/unite-qfixhowm'
-NeoBundle 'osyo-manga/quickrun-outputter-replace_region'
-NeoBundle 'osyo-manga/vim-textobj-multiblock'
-NeoBundle 'osyo-manga/vim-textobj-blockwise'
-NeoBundle 'osyo-manga/vim-anzu'
-NeoBundle 'osyo-manga/vim-over'
-" NeoBundle 'jceb/vim-hier'
-" NeoBundle 'dannyob/quickfixstatus'
-NeoBundle 'mattn/webapi-vim'
-" NeoBundle 'mattn/multi-vim'
-NeoBundle 'mattn/excitetranslate-vim'
-NeoBundle 'mopp/next-alter.vim'
-" NeoBundle 'gregsexton/VimCalc'
-NeoBundle 'scrooloose/syntastic'
-NeoBundle 'gcmt/wildfire.vim'
-NeoBundle 'godlygeek/tabular'
-NeoBundle 'tsukkee/unite-help'
-NeoBundle 'terryma/vim-multiple-cursors'
-NeoBundle 'kana/vim-textobj-user'
-NeoBundle 'kmnk/vim-unite-giti'
-NeoBundle 'koron/codic-vim'
-NeoBundle 'tpope/vim-surround'
-" NeoBundle 'yonchu/accelerated-smooth-scroll'
-NeoBundle 'rhysd/clever-f.vim'
-NeoBundle 'rhysd/unite-codic.vim'
-NeoBundle 'deris/vim-rengbang'
-NeoBundle 'fuenor/qfixhowm'
-NeoBundle 'itchyny/lightline.vim'
-NeoBundle 'vim-scripts/DrawIt'
-NeoBundle 'vim-scripts/Colour-Sampler-Pack'
-NeoBundle 'vim-jp/vimdoc-ja'
-NeoBundle 'previm/previm'
+Plugin 'VundleVim/Vundle.vim'
 
-NeoBundle 't9md/vim-textmanip'
-NeoBundle 't9md/vim-quickhl'
-NeoBundle 't9md/vim-choosewin'
-" NeoBundle 'modsound/gips-vim'
-NeoBundle 'Yggdroot/indentLine'
+Plugin 'Shougo/vimproc'
+" Plugin 'Shougo/vimfiler'
+" Plugin 'Shougo/vinarise'
+" Plugin 'Shougo/neosnippet'
+" Plugin 'Shougo/neosnippet-snippets'
+Plugin 'Shougo/unite.vim'
+Plugin 'Shougo/unite-outline'
+Plugin 'Shougo/neomru.vim'
+Plugin 'thinca/vim-ref'
+Plugin 'thinca/vim-quickrun'
+Plugin 'thinca/vim-visualstar'
+Plugin 'thinca/vim-qfreplace'
+Plugin 'tyru/caw.vim'
+Plugin 'tyru/eskk.vim'
+Plugin 'tyru/open-browser.vim'
+Plugin 'tyru/coolgrep.vim'
+" Plugin 'kana/vim-smartinput'
+Plugin 'osyo-manga/unite-quickfix'
+Plugin 'osyo-manga/unite-quickrun_config'
+Plugin 'osyo-manga/shabadou.vim'
+Plugin 'osyo-manga/vim-watchdogs'
+Plugin 'osyo-manga/unite-qfixhowm'
+Plugin 'osyo-manga/quickrun-outputter-replace_region'
+Plugin 'osyo-manga/vim-textobj-multiblock'
+Plugin 'osyo-manga/vim-textobj-blockwise'
+Plugin 'osyo-manga/vim-anzu'
+Plugin 'osyo-manga/vim-over'
+" Plugin 'jceb/vim-hier'
+" Plugin 'dannyob/quickfixstatus'
+Plugin 'mattn/webapi-vim'
+" Plugin 'mattn/multi-vim'
+Plugin 'mattn/excitetranslate-vim'
+Plugin 'mopp/next-alter.vim'
+" Plugin 'gregsexton/VimCalc'
+Plugin 'scrooloose/syntastic'
+Plugin 'gcmt/wildfire.vim'
+Plugin 'godlygeek/tabular'
+Plugin 'tsukkee/unite-help'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'kana/vim-textobj-user'
+Plugin 'kmnk/vim-unite-giti'
+Plugin 'koron/codic-vim'
+Plugin 'tpope/vim-surround'
+" Plugin 'yonchu/accelerated-smooth-scroll'
+Plugin 'rhysd/clever-f.vim'
+Plugin 'rhysd/unite-codic.vim'
+Plugin 'deris/vim-rengbang'
+Plugin 'fuenor/qfixhowm'
+Plugin 'itchyny/lightline.vim'
+Plugin 'vim-scripts/DrawIt'
+Plugin 'vim-scripts/Colour-Sampler-Pack'
+Plugin 'vim-jp/vimdoc-ja'
+Plugin 'previm/previm'
 
-" Vim Version Check
-function! s:meet_neocomplete_requirements()
-    return has('lua') && (v:version > 703 || (v:version == 703 && has('patch885')))
-endfunction
-" neocomplete/neocomplcache install
-if s:meet_neocomplete_requirements()
-  NeoBundle 'Shougo/neocomplete.vim'
-  NeoBundleFetch 'Shougo/neocomplcache.vim'
-else
-  NeoBundleFetch 'Shougo/neocomplete.vim'
-  NeoBundle 'Shougo/neocomplcache.vim'
-endif
-"================================================
-" NeoBundleLazy List {{{
-"================================================
-NeoBundleLazy 'Shougo/vimshell', {
-\   'autoload' : { 'commands' : [ 'VimShell' ] }
-\}
-" Markdown, Textile
-" NeoBundleLazy "hallison/vim-markdown",  {"autoload" : { "filetypes" : ["markdown"] }}
-" NeoBundleLazy "joker1007/vim-markdown-quote-syntax",  {"autoload" : { "filetypes" : ["markdown"] }}
-NeoBundleLazy "timcharper/textile.vim", {"autoload" : { "filetypes" : ["textile"] }}
-" haskell
-NeoBundleLazy "dag/vim2hs",                  {"autoload" : { "filetypes" : ["haskell"] }}
-NeoBundleLazy "eagletmt/ghcmod-vim",         {"autoload" : { "filetypes" : ["haskell"] }}
-NeoBundleLazy "eagletmt/unite-haddock",      {"autoload" : { "filetypes" : ["haskell"] }}
-NeoBundleLazy "ujihisa/neco-ghc",            {"autoload" : { "filetypes" : ["haskell"] }}
-NeoBundleLazy "ujihisa/unite-haskellimport", {"autoload" : { "filetypes" : ["haskell"] }}
+Plugin 't9md/vim-textmanip'
+Plugin 't9md/vim-quickhl'
+Plugin 't9md/vim-choosewin'
+" Plugin 'modsound/gips-vim'
+Plugin 'Yggdroot/indentLine'
+
+Plugin 'prabirshrestha/async.vim'
+Plugin 'prabirshrestha/asyncomplete.vim'
+Plugin 'prabirshrestha/asyncomplete-lsp.vim'
+Plugin 'prabirshrestha/vim-lsp'
+Plugin 'mattn/vim-lsp-settings'
+
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'lambdalisue/fern.vim'
 
 " gvim用 {{{
-NeoBundleLazy 'thinca/vim-fontzoom'
-NeoBundleLazy 'vim-scripts/errormarker.vim'
-NeoBundleLazy 'ujihisa/unite-colorscheme'
+Plugin 'thinca/vim-fontzoom'
+Plugin 'vim-scripts/errormarker.vim'
+Plugin 'ujihisa/unite-colorscheme'
 "}}}
 "}}}
 
 " 個別プラグイン
 " systemverilog_syntax,DirDiff,vim-systemc,gtags,vim-rtl
-NeoBundleLocal $VIMHOME/.vim/plugins
+" NeoBundleLocal $VIMHOME/.vim/plugins
 
 "================================================
 " .vimrc_local_bundle {{{
@@ -448,15 +421,15 @@ if filereadable(expand('$VIMHOME/.vimrc_local_bundle'))
 endif
 "}}}
 
-call neobundle#end()
-" NeoBundleの処理が終わってから再度ON
-filetype plugin on
+call vundle#end()
+" Vundleの処理が終わってから再度ON
+filetype plugin indent on
 " Installation check.
-if neobundle#exists_not_installed_bundles()
-  echomsg 'Not installed bundles : ' .
-    \ string(neobundle#get_not_installed_bundle_names())
-  echomsg 'Please execute ":NeoBundleInstall" command.'
-endif
+" if neobundle#exists_not_installed_bundles()
+"   echomsg 'Not installed bundles : ' .
+"    \ string(neobundle#get_not_installed_bundle_names())
+"   echomsg 'Please execute ":NeoBundleInstall" command.'
+" endif
 "}}}
 
 " -------------------------------------------------------------------
@@ -464,90 +437,100 @@ endif
 " -------------------------------------------------------------------
 " neocomplete/neocomplcache関連 {{{
 "
-if s:meet_neocomplete_requirements()
-  " Use neocomplete.
-  let g:neocomplete#enable_at_startup = 1
-  " Use smartcase.
-  let g:neocomplete#enable_smart_case = 1
-  " Use camel case completion.
-  " let g:neocomplete#enable_camel_case_completion = 1
-  " Use underbar completion.
-  " let g:neocomplete#enable_underbar_completion = 1
-  " Set minimum syntax keyword length.
-  " let g:neocomplete#min_syntax_length = 3
-  " let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
-  " Define dictionary.
-  let g:neocomplete#dictionary_filetype_lists = {
-      \ 'default' : '',
-      \ 'vimshell' : $VIMHOME.'/.vimshell_hist',
-      \ 'scheme' : $VIMHOME.'/.gosh_completions'
-      \ }
-  " Define keyword.
-  if !exists('g:neocomplete#keyword_patterns')
-    let g:neocomplete#keyword_patterns = {}
-  endif
-  let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-  " ===============================================
-  " Plugin key-mappings.
-  " <CR>: close popup and save indent.
-  inoremap <expr><CR>  neocomplete#close_popup() . "\<CR>"
-  " <TAB>: completion.
-  " inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-  " <C-h>, <BS>: close popup and delete backword char.
-  inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-  inoremap <expr><BS>  neocomplete#smart_close_popup()."\<C-h>"
-  inoremap <expr><C-y> neocomplete#close_popup()
-  " inoremap <expr><C-e>  neocomplete#cancel_popup()
-else
-  " Use neocomplcache.
-  let g:neocomplcache_enable_at_startup = 1
-  " Use smartcase.
-  let g:neocomplcache_enable_smart_case = 1
-  " Use camel case completion.
-  " let g:neocomplcache_enable_camel_case_completion = 1
-  " Use underbar completion.
-  " let g:neocomplcache_enable_underbar_completion = 1
-  " Set minimum syntax keyword length.
-  " let g:neocomplcache_min_syntax_length = 3
-  " let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
-  " Define dictionary.
-  let g:neocomplcache_dictionary_filetype_lists = {
-      \ 'default' : '',
-      \ 'vimshell' : $VIMHOME.'/.vimshell_hist',
-      \ 'scheme' : $VIMHOME.'/.gosh_completions'
-      \ }
-  " Define keyword.
-  if !exists('g:neocomplcache_keyword_patterns')
-    let g:neocomplcache_keyword_patterns = {}
-  endif
-  let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
-  " ===============================================
-  " Plugin key-mappings.
-  " <CR>: close popup and save indent.
-  inoremap <expr><CR>  neocomplcache#close_popup() . "\<CR>"
-  " <TAB>: completion.
-  " inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-  " <C-h>, <BS>: close popup and delete backword char.
-  inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
-  inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
-  inoremap <expr><C-y>  neocomplcache#close_popup()
-  " inoremap <expr><C-e>  neocomplcache#cancel_popup()
-endif
+" if s:meet_neocomplete_requirements()
+"   " Use neocomplete.
+"   let g:neocomplete#enable_at_startup = 1
+"   " Use smartcase.
+"   let g:neocomplete#enable_smart_case = 1
+"   " Use camel case completion.
+"   " let g:neocomplete#enable_camel_case_completion = 1
+"   " Use underbar completion.
+"   " let g:neocomplete#enable_underbar_completion = 1
+"   " Set minimum syntax keyword length.
+"   " let g:neocomplete#min_syntax_length = 3
+"   " let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+"   " Define dictionary.
+"   let g:neocomplete#dictionary_filetype_lists = {
+"      \ 'default' : '',
+"      \ 'vimshell' : $VIMHOME.'/.vimshell_hist',
+"      \ 'scheme' : $VIMHOME.'/.gosh_completions'
+"      \ }
+"   " Define keyword.
+"   if !exists('g:neocomplete#keyword_patterns')
+"     let g:neocomplete#keyword_patterns = {}
+"   endif
+"   let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+"   " ===============================================
+"   " Plugin key-mappings.
+"   " <CR>: close popup and save indent.
+"   inoremap <expr><CR>  neocomplete#close_popup() . "\<CR>"
+"   " <TAB>: completion.
+"   " inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+"   " <C-h>, <BS>: close popup and delete backword char.
+"   inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+"   inoremap <expr><BS>  neocomplete#smart_close_popup()."\<C-h>"
+"   inoremap <expr><C-y> neocomplete#close_popup()
+"   " inoremap <expr><C-e>  neocomplete#cancel_popup()
+" else
+"   " Use neocomplcache.
+"   let g:neocomplcache_enable_at_startup = 1
+"   " Use smartcase.
+"   let g:neocomplcache_enable_smart_case = 1
+"   " Use camel case completion.
+"   " let g:neocomplcache_enable_camel_case_completion = 1
+"   " Use underbar completion.
+"   " let g:neocomplcache_enable_underbar_completion = 1
+"   " Set minimum syntax keyword length.
+"   " let g:neocomplcache_min_syntax_length = 3
+"   " let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
+"   " Define dictionary.
+"   let g:neocomplcache_dictionary_filetype_lists = {
+"      \ 'default' : '',
+"      \ 'vimshell' : $VIMHOME.'/.vimshell_hist',
+"      \ 'scheme' : $VIMHOME.'/.gosh_completions'
+"      \ }
+"   " Define keyword.
+"   if !exists('g:neocomplcache_keyword_patterns')
+"     let g:neocomplcache_keyword_patterns = {}
+"   endif
+"   let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
+"   " ===============================================
+"   " Plugin key-mappings.
+"   " <CR>: close popup and save indent.
+"   inoremap <expr><CR>  neocomplcache#close_popup() . "\<CR>"
+"   " <TAB>: completion.
+"   " inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+"   " <C-h>, <BS>: close popup and delete backword char.
+"   inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
+"   inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+"   inoremap <expr><C-y>  neocomplcache#close_popup()
+"   " inoremap <expr><C-e>  neocomplcache#cancel_popup()
+" endif
 "}}}
 
 " -------------------------------------------------------------------
 " neosnippet関連
 "
-" previewウィンドウを表示させない
-set completeopt-=preview
-" キーマップ
-imap <C-p>     <Plug>(neosnippet_expand_or_jump)
-smap <C-p>     <Plug>(neosnippet_expand_or_jump)
-" SuperTab like snippets behavior.
-imap <expr><TAB> neosnippet#expandable() <Bar><Bar> neosnippet#jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<C-n>" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable() <Bar><Bar> neosnippet#jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+" " previewウィンドウを表示させない
+" set completeopt-=preview
+" " キーマップ
+" imap <C-p>     <Plug>(neosnippet_expand_or_jump)
+" smap <C-p>     <Plug>(neosnippet_expand_or_jump)
+" " SuperTab like snippets behavior.
+" imap <expr><TAB> neosnippet#expandable() <Bar><Bar> neosnippet#jumpable() ?
+"\ "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<C-n>" : "\<TAB>"
+" smap <expr><TAB> neosnippet#expandable() <Bar><Bar> neosnippet#jumpable() ?
+"\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+" -------------------------------------------------------------------
+" asyncomplete.vim関連 {{{
+"
+set completeopt+=preview
+
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<cr>"
+"}}}
 
 " -------------------------------------------------------------------
 " unite.vim関連 {{{
@@ -701,63 +684,28 @@ let g:textobj_multiblock_blocks = [
 " -------------------------------------------------------------------
 " VimFiler関連 {{{
 "
-" VimFilerをデフォルトのファイラーにする。
-let g:vimfiler_as_default_explorer = 1
-" safe_modeを解除する。
-let g:vimfiler_safe_mode_by_default = 0
-" タブで開くようにする。
-let g:vimfiler_edit_action = 'tabopen'
-" 引数なしの場合は VimFilerを起動(MacVimの場合のみ)
-if has("gui_macvim")
-  if has('vim_starting') && expand("%") == ""
-    autocmd MyVimrc VimEnter * VimFiler -status
-  endif
-endif
-" q で VimFilerを閉じる
-autocmd MyVimrc FileType vimfiler nmap <buffer> q <Plug>(vimfiler_close)
-" statuslineの上書きを行わない
-let g:vimfiler_force_overwrite_statusline = 0
-
- " VimFiler の読み込みを遅延しつつデフォルトのファイラに設定 {{{
-" イマイチだったので削除
+"" VimFilerをデフォルトのファイラーにする。
+"let g:vimfiler_as_default_explorer = 1
+"" safe_modeを解除する。
+"let g:vimfiler_safe_mode_by_default = 0
+"" タブで開くようにする。
+"let g:vimfiler_edit_action = 'tabopen'
+"" 引数なしの場合は VimFilerを起動(MacVimの場合のみ)
+"" if has("gui_macvim")
+""   if has('vim_starting') && expand("%") == ""
+""     autocmd MyVimrc VimEnter * VimFiler -status
+""   endif
+"" endif
+"" q で VimFilerを閉じる
+"autocmd MyVimrc FileType vimfiler nmap <buffer> q <Plug>(vimfiler_close)
+"" statuslineの上書きを行わない
+"let g:vimfiler_force_overwrite_statusline = 0
 "
-" augroup LoadVimFiler
-"     autocmd!
-"     autocmd BufEnter,BufCreate,BufWinEnter * call <SID>load_vimfiler(expand('<amatch>'))
-" augroup END
-" " :edit {dir} や unite.vim などでディレクトリを開こうとした場合
-" function! s:load_vimfiler(path)
-"     if exists('g:loaded_vimfiler')
-"         autocmd! LoadVimFiler
-"         return
-"     endif
-"
-"     let path = a:path
-"     " for ':edit ~'
-"     if fnamemodify(path, ':t') ==# '~'
-"         let path = expand('~')
-"     endif
-"
-"     if isdirectory(path)
-"         NeoBundleSource vimfiler
-"     endif
-"
-"     autocmd! LoadVimFiler
-" endfunction
-" " 起動時にディレクトリを指定した場合
-" for arg in argv()
-"     if isdirectory(getcwd().'/'.arg)
-"         NeoBundleSource vimfiler
-"         autocmd! LoadVimFiler
-"         break
-"     endif
-" endfor
-"}}}
-" '/'カレントディレクトリ検索時に unite.vimを使用する。
-" autocmd MyVimrc FileType vimfiler nnoremap <buffer><silent>/
-"         \ :<C-u>Unite file -default-action=vimfiler<CR>
-" unite bookmark->Enterにて移動
-autocmd MyVimrc FileType vimfiler call unite#custom_default_action('directory', 'cd')
+"" '/'カレントディレクトリ検索時に unite.vimを使用する。
+"" autocmd MyVimrc FileType vimfiler nnoremap <buffer><silent>/
+""         \ :<C-u>Unite file -default-action=vimfiler<CR>
+"" unite bookmark->Enterにて移動
+"autocmd MyVimrc FileType vimfiler call unite#custom_default_action('directory', 'cd')
 "}}}
 
 " -------------------------------------------------------------------
