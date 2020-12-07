@@ -192,6 +192,8 @@ nnoremap <Up>   gk
 " nnoremap N Nzz
 " カーソル部分から行末までコピー
 nnoremap Y y$
+" 1文字削除でコピーしない
+noremap x "_x
 " 行の二重化
 " nnoremap <C-Enter> yypk
 " 行削除
